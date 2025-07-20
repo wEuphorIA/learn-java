@@ -1,0 +1,3 @@
+[submodule "learn-java"]
+	path = learn-java
+	url = https://github.com/wEuphorIA/learn-java.git
