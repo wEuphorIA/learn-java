@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/day03-operator/day03-operator.iml" filepath="$PROJECT_DIR$/day03-operator/day03-operator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day04-if-for-while/day04-if-for-while.iml" filepath="$PROJECT_DIR$/day04-if-for-while/day04-if-for-while.iml" />
       <module fileurl="file://$PROJECT_DIR$/day1-helloworld/day1-helloworld.iml" filepath="$PROJECT_DIR$/day1-helloworld/day1-helloworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/day2-BasicGrammar/day2-BasicGrammar.iml" filepath="$PROJECT_DIR$/day2-BasicGrammar/day2-BasicGrammar.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaSE.iml" filepath="$PROJECT_DIR$/javaSE.iml" />
