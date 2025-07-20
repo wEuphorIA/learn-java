@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>13、JavaScript-运算符-算术运算符</title>
+</head>
+<body>
+  <script>
+    /*
+      算术运算符：用于进行数学计算的运算符。
+      1、加法运算符：+
+      2、减法运算符：-
+      3、乘法运算符：*
+      4、除法运算符：/
+      5、取余运算符：%
+      6、幂运算符：**
+    */
+
+    // let a = 10;
+    // let b = 5;
+
+    // console.log(`加法运算：${a + b}`); // 输出15
+    // console.log(`减法运算：${a - b}`); // 输出5
+    // console.log(`乘法运算：${a * b}`); // 输出50
+    // console.log(`除法运算：${a / b}`); // 输出2
+    // console.log(`取余运算：${a % b}`); // 输出0
+    // console.log(`幂运算：${a ** b}`); // 输出100000
+
+    // 使用prompt获取用户输入的数字
+    let num1 = prompt('请输入商品单价：');
+    let num2 = prompt('请输入购买数量：');
+    let price = num1 * num2; // 计算总价
+    document.write(`<h1>商品单价为：${num1}</h1>`);
+    document.write(`<h1>商品数量为：${num2}</h1>`);
+    document.write(`<h1>商品总价为：${price}</h1>`);
+  </script>
+</body>
+</html>

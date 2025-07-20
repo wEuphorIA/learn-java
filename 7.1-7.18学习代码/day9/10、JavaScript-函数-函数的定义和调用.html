@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10、JavaScript-函数-函数的定义和调用</title>
+</head>
+<body>
+  <script>
+    /* 
+      函数：也叫方法，将一段代码包裹(封装)起来，以便在多个地方重复使用。一个函数一般是为了完成一个功能。
+      定义函数：
+        function 函数名(参数1,参数2,...){
+          函数体(就是封装的代码);
+          return 结果;
+        }
+        注意：函数定义之后如果不调用就不会执行。
+      调用函数：
+        let 变量名 = 函数名(值1,值2,...); 
+        注意1：如果方法有参数，那么调用方法的时候就需要传值。
+        注意2：如果方法有返回值，调用完方法之后需要用一个变量接收返回值
+    */
+    //需求：定义一个函数，计算10和20之和
+    function sum(a,b) {
+      return a + b; // 返回两个数的和
+    }
+    let result = sum(100, 200); // 调用函数并传入参数10和20
+    console.log(result); // 输出结果30
+  </script>
+</body>
+</html>

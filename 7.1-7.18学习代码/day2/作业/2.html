@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>基础信息表单</title>
+</head>
+
+<body>
+  <div class="form-container">
+    <h2>基础信息</h2>
+    <form>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">*姓名</label>
+          <input type="text" id="name" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="nickname">花名</label>
+          <input type="text" id="nickname" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="englishName">英文名</label>
+          <input type="text" id="englishName" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="idType">证件类型</label>
+          <select id="idType">
+            <option value="">请选择</option>
+            <option value="idCard">居民身份证</option>
+            <option value="passport">护照</option>
+            <option value="military">军官证</option>
+            <option value="other">其他证件</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="idNumber">证件号码</label>
+          <input type="text" id="idNumber" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="nation">民族</label>
+          <select id="nation">
+            <option value="">请选择</option>
+            <option value="han">汉族</option>
+            <option value="zhuang">壮族</option>
+            <option value="manchu">满族</option>
+            <option value="hui">回族</option>
+            <option value="miao">苗族</option>
+            <option value="Uyghur">维吾尔族</option>
+            <option value="tujia">土家族</option>
+            <option value="yi">彝族</option>
+            <option value="mongol">蒙古族</option>
+            <option value="Tibetan">藏族</option>
+            <option value="other">其他民族</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="householdType">户口类型</label>
+          <select id="householdType">
+            <option value="">请选择</option>
+            <option value="agricultural">农业户口</option>
+            <option value="non-agricultural">非农业户口</option>
+            <option value="other">其他类型</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="householdAddr">户口所在地</label>
+          <input type="text" id="householdAddr" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="nativePlace">籍贯</label>
+          <input type="text" id="nativePlace" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="birthDate">出生日期</label>
+          <input type="date" id="birthDate">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="education">学历</label>
+          <select id="education">
+            <option value="">请选择</option>
+            <option value="primary">小学</option>
+            <option value="junior">初中</option>
+            <option value="senior">高中</option>
+            <option value="college">大专</option>
+            <option value="bachelor">本科</option>
+            <option value="master">硕士</option>
+            <option value="doctor">博士</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="politicalStatus">政治面貌</label>
+          <select id="politicalStatus">
+            <option value="">请选择</option>
+            <option value="masses">群众</option>
+            <option value="communistYouthLeague">共青团员</option>
+            <option value="communistParty">中共党员</option>
+            <option value="probationaryPartyMember">中共预备党员</option>
+            <option value="democraticParty">民主党派</option>
+            <option value="other">其他</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="maritalStatus">婚姻状况</label>
+          <select id="maritalStatus">
+            <option value="">请选择</option>
+            <option value="unmarried">未婚</option>
+            <option value="married">已婚</option>
+            <option value="divorced">离异</option>
+            <option value="widowed">丧偶</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="bloodType">血型</label>
+          <select id="bloodType">
+            <option value="">请选择</option>
+            <option value="a">A型</option>
+            <option value="b">B型</option>
+            <option value="ab">AB型</option>
+            <option value="o">O型</option>
+            <option value="unknown">未知</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="emergencyContact">紧急联系人</label>
+          <input type="text" id="emergencyContact" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="emergencyPhone">紧急联系人电话</label>
+          <input type="text" id="emergencyPhone" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="wechat">微信</label>
+          <input type="text" id="wechat" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="qq">QQ</label>
+          <input type="text" id="qq" placeholder="请输入">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="email">邮箱</label>
+          <input type="email" id="email" placeholder="请输入">
+        </div>
+        <div class="form-group">
+          <label for="resideAddr">居住地址</label>
+          <input type="text" id="resideAddr" placeholder="请输入">
+        </div>
+      </div>
+      <div class="button-group">
+        <button type="submit" class="save-btn">保存</button>
+        <button type="reset" class="cancel-btn">取消</button>
+      </div>
+    </form>
+  </div>
+</body>
+
+</html>

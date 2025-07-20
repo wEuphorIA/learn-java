@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>06、JavaScript-循环结构-while循环</title>
+</head>
+<body>
+  <script>
+      /* 
+      循环：重复执行一段代码，减少重复代码的书写
+      分类：while循环、for循环
+      while循环结构：
+        语法：
+          初始化语句①
+          while(循环条件②){
+            循环体语句(要重复执行的代码)③
+            迭代语句④
+          }
+        执行流程：①②③④---》②③④---》②③④---》...②③④---》②结果时false，循环结束
+    */
+   // 打印1-10的数字
+    let i = 1; // 初始化语句①
+    while (i <= 10) { // 循环条件②
+      console.log(i); // 循环体语句③
+      document.write(i + 'hello world <br>'); // 在页面上打印数字
+      i++; // 迭代语句④
+    }
+  </script>
+</body>
+</html>

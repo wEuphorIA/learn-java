@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>个人信息页面</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #f0f2f5;
+    }
+
+    .container {
+      background-color: white;
+      width: 70%;
+      height: 600px;
+    }
+
+    .container>row {
+      border: 1px solid #e8e8e9;
+      height: 600px;
+    }
+
+    .left {
+      /* border: 1px solid #e8e8e9; */
+      height: 580px;
+    }
+
+    .nav .active {
+      background-color: #e8f7fd;
+    }
+
+    /* div{
+            border: 1px solid red;
+        } */
+  </style>
+
+</head>
+
+<body>
+  <div class="container">
+    <div class="toast align-items-center" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-body">
+        Hello, world! This is a toast message.
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-2 left mt-3 p-0 border-end">
+        <nav class="nav flex-column ms-4">
+          <a class="nav-link active border-end border-3 border-primary" aria-current="page" href="#">基本设置</a>
+          <a class="nav-link text-dark" href="#">安全设置</a>
+          <a class="nav-link text-dark" href="#">账号绑定</a>
+          <a class="nav-link text-dark" href="#">新消息通知</a>
+        </nav>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-12 mt-4 ms-3 fs-4 fw-bold">
+            基本设置
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 mt-3 ms-3">
+            <form>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">邮箱</label>
+                <input type="email" class="form-control email" id="exampleInputEmail1" placeholder="请输入邮箱">
+              </div>
+              <div class="mb-3">
+                <label for="nickname" class="form-label">昵称</label>
+                <input type="text" class="form-control nickname" id="nickname" placeholder="请输入昵称">
+              </div>
+              <div class="mb-3">
+                <div><label class="form-label">性别</label></div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input gender" type="radio" name="gender" id="inlineRadio1" value="0">
+                  <label class="form-check-label" for="inlineRadio1">男</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input gender" type="radio" name="gender" id="inlineRadio2" value="1">
+                  <label class="form-check-label" for="inlineRadio2">女</label>
+                </div>
+                <div class="mb-3">
+                  <label for="exampleFormControlTextarea1" class="form-label">个人简介</label>
+                  <textarea class="form-control desc" id="exampleFormControlTextarea1" rows="5"></textarea>
+                </div>
+              </div>
+              <button type="button" class="btn btn-primary submit">提交</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="row">
+          <div class="col-md-4 offset-md-3 mt-5">
+            头像
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 offset-md-3 mt-3">
+            <img class="avatar" src="img/avatar.png" width="80" height="80">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 offset-md-3 mt-3">
+            <button type="button" class="btn btn-light">
+              <label for="uploadImg">更换头像</label>
+            </button>
+            <input type="file" name="icon" id="uploadImg" hidden>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="lib/js/bootstrap.bundle.min.js"></script>
+  <script src="lib/js/axios.min.js"></script>
+
+  <script>
+    //--------------------需求：回显用户信息--------------------
+    //1 获取登录成功之后携带过来的用户名，回显此用户信息。如果没有默认是admin
+    let loginUser = location.search.split('=')[1] ? location.search.split('=')[1] : 'itheima'
+    //2 使用axios访问服务器获取用户信息
+    axios.get(`https://hmajax.itheima.net/api/settings?creator=${loginUser}`)
+      .then((result) => {
+        //3 将服务器返回的用户信息显示到页面上
+        let userData = result.data.data
+        document.querySelector('.email').value = userData.email
+        document.querySelector('.nickname').value = userData.nickname
+        //4 获取性别单选框，设置性别选中。0表示男，1表示女
+        let genderRadios = document.querySelectorAll('.gender')
+        genderRadios[userData.gender].checked = true
+        //5 获取个人简介和图像
+        document.querySelector('.desc').value = userData.desc
+        document.querySelector('.avatar').src = userData.avatar
+      }).catch((err) => {
+        console.log(err.response.data.message);
+      });
+
+    //--------------------需求：上传头像--------------------
+    //1 获取上传文件的表单项对象并绑定事件(change)
+    document.querySelector('#uploadImg').addEventListener('change', function () {
+      //2 获取用户选择的文件
+      let file = this.files[0] //this表示当前表单项对象，files[0]表示获取第一个文件对象(索引是0)
+      //3 封装需要提交的文件数据(文件上传数据封装的格式)
+      let formData = new FormData()
+      formData.append('avatar', file)
+      formData.append('creator', loginUser)
+      //4 将文件数据发送到服务器
+      axios.put('https://hmajax.itheima.net/api/avatar', formData)
+        .then((result) => {
+          //5 处理服务器返回的结果,将响应回来的新图片展示在img标签上
+          let src = result.data.data.avatar
+          document.querySelector('.avatar').src = result.data.data.avatar
+        });
+    })
+
+    //--------------------需求：提交用户信息--------------------
+    //1 获取提交按钮元素对象并绑定点击事件
+    document.querySelector('.submit').addEventListener('click', () => {
+      //2 获取各个表单项中的数据
+      let email = document.querySelector('.email').value
+      let nickname = document.querySelector('.nickname').value
+      let gender = document.querySelector('.gender').checked ? 0 : 1
+      let desc = document.querySelector('.desc').value
+      //3 判断是否为空，如果为空则不提交数据。
+      if (!email || !nickname || !desc) {
+        alert('请填写完整的用户信息')
+        return
+      }
+      //4 发送请求，将新的表达数据提交给服务器
+      let data = { email, nickname, gender, desc, creator: loginUser }
+      axios.put('https://hmajax.itheima.net/api/settings', data).then((result) => {
+        //5 处理服务器返回的结果，提示用户修改成功，刷新页面
+        alert(result.data.message)
+        location.reload()
+      });
+    })
+  </script>
+</body>
+
+</html>

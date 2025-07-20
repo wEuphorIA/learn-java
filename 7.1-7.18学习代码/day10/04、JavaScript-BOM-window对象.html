@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04、JavaScript-BOM-window对象</title>
+</head>
+<body>
+  <script>
+    /* 
+      window对象：浏览器窗口对象。
+      获取：直接使用window，其中window.可以省略。
+      方法：
+        alert（'警告信息'）：显示带有一段消息和一个确认按钮的警告框。
+        confirm（'确认信息'）：显示带有一段消息以及确认按钮和取消按钮的对话框。
+        setTimeout（匿名函数，等待的毫秒）：在指定的毫秒数后调用函数或计算表达式（一次性定时器）。
+        setInterval（匿名函数,等待的毫秒）：按照指定的周期（以毫秒计）来调用函数或计算表达式（循环定时器）。
+    */
+
+    alert('这是一个警告框！');
+    let userConfirmed = confirm('您确定要继续吗？');
+    if (userConfirmed) {
+      console.log('用户点击了确认按钮');
+    } else {
+      console.log('用户点击了取消按钮');
+    }
+
+    setTimeout(function() {
+      console.log('这是一个一次性定时器，延迟3秒后执行');
+    }, 3000);
+
+    let intervalId = setInterval(function() {
+      console.log('这是一个循环定时器，每隔2秒执行一次');
+    }, 1000);
+
+    clearInterval(intervalId); // 停止循环定时器
+  </script>
+</body>
+</html>

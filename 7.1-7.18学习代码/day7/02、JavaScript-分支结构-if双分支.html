@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02、JavaScript-分支结构-if双分支</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     if双分支结构：
+       语法：
+         if(条件表达式){
+           执行语句1
+         }else{
+            执行语句2
+         }
+       执行流程：
+         条件表达式的结果为true，则执行if大括号中的语句，如果为false就执行else大括号中的语句。
+   */
+    //需求：用户输入，用户名：刘德华，密码：123456，则提示登录成功，否则提示登录失败。
+    let name = prompt("请输入用户名：");
+    let password = prompt("请输入密码：");
+    if (name === "刘德华" && password === "123456") {
+      alert("登录成功");
+    } else {
+      alert("用户名或密码错误");
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>08、JavaScript-循环结构-练习</title>
+</head>
+<body>
+  <script>
+    /* 
+      练习1：页面输出1~100的偶数
+      练习2：求1-100的累加和（1+2+3..+100的和）
+      练习3：求1-100之间所有的偶数和
+    */
+    // 练习1：页面输出1~100的偶数
+    for (let i = 1; i<=100; i++){
+      if (i % 2 == 0) { // 判断是否为偶数
+        document.write(i + ' '); // 在页面上输出偶数
+      }
+    }
+    document.write('<br>'); // 换行
+    // 练习2：求1-100的累加和
+    let sum = 0; // 初始化累加和变量
+    for (let i = 1; i <= 100; i++) {
+      sum += i; // 累加
+    }
+    document.write('1-100的累加和是：' + sum + '<br>'); // 输出累加和
+
+    // 练习3：求1-100之间所有的偶数和
+    let sum1 = 0; // 初始化偶数和变量
+    for (let i = 1; i <= 100; i++) {
+      if(i % 2 == 0){
+        sum1 += i; // 累加偶数
+      }
+    }
+    document.write('1-100之间所有的偶数和是：' + sum1 + '<br>'); // 输出偶数和
+  </script>
+</body>
+</html>

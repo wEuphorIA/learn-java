@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04、JavaScript-变量-变量的定义</title>
+</head>
+<body>
+  <script>
+    /* 
+      变量：在程序中保存数据的容器。
+      语法：
+        let 变量名 = 值;   
+      扩展：早期的js声明变量是用var关键字，例如：var 变量名 = 值;  现在开发中基本上都是使用let
+    */
+    let name = "张三"; // 定义一个变量 name，并赋值为 "张三"
+    console.log(name); // 输出变量 name 的值到控制台
+    name = "李四"; // 修改变量 name 的值为 "李四"
+    console.log(name); // 再次输出变量 name 的值到控制台
+    // 变量的作用域
+    {
+      let age = 18; // 在块级作用域中定义变量 age
+      console.log(age); // 输出变量 age 的值到控制台
+    }
+    // console.log(age); // 这行代码会报错，因为 age 在块级作用域外不可访问
+  </script>
+</body>
+</html>

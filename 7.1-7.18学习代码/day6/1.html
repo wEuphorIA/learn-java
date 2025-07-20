@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+    for (let i = 1; i <= 100; i++) {
+      if (i % 2 === 0) {
+        console.log(`第${i}个数是偶数`);
+      }
+    }
+    let sum = 0;
+    for (let i = 1; i <= 100; i++) {
+      sum += i;
+    }
+    console.log(`1-100的累加和为：${sum}`);
+    let sum1 = 0;
+    for (let i = 1; i <= 100; i++) {
+      if (i % 2 === 0) {
+        sum1 += i;
+      }
+    }
+    console.log(`1-100的偶数累加和为：${sum1}`);
+  </script>
+</body>
+
+</html>

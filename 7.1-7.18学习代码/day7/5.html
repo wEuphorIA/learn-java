@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>5秒钟自动关闭广告</title>
+  <style>
+    body {
+      background-color: #07090c;
+    }
+
+    .ad {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .close {
+      position: absolute;
+      top: 95px;
+      right: 4px;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="ad">
+    <img src="./images/ad.png" alt="">
+    <span class="close"></span>
+  </div>
+  <script>
+
+    setTimeout(() => {
+      //获取广告区域标签对象
+      let adEle = document.querySelector('.ad')
+      //隐藏广告区域
+      adEle.style.display = 'none' 
+    }, 5000);
+
+    //点击关闭按钮 , 隐藏广告
+    //获取关闭按钮对象
+    let closeEle =  document.querySelector('.close')
+    //为关闭按钮对象绑定点击事件
+    closeEle.addEventListener('click',function(){
+      //获取广告区域标签对象
+      let adEle = document.querySelector('.ad')
+      //隐藏广告区域
+      adEle.style.display = 'none' 
+    })
+  </script>
+</body>
+
+</html>

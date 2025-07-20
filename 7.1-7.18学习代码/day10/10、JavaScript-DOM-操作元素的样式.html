@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10、JavaScript-DOM-操作元素的样式</title>
+  <style>
+    .active{
+      background-color: blueviolet;
+      font-size: 50px;
+      color: white;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <p class="cls">我爱西安</p>
+  <script>
+    /* 
+      操作标签的样式
+          通过style属性操作css（适合设置少量样式）
+              元素对象.style.css属性名=值;
+              注意：
+                1 如果属性有-连接符，需要转换为小驼峰命名法，例如：backgroundColor。
+                赋值的时候，需要的时候不要忘记加css单位，例如：px。
+          通过class属性操作css（适合设置大量样式）
+            第一步：先使用类选择器定义好样式
+            第二步：元素对象.className = '类名' 给标签设置类名
+          通过classList操作css(了解）
+            元素对象.classList.add（'类名） //添加类型
+            元素对象.classList.remove（类名） //移除类名
+            元素对象.classList.toggle（类名） //如果类名存在就是移除，如果不存在就是添加
+    */
+    //获取p标签对象
+    let p = document.querySelector('p');
+    //通过style属性操作css
+    // p.style.backgroundColor = 'red'; //设置背景颜色
+    // p.style.fontSize = '30px'; //设置字体大小
+    // p.style.color = 'white'; //设置字体颜色
+    //通过class属性操作css（适合设置大量样式）
+    // p.className = 'active'; //给p标签设置类名
+    //通过classList操作css(了解）
+    p.classList.add('active'); //添加类名
+    p.classList.remove('cls'); //移除类名
+    p.classList.toggle('cla'); //切换类名
+  </script>
+</body>
+</html>

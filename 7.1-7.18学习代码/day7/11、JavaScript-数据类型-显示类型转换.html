@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11、JavaScript-数据类型-显示类型转换</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     数据类型转换：把一种数据类型转换成另外一种数据类型。
+     为什么需要类型转换呢?
+       例如：使用表单、prompt()获取到的数据默认是字符串类型的，此时就不能直接的进行加减乘除运算了。
+     显示类型转换：手动转换数据类型。
+       1、Number(数据)、parseInt(数据)、parseFloat(数据)：把数据转换成数字类型
+       2、String(数据)：把数据转换成字符串类型
+       3、Boolean(数据)：把数据转换成布尔类型
+   */
+    let age = prompt('请输入您的年龄：'); // 使用prompt获取用户输入的年龄
+    age = Number(age) + 20; // 显示类型转换，把字符串类型的年龄转换成数字类型
+    console.log(`您的年龄是：${age}`, typeof age); // 模板字符串，使用反引号包裹，可以直接在字符串中嵌入变量
+    age = String(age); // 显示类型转换，把数字类型的年龄转换成字符串类型
+    console.log(`您的年龄是：${age}`, typeof age); // 模板字符串，使用反引号包裹，可以直接在字符串中嵌入变量
+    age = Boolean(undefined); // 显示类型转换，把字符串类型的年龄转换成布尔类型
+    // 任何非空字符串转换成布尔类型都是true，空字符串转换成布尔类型是false
+    console.log(`您的年龄是：${age}`, typeof age); // 模板字符串，使用反引号包裹，可以直接在字符串中嵌入变量
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>14、JavaScript-运算符-赋值运算符</title>
+</head>
+<body>
+  <script>
+     /* 
+     赋值运算符：对变量进行赋值的运算符。简单的赋值运算符：=，将等号右边的值赋予给左边，要求左边必须是一个变量。扩展的赋值运算符：
+      1、加法赋值运算符：+=，将右边的值加到左边的变量上。
+      2、减法赋值运算符：-=，将右边的值从左边的变量中减去。
+      3、乘法赋值运算符：*=，将左边的变量乘以右边的值。
+      4、除法赋值运算符：/=，将左边的变量除以右边的值。
+      5、取余赋值运算符：%=，将左边的变量取右边的值的余数。
+     */
+    let a = 10; // 定义变量a并赋值为10
+    let b = 5; // 定义变量b并赋值为5
+    a +=b ;
+    console.log(`加法赋值运算：${a}`); // 输出15
+    a -= b;
+    console.log(`减法赋值运算：${a}`); // 输出10
+    a *= b;
+    console.log(`乘法赋值运算：${a}`); // 输出50
+    a /= b;
+    console.log(`除法赋值运算：${a}`); // 输出10
+    a %= b;
+    console.log(`取余赋值运算：${a}`); // 输出0
+    a **= b;
+    console.log(`幂赋值运算：${a}`); // 输出0
+    
+  </script>
+</body>
+</html>

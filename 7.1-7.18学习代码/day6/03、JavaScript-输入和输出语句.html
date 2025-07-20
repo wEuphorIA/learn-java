@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03、JavaScript-输入和输出语句</title>
+</head>
+
+<body>
+
+  <!-- 输出语句：将内容展示给用户或者开发人员看。
+  方式一：alert("要输出的内容")：弹警告框的形式输出内容
+  方式二：document.write("要输出的内容")：将内容输出到页面(body标签)中，如果内容中包含标签，标签也会被浏览器解析
+  方式三：console.log("要输出的内容")：在浏览器的控制台中输出内容，需要f12或者fn+f12---》console查看。
+  输入语句：
+  作用：用户通过键盘输入数据给程序执行。
+  语法：prompt（“提示用户要输入的内容”）；//prompt表示提示的意思
+  效果：显示一个对话框，对话框中包含一条文字信息，是用来提示用户输入文字。 
+  console用的最多
+-->
+
+  <script>
+    alert("Hello, World! 这是一个警告框输出语句");
+    document.write("Hello, World! 这是一个页面输出语句");
+    console.log("Hello, World! 这是一个控制台输出语句");
+    let name = prompt("请输入您的姓名："); // 弹出一个对话框，提示用户输入姓名
+    console.log("用户输入的姓名是：" + name); // 在控制台输出用户输入的姓名
+  </script>
+
+</body>
+
+</html>

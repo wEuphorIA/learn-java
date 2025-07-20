@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业三</title>
+</head>
+
+<body>
+  <script>
+    function max(arr){
+      arr = arr.map(Number);
+      let max = arr[0];
+      for(let i = 0; i < arr.length; i++) {
+        if(max < arr[i]){
+          max = arr[i];
+        }
+      }
+      return max;
+    }
+    function min(arr){
+      arr = arr.map(Number);
+      let min = arr[0];
+      for(let i = 0; i < arr.length; i++) {
+        if(min > arr[i]){
+          min = arr[i];
+        }
+      }
+      return min;
+    }
+    function sum(arr){
+      arr = arr.map(Number);
+      let sum = 0;
+      for(let i = 0; i < arr.length; i++) {
+        sum += arr[i];
+      }
+      return sum;
+    }
+    function avg(arr){
+      arr = arr.map(Number);
+      let avg = sum(arr) / arr.length;
+      return avg;
+    }
+
+    function avg(arr){
+      arr = arr.map(Number);
+      let avg = sum(arr) / arr.length;
+      return avg;
+    }
+
+    function avg_m(arr){
+      arr = arr.map(Number);
+      let avg = sum(arr) - min(arr) -  max(arr); 
+      return avg / (arr.length - 2);
+    }
+    let arr = prompt("请输入一个数字数组，以逗号分隔").split(",");
+
+    alert(`数组中元素的最大值:${max(arr)}
+           数组中元素的最小值:${min(arr)}
+           数组中元素的和:${sum(arr)}
+           数组中元素的平均值:${avg(arr)}
+           数组中元素的平均值(去掉最大值和最小值):${avg_m(arr)}
+           `);
+  </script>
+</body>
+
+</html>

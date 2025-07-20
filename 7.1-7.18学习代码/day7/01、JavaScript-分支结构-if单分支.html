@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01、JavaScript-分支结构-if单分支</title>
+</head>
+<body>
+  <script>
+    /* 
+      if单分支结构：
+        语法：
+          if(条件表达式){
+            执行语句1
+          }
+        执行流程：
+          条件表达式的结果为true，则执行if大括号中的语句，如果为false就执行大括号中的语句。
+        注意：
+          1 条件表达式的结果为非布尔值，则转换为布尔值。（隐式类型转换）
+          2 如果if中有且仅有一条语句，{}可以省略不写，建议写上。
+      需求：用户输入高考成绩，如果分数大于等于700分，则提示‘恭喜考入黑马程序员'。
+    */
+   let score = prompt("请输入高考成绩：", 0); // 提示用户输入高考成绩
+    if (score >= 700) { // 判断成绩是否大于等于700
+      alert("恭喜考入黑马程序员"); // 如果条件为true，弹出提示
+    }
+    
+
+  </script>
+</body>
+</html>

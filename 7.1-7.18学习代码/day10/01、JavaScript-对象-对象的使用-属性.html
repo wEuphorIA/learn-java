@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01、JavaScript-对象-对象的使用-属性</title>
+</head>
+<body>
+  <script>
+      /* 
+      对象：是js中的一种引用类型，也叫object类型，用来保存某个事物的信息（属性和行为）
+      定义对象语法：
+        let 对象名 = {
+          属性名1:属性值1,
+          属性名2:属性值2,
+          属性名3:属性值3
+        }
+      访问属性：语法：对象名.属性名
+    */
+         /* 
+        对象中的方法：用来描述对象可以做什么，一个方法完成一个功能。
+        语法：
+          let 对象名={
+            属性名:属性值,
+            属性名:funcation (参数1,参数2,...){  //属性名就是方法名
+              return 结果;
+            },
+            函数名(参数1,参数2,...){  //属性名就是方法名
+              return 结果;
+            }
+          }
+        调用方法：  let 变量 = 对象名.方法名(参数值1,参数值2,...);
+    */
+    let goods = {
+     name:'小米小米10青春版',
+     num:'100012816024',
+     weight:0.55,
+     address:'中国大陆',
+      call : function(phoneNumber){
+        return  phoneNumber;
+     },
+     sendMessage(phoneNumber){
+      return  phoneNumber;
+     }
+    }
+    console.log(goods); // 小米小米10青春版
+    console.log(goods.call(123))
+    console.log(goods.sendMessage(1234567890))
+
+    goods.name = '小米15ultra';
+    goods.color = '白色';
+    console.log(goods.name); // 小米15ultra
+    console.log(goods.color); // 白色
+    delete goods.weight; // 删除属性
+    console.log(goods); // {name: '小米15ultra', num: '100012816024', weight: 0.55, address: '中国大陆', call: ƒ, sendMessage: ƒ, color: '白色'}
+
+  </script>
+</body>
+</html>

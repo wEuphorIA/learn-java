@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-事件-事件绑定</title>
+  </head>
+
+  <body>
+    <input type="button" id="btn1" value="点我一下试试1" onclick="on()">
+    <input type="button" id="btn2" value="点我一下试试2" >
+
+    <script>
+      /* 需求1，要给第一个按钮添加监听事件 */
+      let btn1=document.querySelector("#btn1");
+      btn1.addEventListener('click',()=>{
+        alert("试试就试试，谁怕谁")
+        //获取的属性对象，value=""·1
+        let val=btn1.attributes[2];
+        val.value="点点你";//为属性值赋值
+        alert(val.value)//根据属性名称获取对应的属性值
+      })
+
+      function on () {
+        alert("试试就试试，谁怕谁123")
+      }
+      /* 需求2，要给第二个按钮添加监听事件 */
+      document.querySelector('#btn2').onclick = function () {
+        alert("按钮二被点击了")
+        
+      }
+    </script>
+  </body>
+</html>

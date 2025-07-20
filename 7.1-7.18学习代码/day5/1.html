@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小兔鲜儿 - 品质生活电商平台</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "PingFang SC", "Microsoft YaHei", sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.5;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        .container {
+            max-width: 1240px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 头部导航 */
+        .header {
+            background-color: #333;
+            height: 104px;
+            color: #fff;
+            position: relative;
+        }
+        
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+            padding: 0 20px;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .nav-item {
+            font-size: 16px;
+            padding: 8px 0;
+            position: relative;
+        }
+        
+        .nav-item.active {
+            color: #5EB69C;
+        }
+        
+        .nav-item.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background-color: #5EB69C;
+        }
+        
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+            padding: 5px 10px;
+        }
+        
+        .search-box input {
+            background: transparent;
+            border: none;
+            color: #fff;
+            outline: none;
+            width: 150px;
+        }
+        
+        .search-box input::placeholder {
+            color: #ccc;
+        }
+        
+        .cart {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        /* 分类导航 */
+        .category-nav {
+            background-color: #fff;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .category-list {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .category-item {
+            text-align: center;
+            padding: 10px;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        
+        .category-item:hover {
+            background-color: #f9f9f9;
+        }
+        
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #6BBFAE;
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+        }
+        
+        .category-name {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        /* Banner区域 */
+        .banner {
+            height: 400px;
+            background: linear-gradient(135deg, #6BBFAE, #5EB69C);
+            margin: 20px 0;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 36px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 商品展示区 */
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .section-subtitle {
+            font-size: 16px;
+            color: #a1a1a1;
+        }
+        
+        .view-all {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #a1a1a1;
+            font-size: 16px;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .product-image {
+            height: 200px;
+            background-color: #f9f9f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ccc;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-name {
+            font-size: 16px;
+            margin-bottom: 10px;
+            height: 44px;
+            overflow: hidden;
+        }
+        
+        .product-price {
+            color: #AA2113;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        /* 特色服务 */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .feature-item {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #6BBFAE;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 24px;
+        }
+        
+        .feature-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .feature-desc {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background-color: #0F0F0F;
+            color: #989A9C;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .link-group h3 {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+        
+        .link-group ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-bottom {
+            margin-top: 30px;
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #232527;
+        }
+        
+        .contact-methods {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            justify-content: center;
+        }
+        
+        .contact-method {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .contact-icon {
+            width: 32px;
+            height: 32px;
+            background-color: #232527;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+        
+        .copyright {
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部导航 -->
+    <header class="header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo">小兔鲜儿</div>
+                <ul class="nav">
+                    <li class="nav-item"><a href="#">首页</a></li>
+                    <li class="nav-item active"><a href="#">生鲜</a></li>
+                    <li class="nav-item"><a href="#">美食</a></li>
+                    <li class="nav-item"><a href="#">餐厨</a></li>
+                    <li class="nav-item"><a href="#">电器</a></li>
+                    <li class="nav-item"><a href="#">居家</a></li>
+                    <li class="nav-item"><a href="#">洗护</a></li>
+                    <li class="nav-item"><a href="#">孕婴</a></li>
+                    <li class="nav-item"><a href="#">服装</a></li>
+                </ul>
+                <div class="search-box">
+                    <input type="text" placeholder="搜一搜">
+                </div>
+                <div class="cart">
+                    <span>购物车</span>
+                    <span class="cart-count">2</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- 分类导航 -->
+    <nav class="category-nav">
+        <div class="container">
+            <ul class="category-list">
+                <li class="category-item">
+                    <div class="category-icon">购</div>
+                    <div class="category-name">购物指南</div>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon">配</div>
+                    <div class="category-name">配送方式</div>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon">售</div>
+                    <div class="category-name">售后服务</div>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon">关</div>
+                    <div class="category-name">关于我们</div>
+                </li>
+                <li class="category-item">
+                    <div class="category-icon">服</div>
+                    <div class="category-name">服务热线</div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Banner区域 -->
+        <section class="banner">
+            品质生活 · 新鲜直达
+        </section>
+
+        <!-- 新鲜好物 -->
+        <section class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">新鲜好物</h2>
+                    <p class="section-subtitle">新鲜出炉 品质靠谱</p>
+                </div>
+                <a href="#" class="view-all">查看全部</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">KN95级莫兰迪色防护口罩</h3>
+                        <div class="product-price">¥79</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">科技布布艺沙发</h3>
+                        <div class="product-price">¥3579</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">紫檀外独板三层普洱茶盒</h3>
+                        <div class="product-price">¥566</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">法拉蒙高颜值记事本可定制</h3>
+                        <div class="product-price">¥58</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 人气推荐 -->
+        <section class="section">
+            <div class="section-header">
+                <div>
+                    <h2 class="section-title">人气推荐</h2>
+                    <p class="section-subtitle">人气爆款 不容错过</p>
+                </div>
+                <a href="#" class="view-all">查看全部</a>
+            </div>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">睿米无线吸尘器F8</h3>
+                        <div class="product-price">¥899</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">智能空气净化器</h3>
+                        <div class="product-price">¥1299</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">便携式咖啡机</h3>
+                        <div class="product-price">¥399</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">商品图片</div>
+                    <div class="product-info">
+                        <h3 class="product-name">天然乳胶枕</h3>
+                        <div class="product-price">¥199</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 特色服务 -->
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">价</div>
+                <h3 class="feature-title">价格亲民</h3>
+                <p class="feature-desc">精选商品，实惠价格</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">物</div>
+                <h3 class="feature-title">物流快捷</h3>
+                <p class="feature-desc">当日达，次日达</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">品</div>
+                <h3 class="feature-title">品质新鲜</h3>
+                <p class="feature-desc">源头直供，新鲜直达</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon">售</div>
+                <h3 class="feature-title">售后无忧</h3>
+                <p class="feature-desc">7天无理由退换</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-links">
+                    <div class="link-group">
+                        <h3>购物指南</h3>
+                        <ul>
+                            <li><a href="#">购物流程</a></li>
+                            <li><a href="#">支付方式</a></li>
+                            <li><a href="#">售后规则</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>配送方式</h3>
+                        <ul>
+                            <li><a href="#">配送运费</a></li>
+                            <li><a href="#">配送范围</a></li>
+                            <li><a href="#">配送时间</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>售后服务</h3>
+                        <ul>
+                            <li><a href="#">售后政策</a></li>
+                            <li><a href="#">退款说明</a></li>
+                            <li><a href="#">取消订单</a></li>
+                        </ul>
+                    </div>
+                    <div class="link-group">
+                        <h3>服务热线</h3>
+                        <ul>
+                            <li><a href="#">在线客服</a></li>
+                            <li><a href="#">客服电话 400-0000-000</a></li>
+                            <li><a href="#">工作时间 周一至周日 8:00-18:00</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="qrcode">
+                    <div>微信公众号</div>
+                    <div>APP下载二维码</div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="contact-methods">
+                    <div class="contact-method">
+                        <div class="contact-icon">微</div>
+                        <span>微信公众号</span>
+                    </div>
+                    <div class="contact-method">
+                        <div class="contact-icon">APP</div>
+                        <span>APP下载二维码</span>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>关于我们 | 帮助中心 | 售后服务 | 配送与验收 | 商务合作 | 搜索推荐 | 友情链接</p>
+                    <p>CopyRight © 小兔鲜</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-对象-DOM</title>
+  </head>
+
+  <body>
+    <span id="sid">DOM元素1</span>
+    <span class="txt">DOM元素2</span>
+    <span class="txt">DOM元素3</span>
+
+    <script>
+      //根据CSS选择器获取DOM元素, 获取到匹配的第一个元素
+      let s1 = document.querySelector('#sid');
+      console.log(s1);
+      s1.innerHTML = '传智教育 666'
+      //根据CSS选择器获取DOM元素, 获取到匹配的所有元素
+      let s2 = document.querySelectorAll('.txt');
+      s2.forEach(s => console.log(s))
+    </script>
+  </body>
+
+</html>

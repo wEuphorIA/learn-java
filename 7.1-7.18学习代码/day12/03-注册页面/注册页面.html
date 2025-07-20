@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+    <!-- 引入bootstrap.css -->
+    <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+    <style>
+        html,
+        body {
+            background-color: #EDF0F5;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            width: 520px;
+            height: 540px;
+            background-color: #fff;
+            padding: 60px;
+            box-sizing: border-box;
+        }
+
+        .container h3 {
+            font-weight: 900;
+        }
+    </style>
+    <!-- 表单容器和内容 -->
+    <style>
+        .form_wrap {
+            color: #8B929D !important;
+        }
+
+        .form-text {
+            color: #8B929D !important;
+        }
+    </style>
+    <!-- 提示框样式 -->
+    <style>
+        .alert {
+            transition: .5s;
+            opacity: 0;
+        }
+
+        .alert.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>欢迎-注册</h3>
+        <!-- 表单 -->
+        <div class="form_wrap">
+            <form>
+                <div class="mb-3">
+                    <label for="username" class="form-label">用户名</label>
+                    <input type="text" class="form-control username" placeholder="请输入用户名">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" class="form-control password" placeholder="请输入密码">
+                </div>
+                <button type="button" class="btn btn-primary btn-register"> 立即注册 </button>
+            </form>
+        </div>
+    </div>
+    <script src="./lib/js/bootstrap.bundle.min.js"></script>
+    <script src="./lib/js/axios.min.js"></script>
+    <script>
+        //1. 给"立即注册"按钮绑定单击事件
+        document.querySelector('.btn-register').addEventListener('click', function () {
+            //2. 获取用户名和密码输入框中的值
+            let username = document.querySelector('.username').value;
+            let password = document.querySelector('.password').value;
+            //3. 使用axios发送post请求，将用户名和密码发送给服务器
+            let data = { username, password }  //当对象中属性名和属性值一样时，可以只写一个。
+            axios.post('https://hmajax.itheima.net/api/register', data).then((result) => {
+                //4. 处理响应结果(分成功和失败两种情况)
+                if (result.data.code == 10000) {
+                    alert('注册成功');
+                }
+            }).catch((err) => {
+                alert(err.response.data.message);
+            });
+        });
+    </script>
+</body>
+
+</html>

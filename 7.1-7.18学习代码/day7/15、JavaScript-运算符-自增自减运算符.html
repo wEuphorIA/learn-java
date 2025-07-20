@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15、JavaScript-运算符-自增自减运算符</title>
+</head>
+
+<body>
+  <SCript>
+    /*
+    自增自减运算符：
+      ++   自增    变量自身的值加1  a++ 等价于  a=a+1
+      --   自减    变量自身的值减1  a-- 等价于  a=a-1
+    说明：
+      1、只有变量能够使用自增和自减运算符
+      2、++、--可以在变量前面也可以在变量后面，比如：a++ 或者++a。
+      3、自增/减运算符单独使用放在前面和后面没有区别，但是参与运算(包括打印和赋值)放前和放后有区别。
+        ①、放前面：变量先自增或者自减，再参与运算(包括打印和赋值)
+        ②、放后面：先参与运算(包括打印和赋值)，再自增或者自减
+   */
+
+    let a = 10; // 定义变量a并赋值为10
+    let b = 5; // 定义变量b并赋值为5
+
+    console.log(`自增运算符：${++a}`); // 输出11，先自增再打印
+    console.log(`自减运算符：${--b}`); // 输出4，先自减再打印
+
+    console.log(`自增运算符：${a++}`); // 输出11，先打印再自增
+    console.log(`自减运算符：${b--}`); // 输出4，先打印再自减
+
+    console.log(`最终的a值:${a}`); // 输出12
+    console.log(`最终的b值:${b}`); // 输出3
+    
+  </SCript>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>02、CSS-引入方式</title>
+  <!-- 内部样式：样式写在html文件中的style标签里(学习期间使用） -->
+  <style>
+    div {
+      color: green;
+    }
+  </style>
+  <!-- 外部样式：样式代码和html代码分开。(开发阶段使用）,使用link标签引入外部样式文件 有点：复用性高-->
+  <link rel="stylesheet" href="mycss.css">
+  <!-- 优先级：后加载的样式会覆盖先加载的样式 -->
+</head>
+<body>
+   <!-- 行内样式：样式写在标签的style属性中（使用较少） 弊端：复用性差-->
+   <div style="color: red;">hello,world</div>
+   <div >hello,world</div>
+   <div >hello,world</div>
+</body>
+</html>

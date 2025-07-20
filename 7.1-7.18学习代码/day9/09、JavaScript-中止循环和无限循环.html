@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09、JavaScript-中止循环和无限循环</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     终/中止循环
+       break：终止整个循环，一般用于结果已经得到，后续不再需要循环的时候可以使用（提高效率）。
+       continue：中止本次循环，一般用于排除或者跳过某一个选项的时候使用。也叫跳过本次循环,继续下一次循环，
+     无限循环：也叫死循环
+       while(true){...}：来构造“无限”循环，需要使用break退出循环。
+       for(;;){...}：也可以来构造“无限”循环，同样需要使用break退出循环。
+   */
+    // 1. break的使用
+    // for (let index = 1; index <= 10; index++) {
+    //   if (index == 4) {
+    //     break; // 当index等于4时，终止整个循环
+    //   }
+    //   console.log(index); // 输出1, 2, 3
+    // }
+
+    //continue的使用
+    for (let index = 1; index <= 10; index++) {
+      if (index == 4) {
+        continue; // 当index等于4时，终止整个循环
+      }
+      console.log(index); // 输出1, 2, 3
+    }
+    // 2. 无限循环的使用
+    let count = 0;
+    while (true) {
+      console.log("这是一个无限循环");
+      count++;
+      if (count >= 100) {
+        break; // 当count大于等于5时，终止循环
+      }
+    }
+    count = 0;
+    for (;;) {
+      console.log("这是一个无限循环");
+      count++;
+      if (count >= 100) {
+        break; // 当count大于等于5时，终止循环
+      }
+    }
+
+  </script>
+</body>
+
+</html>

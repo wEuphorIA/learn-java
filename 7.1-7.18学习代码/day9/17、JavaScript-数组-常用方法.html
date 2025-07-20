@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17、JavaScript-数组-常用方法</title>
+</head>
+
+<body>
+  <script>
+    /* 
+    常用方法：
+      push(item1,item2,...)：将一个或多个元素添加到数组的末尾，并返回新的长度。
+      pop()：从数组末尾移除一个元素，并返回该元素。
+      splice(start,deleteCount,item1,item2,...)：从数组指定索引start处删除deleteCount个元素。item表示添加的元素。
+  */
+    let arr = [1, 2, 3, 4, 5]; // 定义一个数组
+    console.log("原数组:", arr); // 输出原数组
+    // arr.push(6, 7); // 在数组末尾添加元素6和7
+    // console.log("添加元素后的数组:", arr); // 输出添加元素后的数组
+    // let removedElement = arr.pop(); // 从数组末尾移除一个元素
+    // console.log("移除元素后的数组:", arr); // 输出移除元素后的数组
+    arr.splice(2, 1, 8, 9); // 从索引2处删除1个元素，并添加8和9
+    console.log("使用splice后的数组:", arr); // 输出使用splice后的数组
+    // splice的返回值是被删除的元素组成的数组
+  </script>
+</body>
+
+</html>

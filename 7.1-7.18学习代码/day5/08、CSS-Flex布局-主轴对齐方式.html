@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>08、CSS-Flex布局-主轴对齐方式</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      .container {
+        width: 600px;
+        height: 400px;
+        display: flex; /* 设置为flex布局 */
+        margin: 0 auto; /* 设置外边距为自动，水平居中 */
+        background-color: pink; /* 设置背景色 */
+        flex-direction: row; /* 设置主轴方向为水平方向 */
+        /* flex-direction: column; 设置主轴方向为垂直方向 */
+        /* flex-direction: row-reverse; */ /* 设置主轴方向为水平方向，且反向排列 */
+        /*  flex-direction: column-reverse; */ /* 设置主轴方向为垂直方向，且反向排列 */
+
+        /* -----------------------设置主轴对齐方式 justify-content: 值; -----------------*/
+        /* flex-start默认值，弹性盒子从起点开始依次排列 */
+        /* justify-content: flex-start; */
+        /* flex-end弹性盒子从终点开始依次排列 */
+        /* justify-content: flex-end;  */
+        /* center弹性盒子沿主轴居中排列 */
+        /* justify-content: center; */
+        /* space-between弹性盒子沿主轴均匀排列，空白间距均分在弹性盒子之间 */
+        /* justify-content: space-between; */
+        /* space-around弹性盒子沿主轴均匀排列，空白间距均分在弹性盒子两侧 */
+        /* justify-content: space-around; */
+        /* space-evenly弹性盒子沿主轴均匀排列，弹性盒子与容器之间间距相等 */
+        justify-content: space-evenly;
+      }
+      .item {
+        width: 100px; /* 设置宽度 */
+        height: 100px; /* 设置高度 */
+        background-color: lightblue; /* 设置背景色 */
+        margin: 10px; /* 设置外边距 */
+        display: flex; /* 设置为flex布局 */
+      }
+    </style>
+  </head>
+  <div class="container">
+    <div class="item">1</div>
+    <div class="item">2</div>
+    <div class="item">3</div>
+  </div>
+</html>

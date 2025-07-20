@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>js-dom-</title>
+</head>
+
+<body>
+
+</body>
+<!-- <h1 id="title">
+  111
+</h1>
+<h1>
+  222
+</h1>
+<h1>
+  111
+</h1> -->
+  <input type="button" id="btu1" value="按钮一">
+  <input type="button" id="btu2" value="按钮二">
+<script>
+  //dom属性
+
+  // // let h1 =  document.querySelector("#title");
+  // // h1.innerHTML =' hello world';
+  // let hs = document.querySelectorAll("h1");
+  // hs[0].innerHTML = 'hello world';
+  // 可以绑定多次同一事件
+  document.querySelector("#btu1").addEventListener("click", () =>{
+    console.log("按钮一被点击了");
+  });
+
+  document.querySelector("#btu1").addEventListener("click", () =>{
+    console.log("按钮一被点击了222");
+  });
+  //// 不能绑定多次同一事件 如何写了会覆盖
+  document.querySelector("#btu2").onclick = () =>{
+    console.log("按钮二被点击了");
+  };
+  document.querySelector("#btu2").onclick = () =>{
+    console.log("按钮二被点击了222");
+  };
+
+</script>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12、JavaScript-函数-函数的返回值</title>
+</head>
+<body>
+  <script>
+     /* 
+      匿名函数:是指一种没有名称的函数，在定义时需要将函数赋值给一个变量，变量就是函数名，通过变量名调用。
+          定义函数：
+            let 变量名 = function(参数1,参数2,...){
+                          函数体;
+                          return 结果;
+                        }
+          调用函数：
+            let 结果变量 = 变量名(值1,值2,...);
+      箭头函数：由 (参数列表)=>{方法体} 三部分组成的函数，箭头函数属于匿名函数的一种，在定义是也需要将箭头函数赋值给一个变量，将来使用变量名调用。
+          定义函数：
+            let 变量名 = (参数1,参数2,...)=>{
+                          函数体;
+                          return 结果;
+                        }
+          调用函数：
+            let 结果变量 = 变量名(值1,值2,...);
+          注意事项：
+            1、形参有且仅有一个，()可以省略不写。
+            2、方法体有且仅有一句代码,大括号{}、return(如果有)、分号(;) 可以一起省略。
+    */
+    //需求：定义一个函数，计算两个数之和
+    let sum = function(a, b) {
+      return a + b; // 返回两个数的和
+    }
+    // 调用函数并传入实参
+    let result1 = sum(10, 20); // 实参个数和形参个数一致
+    console.log(result1); // 输出结果30
+    
+    let sum1 = (a, b) => a + b; // 返回两个数的和
+    
+    console.log(sum1(15,20)); // 输出结果30
+    
+    
+  </script>
+</body>
+</html>

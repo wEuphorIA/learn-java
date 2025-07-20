@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取省市信息</title>
+    <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+    <style>
+        .input-group {
+            width: 400px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="input-group mb-3">
+            <label class="input-group-text">籍贯</label>
+            <select class="form-select" id="province">
+                <option selected>请选择省份</option>
+            </select>
+            <select class="form-select" id="city">
+                <option selected>请选择城市</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="./lib/js/bootstrap.bundle.min.js"></script>
+    <script src="./lib/js/axios.min.js"></script>
+    <script>
+        //------------需求：发送请求获取所有省份信息------------------
+        //1 使用axios发送get请求
+        axios.get('http://hmajax.itheima.net/api/province').then((result) => {
+            //2 获取所有省份-->数组
+            let provinces = result.data.list;
+            //3 将省份数据拼接成一个个的 <option>请选择省份</option> 标签
+            let html = '<option selected>请选择省份</option>'
+            for (let index = 0; index < provinces.length; index++) {
+                let option = `<option>${provinces[index]}</option>`
+                html += option
+            }
+            //4 再将拼接好的数据添加到省份select标签中
+            document.querySelector('#province').innerHTML = html
+        }).catch((err) => {
+            console.log(error)
+        });
+
+        //-------------需求：获取指定省份对应的城市信息------------------
+        // 1 给省份select标签添加change事件
+        document.querySelector('#province').addEventListener('change', function () {
+            // 2 使用axios发送get请求，将选中的省份名称作为参数发送给服务器
+            axios.get(`http://hmajax.itheima.net/api/city?pname=${this.value}`).then((result) => {
+                // 3 获取该省所有城市-->数组
+                let cities = result.data.list;
+                // 4 将城市数据拼接成一个个的 <option>请选择城市</option> 标签
+                let html = '<option selected>请选择城市</option>'
+                for (let index = 0; index < cities.length; index++) {
+                    let option = `<option>${cities[index]}</option>`
+                    html += option
+                }
+                // 5 再将拼接好的数据添加到城市select标签中
+                document.querySelector('#city').innerHTML = html
+            });
+        })
+    </script>
+</body>
+
+</html>

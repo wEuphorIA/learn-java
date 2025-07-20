@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07、HTML-表单-form标签</title>
+</head>
+<body>
+  <!-- 
+    介绍：表单用<form>标签表示，内部包含<input>、<select>、<textarea>等表单项标签。
+    作用：收集用户信息，提交用户数据
+    form标签的常见属性：
+    action: 指定表单提交的URL路径,将来填写后端程序的路径，表示数据提交到后端。
+    效果：数据提交到哪，页面就会跳转到哪。
+    method：指定提交方法，常见为GET或POST，不写默认值是GET方式
+    提交的参数格式：url?name=value&name=value&...
+    GET方式：提交的数据在地址栏url路径后面。GET方式提交数据相对不安全。GET方式只能提交少量文本数据。
+    POST方式：提交的数据在请求体(后面学)中，需要f12/fn+12查看。POST方式提交数据相对安全。POST方式可以提交大量任意数据。
+    -->
+    <form action="06、HTML-表格-合并单元格.html" method="POST">
+      用户名：<input type="text" placeholder="请输入用户名" name="username"></input><br>
+      密码：<input type="password" placeholder="请输入密码" name="password"></input><br>
+      <input type="submit" value="登录"></input>
+    </form>
+
+    
+</body>
+</html>

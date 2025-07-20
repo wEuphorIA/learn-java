@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03、JavaScript-分支结构-if多分支</title>
+</head>
+<body>
+  <script>
+      /* 
+      if多分支结构：
+        语法：
+          if(条件1){
+            执行语句1
+          }else if(条件2){
+            执行语句2
+          }else if(条件3){
+            执行语句3
+          }
+          ...
+          else{
+            执行语句n
+          }
+        执行流程：
+          1 条件1的结果为true，则执行语句1，
+          2 如果为条件1为false就判断条件2，条件2结果是true就执行语句2。
+          3 如果条件2为false就判断条件3，条件3结果是true就执行语句3。后续以此类推
+          4 如果以上条件都不满足，则执行语句n。
+      需求：根据输入不同的成绩，反馈不同的评价
+      分数说明：
+        成绩90以上，输出优秀
+        成绩70~90之间，输出良好
+        成绩是60~70之间，输出及格
+        成绩60分以下，输出不及格
+    */
+    let score = prompt("请输入成绩：");
+    if (score >= 90) {
+      alert("优秀");
+    } else if (score >= 70 && score < 90) {
+      alert("良好");
+    } else if (score >= 60 && score < 70) {
+      alert("及格");
+    } else {
+      alert("不及格");
+    }
+  </script>
+</body>
+</html>

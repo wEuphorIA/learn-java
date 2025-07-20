@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>10、HTTP协议-Axios提交post请求数据</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <button type="button" onclick="load()">获取数据</button>
+  <!-- 第一步：引入axios的js文件 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="js/axios.min.js"></script> -->
+  <script>
+    /* 
+      发送post请求
+    */
+    function load() {
+      //第二步：使用axios发送请求获取数据
+      // axios({
+      //   url:'https://hmajax.itheima.net/api/register',  //请求地址。
+      //   method:'post',  //请求方式
+      //   data:{  //携带post请求参数
+      //     username:'zhangyida',
+      //     password:'123456'
+      //   }
+      // }).then((result) => {  //then方法处理响应成功的请求,箭头函数中的result参数表示响应结果
+      //   console.log(result.data); //result表示整个结果，里面包含了很多内容，而我们需要的数据在result的data属性身上
+      // });
+
+      //请求别名方式发送请求
+      let data = {username:'zhangwei',password:'123456'};
+      axios.post('https://hmajax.itheima.net/api/register',data).then((result) => {
+        console.log(result.data);
+      });
+    }
+  </script>
+</body>
+</html>

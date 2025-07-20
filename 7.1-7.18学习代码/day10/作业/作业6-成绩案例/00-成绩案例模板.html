@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles/index.css" />
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app" class="score-case">
+    <div class="table">
+      <table>
+        <thead>
+          <tr>
+            <th>姓名</th>
+            <th>科目</th>
+            <th>成绩</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr>
+            <td>1</td>
+            <td>语文</td>
+            <td class="red">46</td>
+            <td><a href="#">删除</a></td>
+          </tr>
+          -->
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <span class="total"></span>
+              <span style="margin-left: 50px" class="average"></span>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="form">
+      <div class="form-item">
+        <div class="label">姓名：</div>
+        <div class="input">
+          <input type="text" placeholder="请输入姓名" class="username" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label">科目：</div>
+        <div class="input">
+          <input type="text" placeholder="请输入科目" class="subject" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label">分数：</div>
+        <div class="input">
+          <input type="text" placeholder="请输入分数" class="score" />
+        </div>
+      </div>
+      <div class="form-item">
+        <div class="label"></div>
+        <div class="input">
+          <button class="submit">添加</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const list = [
+      { name: '古丽扎娜', subject: '语文', score: 20 },
+      { name: '佟丽丫丫', subject: '数学', score: 99 },
+      { name: '马尔扎哈', subject: '英语', score: 70 },
+    ]
+    updateView();
+    document.querySelector('.submit').addEventListener('click', () => {
+      let name = document.querySelector('.username').value;
+      let subject = document.querySelector('.subject').value;
+      let score = document.querySelector('.score').value;
+      let person = { name: name, subject: subject, score: parseInt(score) };
+      list.push(person);
+      document.querySelector('.username').value = '';
+      document.querySelector('.subject').value = '';
+      document.querySelector('.score').value = '';
+      updateView();
+
+    })
+
+    document.querySelector('tbody').addEventListener('click', function(e) {
+        if (e.target.classList.contains('delete')) {
+            e.preventDefault();
+            
+            // 找到当前点击的tr元素
+            const row = e.target.closest('tr');
+            
+            // 获取行索引（所有tr元素中的位置）
+            const rowIndex = Array.from(this.children).indexOf(row);
+            
+            // 从数组中删除项目
+            if (rowIndex >= 0 && rowIndex < list.length) {
+                list.splice(rowIndex, 1);
+                updateView();
+            }
+        }
+    });
+
+    // 视图更新函数 - 修复后
+    function updateView() {
+      let html = '';
+      let sum = 0;
+
+      // 遍历数组生成HTML
+      for (let i = 0; i < list.length; i++) {
+        const item = list[i];
+        html += `
+                    <tr>
+                        <td>${item.name}</td>
+                        <td>${item.subject}</td>
+                        <td class="red">${item.score}</td>
+                        <td><a href="#" class="delete" data-index="${i}">删除</a></td>
+                    </tr>
+                `;
+
+        // 累加分数
+        sum += item.score;
+      }
+
+      // 更新DOM
+      document.querySelector('tbody').innerHTML = html;
+      document.querySelector('.total').textContent = `总分：${sum}`;
+      document.querySelector('.average').textContent = `平均分：${list.length ? (sum / list.length).toFixed(2) : 0}`;
+
+    
+    }
+  </script>
+</body>
+
+</html>

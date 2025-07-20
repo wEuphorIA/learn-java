@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>15、JavaScript-数组-练习-求和和求平均值</title>
+</head>
+<body>
+  <SCript>
+     /* 
+      需求：求数组(arr)[2,6，1,7,4]里面所有元素的之和以及平均值。
+      分析：
+        1、在遍历之前定义求和变量sum=0；
+        2、遍历数组得到每一个数
+        3、将每个数累加到sum身上
+        4、遍历结束后打印sum就是求和结果
+        5、计算平均值：sum/arr.length并打印
+    */
+   let arr = [2, 6, 1, 7, 4]; // 定义数组
+   let sum = 0; // 定义求和变量
+   let max = arr[0]; // 假设第一个元素为最大值
+    for (let i = 0; i < arr.length; i++) {
+      sum += arr[i]; // 累加每个元素到sum
+      if (arr[i] > max) {
+        max = arr[i]; // 更新最大值
+      }
+    }
+    console.log("数组元素之和:", sum); // 输出数组元素之和
+    console.log("数组元素平均值:", sum / arr.length);  // 计算平均值
+    console.log("数组最大值:", max); // 输出数组最大值
+  </SCript>
+</body>
+</html>

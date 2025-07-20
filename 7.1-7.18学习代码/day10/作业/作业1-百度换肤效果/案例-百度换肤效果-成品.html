@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+  <!-- 讲解视频链接：https://www.bilibili.com/video/BV1mS4y1j7YZ?p=21 -->
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      background-image: url(./images/bg1.jpg);
+    }
+
+    #mask {
+      background-color: rgba(255, 255, 255, 0.3);
+      height: 200px;
+      text-align: center;
+    }
+
+    #mask img {
+      width: 200px;
+      margin-top: 35px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mask">
+    <img src="./images/bg1.jpg" alt="" />
+    <img src="./images/bg2.jpg" alt="" />
+    <img src="./images/bg3.jpg" alt="" />
+    <img src="./images/bg4.jpg" alt="" />
+    <img src="./images/bg5.jpg" alt="" />
+  </div>
+
+  <script>
+    // 1 获取所有的img标签，得到的是图片对象数组
+    let images = document.querySelectorAll('#mask img');
+    //2 遍历数组，给每个image标签设置单击事件
+    for (let i = 0; i < images.length; i++) {
+       images[i].addEventListener('click',function () {
+          //3 在事件函数中，获取当前图片的src属性值
+          let src = images[i].src;  //也可以写this.src,给哪个标签对象绑定事件，this就表示哪个标签对象
+          //4 设置body的背景图片为当前图片的src属性值
+          document.body.style.backgroundImage = `url(${src})`;
+       })
+    }
+  </script>
+</body>
+
+</html>

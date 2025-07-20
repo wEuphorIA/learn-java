@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ajax概述</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <button type="button" onclick="load()">获取数据</button>
+
+  <script>
+    function load() {
+      //1 创建 XMLHttpRequest 对象，这个对象负责发送请求和接收数据
+      let xhttp = new XMLHttpRequest();
+      //2 监听响应状态，处理响应结果
+      xhttp.onreadystatechange = function () {
+        //this.readyState == 4表示请求发送完成，this.status == 200表示响应成功
+        if (this.readyState == 4 && this.status == 200) {
+          //this.responseText表示响应结果，展示到页面上
+          document.querySelector("#demo").innerHTML = this.responseText;
+        }
+      };
+      //3 准备请求信息
+      xhttp.open("GET", "http://hmajax.itheima.net/api/province");
+      //4 发送请求
+      xhttp.send();
+    }
+  </script>
+</body>
+</html>

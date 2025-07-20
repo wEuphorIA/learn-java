@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>11、JavaScript-函数-函数的参数</title>
+</head>
+<body>
+  <script>
+     /* 
+      方法参数：
+        形参：定义方法时小括号里面的参数名就叫形参
+        实参：调用方法时传递的参数值叫实参。
+      注意事项：
+        1、定义方法时，形参不是必须要有，根据需求决定要不要定义形参。
+        2 调用方法时，实参的个数和形参的个数可以不一致。
+          2.1 如果实参过多，那么多余的实参会被忽略。
+          2.2 如果实参过少，未赋值的形参默认值是undefined。
+          2.3 建议：开发中尽量保持形参和实参个数一致。
+    */
+    // 需求：定义一个函数，计算两个数的和
+    function sum(a, b) {
+      return a + b; // 返回两个数的和
+    }
+    // 调用函数并传入实参
+    let result1 = sum(10, 20); // 实参个数和形参个数一致
+    console.log(result1); // 输出结果30
+    let result2 = sum(10); // 实参个数少于形参个数
+    console.log(result2); // 输出结果是10 + undefined = NaN
+    let result3 = sum(10, 20, 30); // 实参个数多于形参个数 30会被忽略
+    console.log(result3); // 输出结果30 + 30 = 60
+    //2.3 建议：开发中尽量保持形参和实参个数一致。
+  </script>
+</body>
+</html>

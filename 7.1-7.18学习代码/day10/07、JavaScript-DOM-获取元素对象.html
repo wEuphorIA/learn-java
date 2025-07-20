@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07、JavaScript-DOM-获取元素对象</title>
+</head>
+
+<body>
+  <div>
+    <div id="sid">黑马程序员</div>
+    <div class="cls">传智播客1</div>
+    <div class="cls">传智播客2</div>
+  </div>
+  <script>
+    /* 
+    DOM操作步骤：
+      第一步：获取元素/标签对象
+      第二步：调用元素对象的属性/方法操作标签(内容、属性、样式...)
+    获取元素/标签对象：
+      
+      
+      )
+  */
+    //根据CSS选择器来获取DoM元素，获取匹配到的第一个元素：document.querySelector('选择器')
+    let div = document.querySelector('#sid')
+    console.log(div); //获取id为sid的元素对象
+    //根据CSS选择器来获取DOM元素，获取匹配到的所有元素：document.querySelectorAll('选择器
+    let divs = document.querySelectorAll('.cls')
+    for (let i = 0; i < divs.length; i++) {
+      console.log(divs[i]); //获取所有class为cls的元素对象
+
+    }
+  </script>
+</body>
+
+
+</html>

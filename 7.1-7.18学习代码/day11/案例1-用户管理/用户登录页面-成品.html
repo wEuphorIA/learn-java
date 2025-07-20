@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>用户登录
+
+  </title>
+  <!-- 引入bootstrap.css -->
+  <link rel="stylesheet" href="lib/css/bootstrap.min.css">
+  <!-- 公共 -->
+  <style>
+    html,
+    body {
+      background-color: #EDF0F5;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      width: 520px;
+      height: 540px;
+      background-color: #fff;
+      padding: 60px;
+      box-sizing: border-box;
+    }
+
+    .container h3 {
+      font-weight: 900;
+    }
+  </style>
+  <!-- 表单容器和内容 -->
+  <style>
+    .form_wrap {
+      color: #8B929D !important;
+    }
+
+    .form-text {
+      color: #8B929D !important;
+    }
+  </style>
+  <!-- 提示框样式 -->
+  <style>
+    .alert {
+      transition: .5s;
+      opacity: 0;
+    }
+
+    .alert.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h3>欢迎-登录</h3>
+    <!-- 登录结果-提示框 -->
+    <div class="alert alert-success" role="alert">
+      提示消息
+    </div>
+    <!-- 表单 -->
+    <div class="form_wrap">
+      <form>
+        <div class="mb-3">
+          <label for="username" class="form-label">账号名</label>
+          <input type="text" class="form-control username">
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">密码</label>
+          <input type="password" class="form-control password">
+        </div>
+        <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+      </form>
+    </div>
+  </div>
+  <script src="lib/js/axios.min.js"></script>
+  <script src="lib/js/bootstrap.bundle.min.js"></script>
+  <script>
+    let alert = document.querySelector('.alert-success')
+    new bootstrap.Alert(alert)
+    // 需求：点击登录时，用户名和密码长度判断，并提交数据和服务器通信
+    //1 给登录按钮绑定点击事件
+    document.querySelector('.btn-login').addEventListener('click', function () {
+      //2 获取用户输入的用户名和密码并判断是否为空，如果为空展示错误信息
+      let username = document.querySelector('.username').value
+      let password = document.querySelector('.password').value
+      //3 判断是否为空，如果为空展示错误信息
+      if (!username || !password) {
+        showAlertMessage(false, '用户名或密码不能为空')
+        return;
+      }
+      //3 使用axios发送请求，将用户名和密码发送给服务器
+      axios.post('https://hmajax.itheima.net/api/login',{username:username,password:password}).then((result) => {
+        //4 获取服务器返回的数据，并判断是否登录成功
+        if (result.data.code === 10000) {
+            //5 登录成功跳转到"个人信息页面"，登录失败展示错误信息
+            showAlertMessage(true, result.data.message)
+            //跳转到系统首页
+            location.href = '个人信息页面-成品.html?loginUser='+username;
+        } else {
+            //5 登录成功跳转到"个人信息页面"，登录失败展示错误信息
+            showAlertMessage(false, result.data.message)
+        }
+      }).catch((err) => {
+        console.log(err);
+        showAlertMessage(false, err.response.data.message)
+      });
+    })
+
+    //定义提示信息展示的函数,isSucess表示是否是成功的消息，message表示消息内容
+    function showAlertMessage(isSucess, message) {
+      //显示提示区域
+      document.querySelector('.alert').classList.add('show')
+      document.querySelector('.alert').innerHTML = message
+      //根据成功还是失败, 展示不同的样式效果
+      if (isSucess) {
+        document.querySelector('.alert').classList.remove('alert-danger')
+        document.querySelector('.alert').classList.add('alert-success')
+      } else {
+        document.querySelector('.alert').classList.remove('alert-success')
+        document.querySelector('.alert').classList.add('alert-danger')
+      }
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>10、HTML-表单-select下拉菜单</title>
+</head>
+<body>
+  <form action="06、HTML-表格-合并单元格.html">
+    <!-- text：普通文本输入框，输入的内容原模原样展示，默认值。 -->
+    账号：<input type="text" placeholder="账号" name="username"><br>
+    <!-- password：密码框，输入的内容以点的形式呈现。 -->
+    密码：<input type="password" name="password"><br>
+    <!-- radio：单选按钮，多选一。 -->
+    性别：<input type="radio" name="gender" value="man">男 <input type="radio" name="gender" value="woman">女<br>
+    <!-- checkbox：复选框，可以多选。 -->
+    爱好：<input type="checkbox" name="hobby" value="movie">看电影 
+        <input type="checkbox" name="hobby" value="story">看小说 
+        <input type="checkbox" name="hobby" value="game">看游戏 
+        <input type="checkbox" name="hobby" value="cartoon">看动漫 
+        <input type="checkbox" name="hobby" value="variety">看综艺<br>
+    <!-- file：文件上传项，用来上传文件到服务器 -->
+    头像：<input type="file" name="icon" multiple><br>
+    <!-- date/time/datetime-local：定义日期/时间/日期时间 -->
+    出生日期：<input type="date" name="birthday">
+    <input type="time">
+    <input type="datetime-local"><br>
+    <!-- number：定义数字输入框 -->
+    年龄：<input type="number" name="age"><br>
+    <!-- email：定义邮件输入框 -->
+    邮箱：<input type="email" name="email"><br>
+    <!-- 下拉菜单 select中嵌套opotion 标签，用来定义下拉菜单的选项 -->
+    城市：<select name="city">
+      <option value="beijing">北京</option>
+      <option value="shanghai">上海</option>
+      <option value="xian" selected>西安</option>
+      <option value="guangzhou">广州</option>
+      <option value="hangzhou">杭州</option>
+    </select><br>
+    <!-- hidden：隐藏域，用来提交不期望用户在页面看到的数据 -->
+    <input type="hidden" name="id" value="1001"><br>
+    <!-- submit：提交按钮，点击之后提交表单数据 -->
+    <input type="submit" value="提交">
+    <!-- reset：重置按钮，点击之后表单数据重置。 -->
+    <input type="reset" value="重置">
+    <!-- button：普通按钮，点击之后没有任何反应，需要结合JavaScript才能做出点击效果。 -->
+    <input type="button" value="普通按钮"><br>
+    <button>普通按钮</button>
+    <button>提交</button>
+    <button>重置</button><br>
+</form>
+</body>
+</html>
