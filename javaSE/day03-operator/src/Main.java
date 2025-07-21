@@ -9,6 +9,5 @@ public class Main {
         int b = number % 60;
         int c = number / 3600;
         System.out.println(c + ":" + a + ":" + b);
-
     }
 }
