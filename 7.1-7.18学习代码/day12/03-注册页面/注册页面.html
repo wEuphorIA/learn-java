@@ -77,20 +77,27 @@
     <script>
         //1. 给"立即注册"按钮绑定单击事件
         document.querySelector('.btn-register').addEventListener('click', function () {
+
             //2. 获取用户名和密码输入框中的值
             let username = document.querySelector('.username').value;
             let password = document.querySelector('.password').value;
+
+            let data = {
+                username,
+                password
+            };
+
             //3. 使用axios发送post请求，将用户名和密码发送给服务器
-            let data = { username, password }  //当对象中属性名和属性值一样时，可以只写一个。
             axios.post('https://hmajax.itheima.net/api/register', data).then((result) => {
                 //4. 处理响应结果(分成功和失败两种情况)
                 if (result.data.code == 10000) {
                     alert('注册成功');
                 }
             }).catch((err) => {
+                //console.log(err);//打印err错误对象，结果如下图所示。
                 alert(err.response.data.message);
             });
-        });
+        });   
     </script>
 </body>
 

@@ -47,16 +47,26 @@
         });
         //-------------需求：获取指定省份对应的城市信息------------------
         // 1. 给省份select标签添加change事件
-       
-        // console.log(this.value);  //获取选中的省份名称
-        // 2. 使用axios发送get请求，将选中的省份名称作为参数发送给服务器
-            
-        // console.log(result.data);
-        // 3. 获取该省所有城市-->数组
+        document.querySelector('#province').addEventListener('change',function (){
+
+            // console.log(this.value);  //获取选中的省份名称
+            // 2. 使用axios发送get请求，将选中的省份名称作为参数发送给服务器
+            axios.get(`http://hmajax.itheima.net/api/city?pname=${this.value}`).then((result) => {
+                
+                // console.log(result.data);
+                // 3. 获取该省所有城市-->数组
+                let cities = result.data.list;
+
+                // 4. 将城市数据拼接成一个个的 <option>请选择城市</option> 标签
+                let option = `<option selected>请选择城市</option>`;
+                for (let i = 0; i < cities.length; i++) {
+                    option += `<option>${cities[i]}</option>`;
+                }
+                // 5. 再将拼接好的数据添加到城市select标签中
+                document.querySelector('#city').innerHTML = option;
+            })
+        })
         
-        // 4. 将城市数据拼接成一个个的 <option>请选择城市</option> 标签
-        
-        // 5. 再将拼接好的数据添加到城市select标签中
                
     </script>
 </body>

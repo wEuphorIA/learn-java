@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTTP协议-Axios提交post请求数据</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <button type="button" onclick="load()">注册</button>
+  <!-- 第一步：引入axios的js文件 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    function load() {
+      /* 第二步：发送请求，用户注册 */
+      axios.post('https://hmajax.itheima.net/api/register',{ username: '张益达', password: '123456' }).then((result) => {
+        //响应成功执行then方法中的函数
+        console.log(result.data);
+      });
+    }
+  </script>
+</body>
+
+</html>
