@@ -13,7 +13,7 @@
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个数字：");
@@ -45,7 +45,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个数字：");
@@ -74,7 +74,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个数字：");
@@ -103,7 +103,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个数字：");
@@ -132,7 +132,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个四位数字：");
@@ -164,7 +164,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个年份：");
@@ -193,7 +193,7 @@ public class Main {
 ```java
 import java.util.Scanner;
 
-public class Main {
+public class com.itheima.Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入一个以秒为单位的时间大小：");
