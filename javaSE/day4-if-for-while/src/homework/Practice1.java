@@ -1,5 +1,7 @@
 package homework;
 
+import jdk.jfr.DataAmount;
+
 import java.util.Scanner;
 
 /**
@@ -8,7 +10,10 @@ import java.util.Scanner;
  * @description: TODO
  * @date 2025/7/21 上午10:35
  */
+
 public class Practice1 {
+
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("请输入第一个数字：");

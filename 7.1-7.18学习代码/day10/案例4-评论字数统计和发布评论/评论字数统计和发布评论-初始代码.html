@@ -122,8 +122,47 @@
 
   <script>
     //---------------动态展示输入框中的字数--------------------
-    
+    //获取输入框对象，获取展示字数的span标签对象
+    let textarea = document.querySelector('#tx');
+    let span = document.querySelector('.total');
+    //给输入框绑定input事件
+    textarea.addEventListener('input', function () {
+      // 在输入框中获取当前输入的内容长度
+      let length = this.value.length;
+      // 在span标签中展示当前输入的内容
+      span.innerHTML = `${length}/200字`;
+    });
     //---------------"发布"按钮发布评论功能--------------------
+    //获取“发布”按钮和展示评论信息的diV元素对象。
+    let publish = document.querySelector('#publish');
+    let listDiv = document.querySelector('.list');
+    //给发布按钮绑定click单击事件
+    publish.addEventListener('click',function(){
+      //获取输入框中的内容
+      let content = textarea.value;
+      //在事件函数中获取当前年月日时分秒，作为发布时间，
+      let date = new Date();
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1; //月份从0开始
+      let day = date.getDate();
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      //在输入框下方展示评论信息，
+      listDiv.innerHTML += `<div class="list">
+    <div class="item">
+      <i class="avatar"></i>
+      <div class="info">
+        <p class="name">清风徐来</p>
+        <p class="text">${textarea.value}</p>
+        <p class="time">${year}-${month}-${day} ${hours}:${minutes}:${seconds}</p>
+      </div>
+    </div>`;
+      //清空输入框
+      textarea.value = '';
+      //清空span标签中的内容
+      span.innerHTML = `0/200字`;
+    })
     
   </script>
 </body>

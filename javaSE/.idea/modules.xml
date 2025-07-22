@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/day05-array-method/day05-array-method.iml" filepath="$PROJECT_DIR$/day05-array-method/day05-array-method.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day06-oop/day06-oop.iml" filepath="$PROJECT_DIR$/day06-oop/day06-oop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day07-oop/day07-oop.iml" filepath="$PROJECT_DIR$/day07-oop/day07-oop.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day08-single-enum-abstract-interface-innerclass/day08-single-enum-abstract-interface-innerclass.iml" filepath="$PROJECT_DIR$/day08-single-enum-abstract-interface-innerclass/day08-single-enum-abstract-interface-innerclass.iml" />
-      <module fileurl="file://$PROJECT_DIR$/day09-studentmanager/day09-studentmanager.iml" filepath="$PROJECT_DIR$/day09-studentmanager/day09-studentmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/day1-helloworld/day1-helloworld.iml" filepath="$PROJECT_DIR$/day1-helloworld/day1-helloworld.iml" />
       <module fileurl="file://$PROJECT_DIR$/day2-basicgrammar/day2-basicgrammar.iml" filepath="$PROJECT_DIR$/day2-basicgrammar/day2-basicgrammar.iml" />
       <module fileurl="file://$PROJECT_DIR$/day3-operator/day3-operator.iml" filepath="$PROJECT_DIR$/day3-operator/day3-operator.iml" />
       <module fileurl="file://$PROJECT_DIR$/day4-if-for-while/day4-if-for-while.iml" filepath="$PROJECT_DIR$/day4-if-for-while/day4-if-for-while.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day5-array-method/day5-array-method.iml" filepath="$PROJECT_DIR$/day5-array-method/day5-array-method.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day6-oop/day6-oop.iml" filepath="$PROJECT_DIR$/day6-oop/day6-oop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day7-oop/day7-oop.iml" filepath="$PROJECT_DIR$/day7-oop/day7-oop.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day8-single-enum-abstract-interface-innerclass/day8-single-enum-abstract-interface-innerclass.iml" filepath="$PROJECT_DIR$/day8-single-enum-abstract-interface-innerclass/day8-single-enum-abstract-interface-innerclass.iml" />
+      <module fileurl="file://$PROJECT_DIR$/day9-studentmanager/day9-studentmanager.iml" filepath="$PROJECT_DIR$/day9-studentmanager/day9-studentmanager.iml" />
       <module fileurl="file://$PROJECT_DIR$/javaSE.iml" filepath="$PROJECT_DIR$/javaSE.iml" />
     </modules>
   </component>
