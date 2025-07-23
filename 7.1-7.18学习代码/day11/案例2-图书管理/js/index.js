@@ -84,3 +84,24 @@ function deleteBook(bookId) {
 //--------------------------4. 编辑图书---------------------------
 //4.1 回显图书信息---------------------
 //4.2 保存图书信息，用户修改完毕点击修改按钮, 将最新的数据发送给服务器------------
+//1 给"弹出框"中的修改按钮绑定单击事件
+document.querySelector('.edit-btn').addEventListener('click', () => {
+  //2 获取用户输入的数据(修改后的表单数据)
+  let bookname = document.querySelector('.edit-modal .bookname').value
+  let author = document.querySelector('.edit-modal .author').value
+  let publisher = document.querySelector('.edit-modal .publisher').value
+  let bookId = document.querySelector('.edit-modal .id').value
+  //3 将表单数据封装成对象
+  let data = { bookname, author, publisher, "creator": loginUser }
+  //4 使用axios发送请求，将修改后的数据发送给服务器
+  axios.put(`https://hmajax.itheima.net/api/books/${bookId}`, data).then((result) => {
+    //5 处理服务器的返回结果
+    alert(result.data.message);
+    //5.1 隐藏编辑弹框
+    editModal.hide()
+    //5.2 重新加载数据
+    queryBookList()
+  }).catch((err) => {
+    alert('修改图书失败')
+  });
+})
