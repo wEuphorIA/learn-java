@@ -16,14 +16,7 @@ public class StudentManager {
         ArrayList<Student> students = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("1. 添加学生");
-            System.out.println("2. 删除学生");
-            System.out.println("3. 修改学生");
-            System.out.println("4. 查看所有学生");
-            System.out.println("5. 查询指定学生");
-            System.out.println("6. 批量删除学生");
-            System.out.println("按其他任意键退出");
-            System.out.println("请输入你的选择：");
+            System.out.println("1. 添加学生\t2. 删除学生\t3. 修改学生\t4. 查看所有学生\t5. 查询指定学生\t6. 批量删除学生\t按其他任意键退出\t请输入你的选择：");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
