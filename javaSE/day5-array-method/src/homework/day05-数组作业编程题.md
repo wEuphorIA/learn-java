@@ -73,7 +73,15 @@ System.out.println("数组中元素大于平均值的元素");
 **代码：**
 
 ```Java
-System.out.print("数组中回文数元素为：");
+public static void main(String[] args) {
+        int[] arr = new int[20];
+        Random Random = new Random();
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = Random.nextInt(100,1000) ;
+        }
+        System.out.println("原数组为" + Arrays.toString(arr));
+
+        System.out.print("数组中回文数元素为：");
         for (int i = 0; i < arr.length; i++) {
             int temp = arr[i];
             int a = temp / 100;
@@ -82,4 +90,5 @@ System.out.print("数组中回文数元素为：");
                 System.out.print(temp + "  ");
             }
         }
+    }
 ```

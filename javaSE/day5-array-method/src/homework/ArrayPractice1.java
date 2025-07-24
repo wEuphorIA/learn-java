@@ -14,7 +14,7 @@ public class ArrayPractice1 {
         int[] arr = new int[20];
         Random Random = new Random();
         for (int i = 0; i < arr.length; i++) {
-            arr[i] = Random.nextInt(898) + 101;
+            arr[i] = Random.nextInt(100,1000) ;
         }
         System.out.println("原数组为" + Arrays.toString(arr));
 
