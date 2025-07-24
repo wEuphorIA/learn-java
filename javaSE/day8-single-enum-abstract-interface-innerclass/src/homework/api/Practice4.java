@@ -16,7 +16,7 @@ public class Practice4 {
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy年MM月dd日");
         Scanner scanner = new Scanner(System.in);
-        System.out.println("请输入一个生日格式（yyyy-MM-dd)：");
+        System.out.println("请输入生日日期（格式：1998年08月08日）：");
 
         String birthday = scanner.next();
         LocalDate parse = LocalDate.parse(birthday, formatter);
