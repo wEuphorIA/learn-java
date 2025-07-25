@@ -307,5 +307,46 @@ public class Manager extends Employee{
 **代码：**
 
 ```java
+ public static void main(String[] args) {
+        // 创建动物数组（多态：父类类型引用子类对象）
+        Animal[] animals = {
+                new Cat("喵星人") ,
+                new Dog("旺财")
+        };
 
+        for (int i = 0; i < animals.length; i++) {
+           animals[i].yell();
+        }
+    }
+public class Cat extends  Animal{
+
+
+    public Cat(String name) {
+        this.setName(name);
+    }
+
+    @Override
+    public void yell() {
+        System.out.println(this.getName() + "：喵喵喵");
+    }
+}public class Dog extends  Animal{
+
+    public Dog(String name) {
+        this.setName(name);
+    }
+
+    @Override
+    public void yell() {
+        System.out.println(this.getName() + "：汪汪汪");
+    }
+}@Data
+@AllArgsConstructor
+@NoArgsConstructor
+public class Animal {
+    private String name;
+
+    public void yell() {
+        System.out.println("未知叫声");
+    }
+}
 ```
