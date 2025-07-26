@@ -4,7 +4,7 @@
 
 观察下面的代码，说明代码为什么会报错，如何解决？
 
-![1646735649314](../../../../../../课件/JavaSE基础-AI/day07-面向对象高级-枚举&抽象类&接口&内部类/作业/assets/1646735649314.png)
+![1646735649314](C:\Users\wyk\Desktop\code\javaSE\day7-oop\src\homework\oophight\assets/1646735649314.png)
 
 ```java
 1.如果子类不是抽象类抽象类必须需要重写父类的所有方法
@@ -17,7 +17,7 @@
 
 观察下面的代码，说明代码为什么会报错，如何解决？
 
-![1646735789785](../../../../../../课件/JavaSE基础-AI/day07-面向对象高级-枚举&抽象类&接口&内部类/作业/assets/1646735789785.png)
+![1646735789785](C:\Users\wyk\Desktop\code\javaSE\day7-oop\src\homework\oophight\assets/1646735789785.png)
 
 ```java
 没构造方法使用lombok注解
@@ -223,5 +223,31 @@ public class Phone {
 - 写一个测试类，在测试类中调用Feeder类中的方法，传递Cat对象和Dog对象
 
 ```java
-
+public class Animal {
+    public void eat(){
+        System.out.println("不知道吃什么东西");
+    }
+}
+public class Dog extends Animal{
+    @Override
+    public void eat() {
+        System.out.println("狗吃骨头");
+    }
+}public class Cat extends  Animal{
+    @Override
+    public void eat() {
+        System.out.println("猫吃鱼");
+    }
+}
+public class Feeder {
+    public void feed(Animal animal){
+        animal.eat();
+    }
+}public class FeederTest {
+    public static void main(String[] args) {
+        Feeder feeder = new Feeder();
+        feeder.feed(new Dog());
+        feeder.feed(new Cat());
+    }
+}
 ```

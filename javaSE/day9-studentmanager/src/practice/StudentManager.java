@@ -110,6 +110,7 @@ public class StudentManager {
                     list.get(i).setAddress(address);
                     System.out.println("更新成功");
                     System.out.println("更新后的学生" + list.get(i));
+                    break;
                 }
             }
         } else {

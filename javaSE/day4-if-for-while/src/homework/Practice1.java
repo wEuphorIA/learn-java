@@ -1,7 +1,5 @@
 package homework;
 
-import jdk.jfr.DataAmount;
-
 import java.util.Scanner;
 
 /**
