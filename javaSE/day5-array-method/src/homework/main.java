@@ -12,7 +12,7 @@ public class main {
 
         System.out.println(practice.isLeapYear(2024));
 
-        System.out.println(practice.isPrime(9));
+        System.out.println(practice.isPrime(6));
 
         System.out.println("大写字母个数为" + practice.majusculeTotal("HelloWorld"));
 
