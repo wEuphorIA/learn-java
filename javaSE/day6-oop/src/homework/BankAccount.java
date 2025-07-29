@@ -14,10 +14,22 @@ public class BankAccount {
 
     private static  int totalAccounts = 0;
 
+    // 可以使用代码块初始化
+    //    {
+    //        totalAccounts++;  // 开户时总数+1
+    //        this.cardId = "BA" + String.format("%04d", totalAccounts);  // 格式化编号
+    //        this.balance = 0;  // 新账户余额初始化为0
+    //    }
+
     public BankAccount() {
         totalAccounts++;  // 开户时总数+1
         this.cardId = "BA" + String.format("%04d", totalAccounts);  // 格式化编号
         this.balance = 0;  // 新账户余额初始化为0
+    }
+
+    public BankAccount(int balance) {
+        this();
+        this.balance = balance;
     }
 
     public String getCardId() {

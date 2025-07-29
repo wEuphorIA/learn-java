@@ -24,5 +24,8 @@ public class Practice1 {
             }
         }
         System.out.println(list1);
+
+        // 认识stream流 认识这个的优势
+        list.stream().filter(s -> s.startsWith("张") && s.length() == 3).forEach(System.out::println);
     }
 }
