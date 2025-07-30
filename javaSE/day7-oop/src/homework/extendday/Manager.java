@@ -1,4 +1,4 @@
-package homework;
+package homework.extendday;
 
 /**
  * @author Euphoria

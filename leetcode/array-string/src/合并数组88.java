@@ -19,7 +19,10 @@ public class 合并数组88 {
         int[] nums1 = {1, 2, 3, 0, 0, 0};
         int m = 3, n = 3;
         int[] nums2 = {2, 5, 6};
-        merge(nums1, m, nums2, n);
+
+        //merge(nums1, m, nums2, n);
+        merge2(nums1, m, nums2, n);
+
     }
 
     public static void merge(int[] nums1, int m, int[] nums2, int n) {
@@ -28,5 +31,35 @@ public class 合并数组88 {
         }
         Arrays.sort(nums1);
         System.out.println(Arrays.toString(nums1));
+        System.out.println(Arrays.toString(nums2));
+    }
+
+
+    public static void merge2(int[] nums1, int m, int[] nums2, int n) {
+        int a = 0;
+        int b = 0;
+        int[] sort = new int[m + n];
+        for (int i = 0; i < sort.length; i++) {
+            // 处理nums1已遍历完的情况
+            if (a == m) {
+                sort[i] = nums2[b];
+                b++;
+            }
+            // 处理nums2已遍历完的情况
+            else if (b == n) {
+                sort[i] = nums1[a];
+                a++;
+            } else if (nums1[a] < nums2[b]){
+                sort[i] = nums1[a];
+                a++;
+            } else {
+                sort[i] = nums2[b];
+                b++;
+            }
+        }
+        for (int i = 0; i < sort.length; i++) {
+            nums1[i] = sort[i];
+        }
+        System.out.println(Arrays.toString(sort));
     }
 }

@@ -1,4 +1,7 @@
-package homework;
+package homework.extendday;
+
+import homework.Manager;
+import homework.Programmer;
 
 /**
  * @author Euphoria

@@ -1,4 +1,4 @@
-package homework.api;
+package day7api;
 
 import java.util.Scanner;
 
