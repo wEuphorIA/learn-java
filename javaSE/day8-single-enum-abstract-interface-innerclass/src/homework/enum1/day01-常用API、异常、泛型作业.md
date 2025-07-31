@@ -43,8 +43,8 @@ public class Student {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return age == student.age && Objects.equals(name, student.name);
+        Student student1 = (Student) o;
+        return age == student1.age && Objects.equals(name, student1.name);
     }
 
     @Override
@@ -62,11 +62,11 @@ public class Student {
 }
 public class Practice1 {
     public static void main(String[] args) {
-        Student student = new Student(23,"张三");
+        Student student1 = new Student(23,"张三");
         Student student1 = new Student(23,"张三");
 
-        System.out.println(student.equals(student1));
-        System.out.println(student);
+        System.out.println(student1.equals(student1));
+        System.out.println(student1);
         System.out.println(student1);
     }
 }
@@ -147,14 +147,14 @@ public static void main(String[] args) {
 
 ```java
 public static void main(String[] args) {
-        Student[] students = {
+        Student[] student1s = {
                 new Student("蜘蛛精", 23, 169.5),
                 new Student("紫霞", 26, 163.8),
                 new Student("紫霞", 26, 162.8),
                 new Student("至尊宝", 24, 167.5)
         };
         // 匿名内部类
-        Arrays.sort(students, new Comparator<Student>() {
+        Arrays.sort(student1s, new Comparator<Student>() {
             @Override
             public int compare(Student o1, Student o2) {
                 if (o1.getAge() != o2.getAge()) {
@@ -164,9 +164,9 @@ public static void main(String[] args) {
             }
         });
         System.out.println("按年龄降序（匿名内部类）：");
-        System.out.println(Arrays.toString(students));
+        System.out.println(Arrays.toString(student1s));
 
-        Arrays.sort(students, (Student o1,Student o2) -> {
+        Arrays.sort(student1s, (Student o1,Student o2) -> {
             if (o1.getAge() != o2.getAge()) {
                 return o2.getAge() - o1.getAge();
             }else {
@@ -174,16 +174,16 @@ public static void main(String[] args) {
             }
         });
         System.out.println("按年龄降序如果年龄一样，按照身高降序（Lambda标准格式）：");
-        System.out.println(Arrays.toString(students));
+        System.out.println(Arrays.toString(student1s));
 
 
         // 3. Lambda简化格式
-        Arrays.sort(students, (s1, s2) -> {
+        Arrays.sort(student1s, (s1, s2) -> {
             int result = Integer.compare(s2.getAge(), s1.getAge());
             return result != 0 ? result : Double.compare(s2.getHeight(), s1.getHeight());
         });
         System.out.println("按年龄降序如果年龄一样，按照身高降序（Lambda简化）：");
-        System.out.println(Arrays.toString(students));
+        System.out.println(Arrays.toString(student1s));
     }
 ```
 

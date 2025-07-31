@@ -1,11 +1,10 @@
-package practice;
+package com.itheima.system;
 
 /**
- * @author Euphoria
- * @version 1.0
- * @description: TODO
- * @date 2025/7/23 下午8:47
- */
+ @author Euphoria
+ @version 1.0
+ @description: TODO
+ @date 2025/7/31 上午10:06 */
 public class Student {
 
     private String id;
@@ -34,14 +33,6 @@ public class Student {
         this.address = address;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public String getId() {
         return id;
     }
@@ -58,13 +49,17 @@ public class Student {
         this.name = name;
     }
 
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
     @Override
     public String toString() {
-        return "Student{" +
-                "address='" + address + '\'' +
-                ", id='" + id + '\'' +
-                ", age=" + age +
-                ", name='" + name + '\'' +
-                '}';
+        return String.format("%-12s%-8s%-5s%-18s",
+                id, name, age, address);
     }
 }

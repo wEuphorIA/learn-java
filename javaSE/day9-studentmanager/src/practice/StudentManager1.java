@@ -9,33 +9,33 @@ import java.util.Scanner;
  * @description: TODO
  * @date 2025/7/23 下午8:50
  */
-public class StudentManager {
+public class StudentManager1 {
     public static void main(String[] args) {
 
         System.out.println("--------------------欢迎访问黑马学生管理系统--------------------");
-        ArrayList<Student> students = new ArrayList<>();
+        ArrayList<Student1> student1s = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("1. 添加学生\t2. 删除学生\t3. 修改学生\t4. 查看所有学生\t5. 查询指定学生\t6. 批量删除学生\t按其他任意键退出\t请输入你的选择：");
             int choice = scanner.nextInt();
             switch (choice) {
                 case 1:
-                    addStudent(students);
+                    addStudent(student1s);
                     break;
                 case 2:
-                    deleteStudent(students);
+                    deleteStudent(student1s);
                     break;
                 case 3:
-                    updateStudent(students);
+                    updateStudent(student1s);
                     break;
                 case 4:
-                    selectStudent(students);
+                    selectStudent(student1s);
                     break;
                 case 5:
-                    queryStudent(students);
+                    queryStudent(student1s);
                     break;
                 case 6:
-                    batchDeleteStudent(students);
+                    batchDeleteStudent(student1s);
                     break;
                 default:
                     System.out.println("感谢使用，再见！");
@@ -45,7 +45,7 @@ public class StudentManager {
         }
     }
 
-    private static void addStudent(ArrayList<Student> list) {
+    private static void addStudent(ArrayList<Student1> list) {
 
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入学生学号(例如：heima001)：");
@@ -61,13 +61,13 @@ public class StudentManager {
         System.out.println("请输入学生地址：");
         String address = sc.next();
 
-        Student student = new Student(id, name, age, address);
-        list.add(student);
+        Student1 student1 = new Student1(id, name, age, address);
+        list.add(student1);
 
         System.out.println("添加学生成功~");
     }
 
-    private static void selectStudent(ArrayList<Student> list) {
+    private static void selectStudent(ArrayList<Student1> list) {
         if (list.isEmpty()) {
             System.out.println("没有学生信息~");
         } else {
@@ -76,7 +76,7 @@ public class StudentManager {
         }
     }
 
-    private static void deleteStudent(ArrayList<Student> list) {
+    private static void deleteStudent(ArrayList<Student1> list) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要删除的学号：");
         String id = sc.next();
@@ -92,24 +92,24 @@ public class StudentManager {
         System.out.println("删除成功");
     }
 
-    private static void updateStudent(ArrayList<Student> list) {
+    private static void updateStudent(ArrayList<Student1> list) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要更新学生的学号：");
         String id = sc.next();
         if (isExist(list, id)) {
-            for (int i = 0; i < list.size(); i++) {
-                if (list.get(i).getId().equals(id)) {
+            for (Student1 student1 : list) {
+                if (student1.getId().equals(id)) {
                     System.out.println("请输入学生姓名：");
                     String name = sc.next();
-                    list.get(i).setName(name);
+                    student1.setName(name);
                     System.out.println("请输入学生年龄：");
                     int age = sc.nextInt();
-                    list.get(i).setAge(age);
+                    student1.setAge(age);
                     System.out.println("请输入学生地址：");
                     String address = sc.next();
-                    list.get(i).setAddress(address);
+                    student1.setAddress(address);
                     System.out.println("更新成功");
-                    System.out.println("更新后的学生" + list.get(i));
+                    System.out.println("更新后的学生" + student1);
                     break;
                 }
             }
@@ -118,7 +118,7 @@ public class StudentManager {
         }
     }
 
-    private static void queryStudent(ArrayList<Student> list) {
+    private static void queryStudent(ArrayList<Student1> list) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要查询的学号：");
         String id = sc.next();
@@ -129,32 +129,32 @@ public class StudentManager {
         }
     }
 
-    private static boolean isExist(ArrayList<Student> list, String id) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getId().equals(id)) {
-                System.out.println(list.get(i));
+    private static boolean isExist(ArrayList<Student1> list, String id) {
+        for (Student1 student1 : list) {
+            if (student1.getId().equals(id)) {
+                System.out.println(student1);
                 return true;
             }
         }
         return false;
     }
 
-    private static void batchDeleteStudent(ArrayList<Student> list) {
+    private static void batchDeleteStudent(ArrayList<Student1> list) {
         Scanner sc = new Scanner(System.in);
         System.out.println("请输入要批量删除的学生学号，多个学号使用英文,隔开：");
         String[] ids = sc.next().split(",");
-        for (int i = 0; i < ids.length; i++) {
+        for (String id : ids) {
             boolean flag = false;
             for (int j = 0; j < list.size(); j++) {
-                if (list.get(j).getId().equals(ids[ i])) {
+                if (list.get(j).getId().equals(id)) {
                     list.remove(j);
-                    System.out.println("学号" + ids[i] + " 删除成功");
+                    System.out.println("学号" + id + " 删除成功");
                     flag = true;
                     break;
                 }
             }
             if (!flag) {
-                System.out.println("学号" + ids[i] + " 不存在");
+                System.out.println("学号" + id + " 不存在");
             }
         }
     }

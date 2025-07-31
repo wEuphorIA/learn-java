@@ -8,27 +8,27 @@
 王五,25
 ```
 
-- 使用==**字符缓冲流**==读取”students.txt”文件，将每行数据封装为一个Student对象，并将Student对象存储到一个集合
+- 使用==**字符缓冲流**==读取”student1s.txt”文件，将每行数据封装为一个Student对象，并将Student对象存储到一个集合
 - 遍历并打印集合的所有Student信息
 
 ```java
 public class Practice1 {
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\wyk\\Desktop\\code\\javaSE\\homework\\src\\day5Io\\students.txt");
-        ArrayList<Student> students = new ArrayList<>();
+        File file = new File("C:\\Users\\wyk\\Desktop\\code\\javaSE\\homework\\src\\day5Io\\student1s.txt");
+        ArrayList<Student> student1s = new ArrayList<>();
         try {
             BufferedReader bf = new BufferedReader(new FileReader(file));
             String line = null;
             while ((line = bf.readLine()) != null){
                 String[] split = line.split(",");
                 if (split.length == 2){
-                    students.add(new Student(split[0], Integer.parseInt(split[1])));
+                    student1s.add(new Student(split[0], Integer.parseInt(split[1])));
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-       students.forEach(System.out::println);
+       student1s.forEach(System.out::println);
     }
 }
 @Data

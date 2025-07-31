@@ -1,4 +1,4 @@
-﻿package day7api;
+package day7api;
 
 /**
  * @author Euphoria

@@ -53,12 +53,10 @@ public class FoodManager {
             }
 
         }
-
-
     }
 
     private static void removeDish(ArrayList<Dish> dishes) {
-        if (dishes.isEmpty()){
+        if (dishes.isEmpty()) {
             System.out.println("没有菜品，请先上架菜品！");
         }
         Scanner scanner = new Scanner(System.in);
