@@ -8,6 +8,7 @@ public class 买卖股票的最佳时机121 {
         int [] prices = {1,2};
         System.out.println(maxProfit(prices));
     }
+    //一次遍历
     public static int maxProfit(int[] prices) {
         int max  =0;
         int minPrice = prices[0];
