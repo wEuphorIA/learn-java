@@ -1,4 +1,4 @@
-package homework.enum1;
+package day01.enum1;
 
 import java.util.Objects;
 

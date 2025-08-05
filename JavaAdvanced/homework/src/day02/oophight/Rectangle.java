@@ -1,4 +1,4 @@
-package oophomework.oophight;
+package day02.oophight;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -8,25 +8,25 @@ import lombok.NoArgsConstructor;
  * @author Euphoria
  * @version 1.0
  * @description: TODO
- * @date 2025/7/25 下午9:02
+ * @date 2025/7/25 下午9:05
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Round extends Shape{
+public class Rectangle extends Shape{
 
-    private double radius;
+    private double width;
 
-    private  final double pi=Math.PI;
-
+    private double height;
 
     @Override
     public double getArea() {
-        return pi*radius*radius;
+
+        return width *  height;
     }
 
     @Override
     public double getPerimeter() {
-        return 2*pi*radius;
+        return 2 * (width + height);
     }
 }
