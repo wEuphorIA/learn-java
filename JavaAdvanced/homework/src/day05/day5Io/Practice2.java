@@ -1,4 +1,4 @@
-package day5Io;
+package day05.day5Io;
 
 import org.apache.commons.io.FileUtils;
 

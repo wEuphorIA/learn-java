@@ -1,0 +1,5 @@
+========Teacher========
+name = 王老师
+age = 23
+subject = 生物学
+

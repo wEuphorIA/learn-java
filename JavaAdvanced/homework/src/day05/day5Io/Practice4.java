@@ -1,11 +1,10 @@
-package day5Io;
+package day05.day5Io;
 
 import lombok.SneakyThrows;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import javax.swing.*;
 import java.io.File;
 
 /**
