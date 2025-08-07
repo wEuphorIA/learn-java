@@ -62,11 +62,44 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
     }
 
     public void remove(int index) {
-        Node node = findNode(index - 1);
-        if (node == null) {
+        //获取要删除的节点的前一个节点
+        Node prev = findNode(index - 1);
+        if (prev == null) {
             throw illegalIndex(index);
         }
+        //获取要删除的节点
+        Node removed = prev.next;
+        if (removed == tail) {
+            throw illegalIndex(index);
+        }
+        //获取要删除的节点的下一个节点
+        Node next = removed.next;
 
+        //将前驱节点（prevNode）的next指针指向下个节点（nextNode）
+        prev.next = next;
+        //将被删除节点的下一个节点的prev指针指向前驱节点（prevNode）
+        next.prev = prev;
+    }
+
+    public void removeFirst(){
+        remove(0);
+    }
+
+    public  void addLast(int value){
+        Node last = tail.prev;
+        Node added = new Node(value, last, tail);
+        last.next = added;
+        tail.prev = added;
+    }
+
+    public void removeLast(){
+        Node removed = tail.prev;
+        if (removed == head){
+            throw illegalIndex(0);
+        }
+        Node prev = removed.prev;
+        prev.next = tail;
+        tail.prev = prev;
     }
 
     private static IllegalArgumentException illegalIndex(int index) {
@@ -77,14 +110,17 @@ public class DoublyLinkedListSentinel implements Iterable<Integer> {
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<Integer>() {
+            Node p = head.next;
             @Override
             public boolean hasNext() {
-                return false;
+                return p != tail;
             }
 
             @Override
             public Integer next() {
-                return 0;
+                int value = p.data;
+                p = p.next;
+                return value ;
             }
         };
     }

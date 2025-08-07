@@ -1,4 +1,4 @@
-package day3_stream;
+package day03.day3_stream;
 
 import java.util.ArrayList;
 import java.util.List;

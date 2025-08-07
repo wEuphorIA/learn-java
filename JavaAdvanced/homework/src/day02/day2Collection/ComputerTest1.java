@@ -1,4 +1,6 @@
-package day2Collection;
+package day02.day2Collection;
+
+
 
 import java.util.TreeSet;
 

@@ -1,4 +1,4 @@
-package day2Collection;
+package day02.day2Collection;
 
 import lombok.Data;
 
