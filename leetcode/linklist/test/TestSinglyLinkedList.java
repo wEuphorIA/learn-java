@@ -125,7 +125,16 @@ public class TestSinglyLinkedList {
         for (Integer integer : list) {
             System.out.println(integer);
         }
+    }
 
-
+    @Test
+    public void testLoop() {
+        SinglyLinkedList list = new SinglyLinkedList();
+        list.addLast(1);
+        list.addLast(2);
+        list.addLast(3);
+        list.addLast(4);
+        list.loop2(value -> System.out.println("before:" + value)
+                , value -> System.out.println("after:" + value));
     }
 }

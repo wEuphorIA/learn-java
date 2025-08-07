@@ -6,12 +6,13 @@ import java.util.Iterator;
  @description: TODO
  @date 2025/8/6 下午9:03 */
 //环形链表带哨兵
-public class CircularDoublyLinkedList implements Iterable<Integer>{
+public class CircularDoublyLinkedList implements Iterable<Integer> {
 
     @Override
     public Iterator<Integer> iterator() {
         return new Iterator<>() {
             Node p = sentinel.next;
+
             @Override
             public boolean hasNext() {
                 return p != sentinel;
@@ -39,7 +40,7 @@ public class CircularDoublyLinkedList implements Iterable<Integer>{
         }
     }
 
-    private Node sentinel  = new Node(null, -1, null);
+    private Node sentinel = new Node(null, -1, null);
 
     public CircularDoublyLinkedList() {
         sentinel.next = sentinel;
@@ -62,7 +63,52 @@ public class CircularDoublyLinkedList implements Iterable<Integer>{
         Node added = new Node(a, value, b);
         a.next = added;
         b.prev = added;
-
     }
 
+    //删除第一个
+    public void removeFirst() {
+        Node removed = sentinel.next;
+        if (removed == sentinel) {
+            throw new IllegalArgumentException("非法的，双向链表为空");
+        }
+        Node a = sentinel;
+        Node b = removed.next;
+        a.next = b;
+        b.prev = a;
+    }
+
+    //删除最后一个
+    public void removeLast() {
+        Node removed = sentinel.prev;
+        if (removed == sentinel) {
+            throw new IllegalArgumentException("非法的，双向链表为空");
+        }
+        Node a = removed.prev;
+        Node b = sentinel;
+        a.next = b;
+        b.prev = a;
+    }
+
+    //根据节点的值进行删除
+    public void removeByValue(int value) {
+        Node removed = findByValue(value);
+        if (removed == null){
+            return;
+        }
+        Node a = removed.prev;
+        Node b = removed.next;
+        a.next = b;
+        b.prev = a;
+    }
+
+    private Node findByValue(int value) {
+        Node p = sentinel.next;
+        while (p != sentinel) {
+            if (p.value == value) {
+                return p;
+            }
+            p = p.next;
+        }
+        return null;
+    }
 }

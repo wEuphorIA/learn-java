@@ -1,6 +1,7 @@
 package day02.oophight;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 /**
  @author Euphoria
@@ -17,14 +18,18 @@ public class Practice4 {
                 new Student("赵六", 19, 165.0)
         };
         // 使用Lambda表达式排序（年龄降序，身高降序）
-        Arrays.sort(students,(s1,s2)->{
-            if (s1.getAge()!=s2.getAge()){
-                return s2.getAge()-s1.getAge();//年龄降序
-            }else {
-                return Double.compare(s2.getHeight(), s1.getHeight());//身高降序
-            }
-        });
+        // Arrays.sort(students,(s1,s2)->{
+        //     if (s1.getAge()!=s2.getAge()){
+        //         return s2.getAge()-s1.getAge();//年龄降序
+        //     }else {
+        //         return Double.compare(s2.getHeight(), s1.getHeight());//身高降序
+        //     }
+        // });
+        Student[] sortedStudents = Arrays.stream(students)
+                .sorted(Comparator.comparingInt(Student::getAge).reversed()
+                        .thenComparing(Comparator.comparingDouble(Student::getHeight).reversed()))
+                .toArray(Student[]::new);
         System.out.println("按年龄降序如果年龄一样，按照身高降序：");
-        System.out.println(Arrays.toString(students));
+        System.out.println(Arrays.toString(sortedStudents));
     }
 }

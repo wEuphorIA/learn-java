@@ -60,6 +60,20 @@ public class SinglyLinkedList implements Iterable<Integer> { //整体
             consumer.accept(p.data);
         }
     }
+    //递归函数
+    //针对某个节点要做的操作
+    private void recursion(Node curr, Consumer<Integer> before, Consumer<Integer> after){
+        if (curr == null){
+            return;
+        }
+        before.accept(curr.data);
+        recursion(curr.next, before, after);
+        after.accept(curr.data);
+    }
+    //递归遍历
+    public void loop2(Consumer<Integer> before,Consumer<Integer> after) {
+        recursion(head,before,after);
+    }
 
     private Node findLast() {
         //空链表

@@ -20,7 +20,7 @@
 ![1646735789785](C:\Users\wyk\Desktop\code\javaSE\day7-oop\src\homework\oophight\assets/1646735789785.png)
 
 ```java
-没构造方法使用lombok注解
+没构造方法使用super()调用父类的构造器给父类的成员变量赋值
 ```
 
 
