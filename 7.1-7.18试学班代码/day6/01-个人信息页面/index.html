@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人信息页面</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+
+        }
+
+        body {
+            background-color: #f0f2f5;
+        }
+
+        .container {
+            width: 70%;
+            height: 600px;
+
+            .nav {
+                height: 583px;
+
+                .active {
+                    background-color: #e8f7fd;
+                }
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container bg-white mt-5">
+        <div class="row">
+            <div class="col-2">
+                <nav class="nav flex-column border-end mt-3 ms-2">
+                    <a class="nav-link active border-end border-primary border-2" aria-current="page" href="#">基本设置</a>
+                    <a class="nav-link text-dark" href="#">安全设置</a>
+                    <a class="nav-link text-dark" href="#">账号绑定</a>
+                    <a class="nav-link text-dark" href="#">新消息通知</a>
+                </nav>
+            </div>
+            <div class="col-6">
+                <h4 class="fw-bold mt-4">基本设置</h4>
+                <form action="#">
+                    <div class="mb-3">
+                        <label for="exampleFormControlInput1" class="form-label">邮箱</label>
+                        <input type="email" class="form-control" id="exampleFormControlInput1"
+                            placeholder="请输入邮箱" >
+                    </div>
+                    <div class="mb-3">
+                        <label for="nickname" class="form-label">昵称</label>
+                        <input type="text" class="form-control" id="nickname"
+                            placeholder="请输入昵称" >
+                    </div>
+                    <div class="mb-3">
+                        <div><label class="form-label">性别</label></div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="man" value="man">
+                            <label class="form-check-label" for="man">男</label>
+                          </div>
+                          <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="gender" id="woman" value="woman">
+                            <label class="form-check-label" for="woman">女</label>
+                          </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleFormControlTextarea1" class="form-label">个人简介</label>
+                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" ></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
+            <div class="col-4">
+                <div class="mt-5 ms-5">头像</div>
+                <img src="img/avatar.png" alt="" class="ms-5 mt-3"><br>
+                <button type="button" class="btn btn-light mt-3 ms-5">
+                    <label for="uploadImg">更换头像</label>
+                </button>
+                <input type="file" name="icon" hidden id="uploadImg">
+            </div>
+        </div>
+    </div>
+
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

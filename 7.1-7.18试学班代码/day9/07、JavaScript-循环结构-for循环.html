@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>07、JavaScript-循环结构-for循环</title>
+</head>
+
+<body>
+  <script>
+    /* 
+     循环：重复执行一段代码，减少重复代码的书写
+     分类：while循环、for循环
+     for循环结构：
+       语法：
+         for(初始化语句①;循环条件②;迭代语句④){
+           循环体语句(要重复执行的代码)③
+         }
+       执行流程：①②③④---》②③④---》②③④---》...②③④---》②结果时false，循环结束
+   */
+    for (let i = 0; i < 10; i++) {
+      console.log(i); // 打印0-9的数字
+      document.write(i + 'hello world <br>'); // 在页面上打印数字
+    }
+  </script>
+</body>
+
+</html>

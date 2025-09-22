@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>练习2</title>
+</head>
+<body>
+
+<form action="#">
+  <table border="0" width="500" cellspacing="0" align="center">
+    <!-- 标题行 -->
+    <tr>
+      <th align="center">注册详情<hr></th>
+      <th></th>
+    </tr>
+  
+    <!-- 基本信息 -->
+    <tr align="center">
+      <td >
+        <label for="username">姓名：</label>
+        <input type="text" name="username" id="username" placeholder="在此输入姓名">
+      </td>
+    </tr>
+    <tr align="center">
+      <td >
+        <label for="password">密码：</label>
+        <input type="password" name="password" id="password" placeholder="在此输入密码">
+      </td>
+    </tr>
+    <tr align="center">
+      <td >
+        <label for="email">邮箱：</label>
+        <input type="email" name="email" id="email" placeholder="在此输入邮箱">
+      </td>
+    </tr>
+    <tr align="center">
+      <td >
+        <label for="phone">手机：</label>
+        <input type="tel" name="phone" id="phone" placeholder="在此输入手机"><hr>
+      </td>
+    </tr>
+    <!-- 详细信息 -->
+    <tr align="center">
+      <td>
+        性别：
+        <input type="radio" name="gender" value="male" id="male"><label for="male">男</label>
+        <input type="radio" name="gender" value="female" id="female"><label for="female">女</label>
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        爱好：
+        <input type="checkbox" name="hobby" value="music" id="music"><label for="music">音乐</label>
+        <input type="checkbox" name="hobby" value="movie" id="movie"><label for="movie">电影</label>
+        <input type="checkbox" name="hobby" value="game" id="game"><label for="game">游戏</label>
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <label for="birthday">出生日期：</label>
+        <input type="date" name="birthday" id="birthday">
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <label for="city">所在城市：</label>
+        <select name="city" id="city">
+          <option value="">请选择您所在城市</option>
+          <option value="beijing">北京</option>
+          <option value="shanghai">上海</option>
+          <option value="guangzhou">广州</option>
+          <option value="shenzhen">深圳</option>
+        </select>
+        <hr>
+      </td>
+  
+    <!-- 个性签名 -->
+    <tr align="center">
+      <td>
+        <label for="signature">个性签名：</label>
+        <textarea name="signature" id="signature" cols="30" rows="5" placeholder="请写下您的与众不同..."></textarea>
+      </td>
+    </tr>
+  
+    <!-- 提交和重置按钮 -->
+    <tr>
+      <td align="center">
+        <hr>
+        <button type="submit">注册</button>
+        <button type="reset">重置</button>
+      </td>
+    </tr>
+  </table>
+</form>
+
+</body>
+</html>

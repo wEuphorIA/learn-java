@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业2</title>
+</head>
+<body>
+  <script>
+    let a = prompt("请输入一个数组，以逗号分隔");
+    a = a.split(","); // 将输入的字符串转换为数组
+    let b = prompt("请输入一个字符串，判断该串是否在数组中");
+    // let result = a.indexOf(b);
+    // if (result !== -1) {
+    //   alert(`字符串 "${b}" 在数组中，索引为 ${result}`);
+    // } else {
+    //   alert(`字符串 "${b}" 不在数组中`);
+    // }
+    for (let i = 0; i < a.length; i++) {
+      if(a[i] === b) {
+        alert(`字符串 "${b}" 在数组中，索引为 ${i}`);
+        break;
+      } else if(i === a.length - 1) {
+        alert(`字符串 "${b}" 不在数组中`);
+      }  
+    }
+
+
+
+  </script>
+</body>
+</html>

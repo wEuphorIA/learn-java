@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业2</title>
+  <style>
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 0 auto;
+    }
+
+    th,
+    td {
+      border: 1px solid #000;
+      padding: 10px 0px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 需求: Vue挂载完成后, 通过axios发送异步请求到服务端, 或者学生列表数据, 并通过Vue展示在页面上. -->
+  <div id="app">
+
+    <table>
+      <tr>
+        <th>编号</th>
+        <th>姓名</th>
+        <th>图像</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>成绩</th>
+        <th>等级</th>
+      </tr>
+      <!-- {{students}} -->
+      <tr align="center" v-for="(item,index) in students" :key="item.id">
+        <td>{{item.id}}</td>
+        <td>{{item.name}}</td>
+        <td><img :src="item.image" height="50" width="70"></td>
+        <td>{{item.age}}</td>
+        <td>
+          <span v-if="item.gender == 1">男</span>
+          <span v-if="item.gender == 2">女</span>
+        </td>
+        <td>{{item.score}}</td>
+        <td>
+          <span style="color: green; " v-if="item.score >= 85">优秀</span>
+          <span style="color: yellow;" v-if="item.score >= 60 && item.score <85">及格</span>
+          <span style="color: red;" v-if="item.score < 60">不及格</span>
+        </td>
+      </tr>
+    </table>
+
+  </div>
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script type="module">
+    import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+
+    createApp({
+      data() {
+        return {
+          students: []
+        }
+      },
+      methods: {
+        async search() {
+          try {
+            const result = await axios.get('https://mock.apifox.cn/m1/3128855-0-default/student');
+            this.students = result.data.data;
+          } catch (err) {
+            console.error('请求失败:', err);
+            this.$message.error('加载学生数据失败'); // 若使用ElementUI等库
+          }
+        }
+      },
+      mounted() {
+        this.search();
+      }
+    }).mount('#app')
+  </script>
+</body>
+
+</html>

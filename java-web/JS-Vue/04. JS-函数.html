@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS-函数</title>
+</head>
+<body>
+  <script>
+    function add(a, b) {
+      return a + b;
+    }
+    let result = add(5, 10);
+    console.log(`5 + 10 = ${result}`); // 输出: 5 + 10 = 15
+    // 函数表达式
+    const multiply = function(a, b) {
+      return a * b;
+    };
+    let product = multiply(5, 10);
+    console.log(`5 * 10 = ${product}`); // 输出: 5 * 10 = 50
+    // 匿名函数
+    const multiply1 = (a, b) => {
+      return a * b;
+    };
+    let product1 = multiply1(5, 10);
+    console.log(`5 * 10 = ${product1}`); // 输出: 5 * 10 = 50
+
+  </script>
+</body>
+</html>

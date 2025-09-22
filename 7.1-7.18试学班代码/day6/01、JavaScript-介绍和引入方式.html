@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>01、JavaScript-介绍和引入方式</title>
+</head>
+<body>
+  <!-- 1、内部js：在script标签内写js代码，sricpt标签通常方法body标签的结尾。  -->
+  <script>
+    alert("Hello, World! 内部样式"); // 弹出一个警告框，显示 "Hello, World!"
+  </script>
+  <!--  3、行内js：在html文件中直接写js代码。 -->
+  <button onclick="alert('行内样式')">
+    按下按钮弹框
+  </button>
+  <!-- 2、外部js：
+  第一步：在js目录中定义.js结尾的文件，在js文件中写js代码。
+  第二步：在html文件中引入js文件。语法： <script src="js/xxx.js"></script>  -->
+ 
+  
+  <script src="my.js"></script>
+</body>
+</html>

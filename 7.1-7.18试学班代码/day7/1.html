@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>yu习</title>
+</head>
+
+<body>
+  <script>
+    // 对象也是一种数据类型，保存数据同时可以更直观的描述事物
+    // 1. 定义对象属性
+    // let pig = {
+    //   sex: '女',
+    //   age: 4,
+    //   uname: '佩奇',
+    //   weight: 12.6,
+    //   sing: function () {
+    //     console.log('唱歌')
+    //   },
+    //   eat: function () {
+    //     console.log('吃饭')
+    //   },
+    //   sum: function (x, y) {
+    //     return x + y;
+    //   },
+
+    // }
+    // 2. 访问对象属性
+    // console.log(pig.sex);
+    // console.log(pig.age);
+    // console.log(pig.uname);
+    // console.log(pig.weight);
+    // pig.sing(); // 调用对象方法
+    // pig.eat(); // 调用对象方法
+    // console.log(pig.sum(10, 20)); // 调用对象方法并传参
+
+    // pig.age = 10
+    // pig.dance = function () {
+    //   console.log('跳舞')
+    // }
+    // console.log(pig);
+
+    // 3. 改：对象.属性 = 新值  对象.方法 = 新匿名函数
+    // pig.uname = '小猪佩奇'
+    // pig.sing = function () {
+    //   console.log('哼哼哼！！')
+    // }
+    // console.log(pig);
+    // var flag = confirm("您确认删除该记录吗?");
+    // alert(flag);
+    // //定时器 - setInterval -- 周期性的执行某一个函数
+    // var i = 0;
+    // setInterval(function () {
+    //   i++;
+    //   console.log("定时器执行了" + i + "次");
+    // }, 2000);
+
+    //获取浏览器地址栏信息
+    // alert(location.href);
+    //设置浏览器地址栏信息
+    // location.href = "https://www.itcast.cn";
+
+    let person = {
+      name : 'cast' , 
+      age : 18,
+      gender : '男',
+    }
+
+    alert(JSON.stringify(person)) // 将js对象转换成字符串
+    let person2 = '{"name":"cast","age":18,"gender":"男"}';
+    alert(JSON.parse(person2).name) // 将字符串转换成js对象
+    
+  </script>
+
+</body>
+
+</html>

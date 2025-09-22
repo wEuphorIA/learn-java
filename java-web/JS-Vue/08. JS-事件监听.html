@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JS事件</title>
+</head>
+
+<body>
+
+  <input type="button" id="btn1" value="点我一下试试">
+  <input type="button" id="btn2" value="点我一下试试">
+
+  <script>
+    // 1. 获取元素
+    document.querySelector('#btn1').addEventListener('click', () => {
+      alert('试试就试试');
+    });
+    document.querySelector('#btn2').onclick = function () {
+      alert("按钮2被点击了...");
+    }
+  </script>
+</body>
+
+</html>

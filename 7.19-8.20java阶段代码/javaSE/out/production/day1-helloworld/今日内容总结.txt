@@ -1,0 +1,41 @@
+计算机的组成
+	硬件：处理器cpu、内存和硬盘、鼠标/键盘、显示器/打印机【了解】
+	软件：系统软件（操作系统）、应用软件（QQ、微信等）【了解】
+	DOS命令：【掌握】
+		切换盘符		盘符:		例如 d:
+		切换目录		cd 目录名/目录名/...		例如	cd itcast、	cd itcast\JavaSE  、 cd ..、  cd/
+		查看内容		dir
+		清屏 		cls
+		执行应用程序	xxx.exe
+		
+配置jdk的环境变量【掌握】
+	配置JAVA_HOME
+		变量名：JAVA_HOME
+		变量值：jdk的安装路径，不包括bin目录
+	配置path
+		%JAVA_HOME%\bin
+		
+Java跨平台原理
+	跨平台：一次编译，处处可用。
+	原理：Java官方为各类平台提供了对应的jdk(内部包含了jvm)，我们的Java程序是运行在jvm虚拟机上。
+	
+idea开发第一个程序步骤：【重要】
+	第一步：创建project项目。new project--->empty project--->给项目取名字，选择存放位置。
+	第二步：在项目中创建module模块。 new--->module
+	第三步：在模块中创建包，多级包使用.隔开。例如：com.itheima.hello。在src上鼠标右键--->new--->package
+	第四步：在包中创建类，在类中写代码，最后运行代码（run ....）
+	
+idea快捷键：【重要】
+	生成代码：
+		生成main入口方法：main+回车。
+		生成输出语句：sout+回车。
+		向下复制当前行代码：ctrl+d。
+		删除当前行代码：ctrl+y
+		格式化代码：ctrl+alt+L
+		向上/下移动当前行代码：ctrl+shift+上下键
+		
+		全选：ctrl+A
+		剪切：ctrl+X
+		复制：ctrl+C
+		粘贴：ctrl+V
+		撤销：ctrl+Z

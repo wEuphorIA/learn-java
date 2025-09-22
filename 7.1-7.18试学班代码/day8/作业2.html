@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业2</title>
+</head>
+
+<body>
+  <script>
+    let arr = prompt("请输入一个数字数组，以逗号分隔").split(",");
+    function sum(arr) {
+      let sum = 0;
+      // 将字符串数组转换为数字数组
+      arr = arr.map(Number);
+      for(let i = 0; i < arr.length; i++) {
+        if(arr[i] %2== 0) sum += arr[i];
+      }
+      return sum;
+    }
+    alert("数组中偶数字的和为：" + sum(arr));
+  </script>
+</body>
+
+</html>

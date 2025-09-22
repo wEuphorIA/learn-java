@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Title</title>
+  <!-- 讲解视频链接：https://www.bilibili.com/video/BV1mS4y1j7YZ?p=21 -->
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      background-image: url(./images/bg1.jpg);
+    }
+
+    #mask {
+      background-color: rgba(255, 255, 255, 0.3);
+      height: 200px;
+      text-align: center;
+    }
+
+    #mask img {
+      width: 200px;
+      margin-top: 35px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="mask">
+    <img src="./images/bg1.jpg" alt="" />
+    <img src="./images/bg2.jpg" alt="" />
+    <img src="./images/bg3.jpg" alt="" />
+    <img src="./images/bg4.jpg" alt="" />
+    <img src="./images/bg5.jpg" alt="" />
+  </div>
+
+  <script>
+    // 获取图片
+    let imgs = document.querySelectorAll('#mask img');
+    for (let i = 0; i < imgs.length; i++) {
+     imgs[i].addEventListener('click',()=>{
+      let img = imgs[i].src; // 获取当前点击的图片地址
+      document.querySelector('body').style.backgroundImage = `url(${img})`; // 设置body的背景图片
+     })
+    }
+  </script>
+</body>
+
+</html>

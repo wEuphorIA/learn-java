@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>18、JavaScript-案例-ATM取款机</title>
+</head>
+
+<body>
+  <script>
+    let balance = 0; // 初始余额
+    let isExit = false; // 控制ATM是否运行
+    while (true) {
+      let choose = prompt("请选择操作：\n1. 存款\n2. 取款\n3. 查询余额\n4. 退出");
+      switch (choose) {
+        case "1": // 存款
+          let depositStr = prompt("请输入存款金额：");
+          let deposit = parseFloat(depositStr);
+          if (!isNaN(deposit) && deposit > 0) {
+            balance += deposit;
+            alert(`存款成功，当前余额为：${balance}`);
+          } else {
+            alert("请输入有效的存款金额！");
+          }
+          break;
+
+        case "2": // 取款
+          let withdrawStr = prompt("请输入取款金额：");
+          let withdraw = parseFloat(withdrawStr);
+          if (!isNaN(withdraw) && withdraw > 0 && withdraw <= balance) {
+            balance -= withdraw;
+            alert(`取款成功，当前余额为：${balance}`);
+          } else {
+            alert("取款失败，请检查金额是否有效或余额不足！");
+          }
+          break;
+
+        case "3": // 查询余额
+          alert(`当前余额为：${balance}`);
+          break;
+
+        case null:
+        case "4": // 退出
+          isExit = true;
+          alert("退出系统");
+          break;
+        default: // 输入错误
+          alert("输入错误，请重新输入");
+      }
+      if (isExit) {
+        break; // 退出循环
+      }
+    }
+  </script>
+</body>
+
+</html>

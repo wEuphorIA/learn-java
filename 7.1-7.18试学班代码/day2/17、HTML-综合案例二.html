@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>17、HTML-综合案例二</title>
+</head>
+<body>
+  <form action="16、HTML-综合案例一.html">
+    <table border="1" width="600" cellspacing="0" align="center">
+      <tr align="center" height="50"> 
+        <th colspan="2">基本信息</th>
+      </tr>
+      <tr>
+        <td> 
+          <label for="username">姓名：</label>
+          <input type="text" id="username" name="username"  placeholder="请输入姓名">
+        </td>
+        <td>
+          <label for="address">住址：</label>
+          <input type="text" name="address" id="address" placeholder="请输入地址"></td>
+      </tr>
+      <tr>
+        <td>
+          性别：
+          <label><input type="radio" name="gender" value="man">男</label>
+          <label><input type="radio" name="gender" value="woman">女</label>
+        </td>
+        <td>
+          <label for="IdCard">证件：</label>
+          <input type="text" name="IdCard" id="IdCard" placeholder="请输入证件号"></td>
+        </td>
+      </tr>
+      <tr align="center" height="50"> 
+        <th colspan="2">教育经历</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="degree">最高学历：</label>
+          <select name="degree" id="degree">
+            <option value="boshi">博士</option>
+            <option value="shuoshi">硕士</option>
+            <option value="benke">本科</option>
+            <option value="zhuanke">专科</option>
+          </select>
+        </td>
+        <td>
+          <label for="schoolTime">在校时间</label>
+          <input type="date" id="schoolTime" name="schoolTime">
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <label for="schoolName">学校名称：</label>
+          <input type="text" name="schoolName" id="schoolName" placeholder="请输入学校名称"></td>
+        </td>
+        <td>
+          <label for="major">所学专业：</label>
+          <input type="text" name="major" id="major" placeholder="请输入所学专业"></td>
+        </td>
+      </tr>
+      <tr align="center" height="50"> 
+        <th colspan="2">教育经历</th>
+      </tr>
+      <tr>
+        <td>
+          <label for="company">工作单位：</label>
+          <input type="text" name="company" id="company" placeholder="请输入工作单位"></td>
+        </td>
+        <td>
+          <label for="workTime">工作时间：</label>
+          <input type="date" id="workTime" name="workTime">
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2">
+          <label for="disc">简要描述：</label><br>
+          <textarea name="disc" id="disc" cols="85" rows="5" placeholder="请输入简要描述"></textarea>
+        </td>
+      </tr>
+      <td colspan="2">
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+      </td>
+    </table>
+  </form>
+</body>
+</html>

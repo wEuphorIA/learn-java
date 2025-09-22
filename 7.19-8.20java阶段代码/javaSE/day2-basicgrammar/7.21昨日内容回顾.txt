@@ -1,0 +1,36 @@
+ ①、请描述常见的DOS命令和作用？
+    切换盘符    盘符:     例如  d:
+    切换目录    cd 目录名/目录名/...
+    查看内容    dir
+    清屏        cls
+
+ ②、jdk环境变量如何配置?
+    1、配置：JAVA_HOME
+        变量名：JAVA_HOME
+        变量值：jdk的安装目录，不包括bin目录
+    2、配置path环境变量。找到path，在path中添加如下配置
+        %JAVA_HOME%\bin
+
+ ③、Java跨平台原理是什么？
+    跨平台：一次编译，处处可用。
+    原理：Java官方为每个操作系统提供了对应的jdk，包含了对应的jvm虚拟机，Java程序是运行在jvm虚拟机上的。
+
+ ④、idea开发第一个Java程序的实现步骤是什么？
+    第一步：创建project项目。
+    第二步：在project项目中创建module模块
+    第三步：在模块中创建package包
+    第四步：在包中创建class类，在Java类中写代码并运行。
+
+ ⑤、请描述idea和windows的常用快捷键及其作用？
+    生成main方法        main+回车
+    生成输出语句         sout+回车
+    复制一行            ctrl+d
+    删除一行            ctrl+y
+    格式化              ctrl+alt+l
+    向上/下移动一行      ctrl+shift+上下键
+
+    全选                ctrl+a
+    剪切                ctrl+x
+    复制                ctrl+c
+    粘贴                ctrl+v
+    撤销                ctrl+z

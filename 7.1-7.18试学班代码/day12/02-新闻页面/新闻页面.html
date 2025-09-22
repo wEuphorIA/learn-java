@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)file:///F:/code/day09-Ajax/01-Ajax%E5%BF%AB%E9%80%9F%E5%85%A5%E9%97%A8.html -->
+<html lang="zh-CN">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新闻资讯</title>
+    <style>
+        /* 基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background: #f5f5f5;
+            padding: 15px;
+        }
+
+        /* 新闻列表容器 */
+        .news-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 新闻卡片 */
+        .news-item {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            display: flex;
+            gap: 15px;
+        }
+
+        .news-item:hover {
+            transform: translateY(-2px);
+        }
+
+        /* 新闻图片 */
+        .news-img {
+            width: 120px;
+            height: 80px;
+            border-radius: 6px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* 文字内容 */
+        .news-content {
+            flex: 1;
+        }
+
+        .news-title {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
+        }
+
+        .news-info {
+            font-size: 12px;
+            color: #999;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* 加载提示 */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+        }
+
+        /* 错误提示 */
+        .error {
+            color: #ff4444;
+            text-align: center;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="news-list" id="newsList">
+        <!-- <article class="news-item">
+            <img src="http://ajax-api.itheima.net/images/0.webp" class="news-img" alt="新闻封面">
+            <div class="news-content">
+                <h2 class="news-title">5G渗透率持续提升，创新业务快速成长</h2>
+                <div class="news-info">
+                    <span>新京报经济新闻</span>
+                    <span>2222-10-28 11:50:28</span>
+                </div>
+            </div>
+        </article> -->
+    </div>
+    <script src="./lib/js/axios.min.js"></script>
+    <script>
+
+        //1 使用axios发送请求，获取新闻数据
+        axios.get('http://hmajax.itheima.net/api/news').then((result) => {
+            //2 获取新闻数据--->数组
+            // console.log(result.data.data);
+            let newsList = result.data.data;
+            //3 遍历数组，将每条新闻数据拼接成一个article标签
+            let html = '';
+            for (let i = 0; i < newsList.length; i++) {
+                let news = newsList[i];
+                 html += `
+                <article class="news-item">
+                    <img src="${news.img}" class="news-img" alt="新闻封面">
+                    <div class="news-content">
+                        <h2 class="news-title">${news.title}</h2>
+                        <div class="news-info">
+                            <span>${news.source}</span>
+                            <span>${news.data}</span>
+                        </div>
+                    </div>
+                    </img>
+                </article>`
+            }
+            //4 将html代码设置到<div class="news-list" id="newsList">
+            document.querySelector('#newsList').innerHTML = html;
+        }).catch((err) => {
+        });
+        
+            
+
+    </script>
+
+</body>
+
+</html>

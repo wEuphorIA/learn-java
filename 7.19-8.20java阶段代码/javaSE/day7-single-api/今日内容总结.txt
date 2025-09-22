@@ -1,0 +1,73 @@
+单例类
+    设计模式：某种问题的最优解法就称为设计模式，Java有20多种设计模式，能解决20多种开发遇到的问题。
+    单例设计模式：确保一个类只能创建一个对象，内存中只保留一个对象，解决内存占用。
+    分类：
+        饿汉式：在类被加载的时候就创建该类的对象，提供静态方法返回对象。
+        懒汉式：在类被加载的时候不创建对象，别人调用静态方法时再创建对象并返回。
+
+
+API:别人写好的类，我们可以直接使用。
+
+String类：【重要】
+    1 作用：表示字符串，定义了很多操作字符串的方法。
+    2 创建对象：
+        方式一：直接使用""引起来
+            String s = "hello";
+        方式二：使用构造方法创建对象。
+            String s = new String(字符数组/字节数组);
+    3 常用方法：
+        说明：方法不用死记硬背，可以将需求告诉AI，AI会给我们提供方法，有些方法用多了自然就能记住。
+        //1.public int length()：获取字符串的长度返回（就是字符个数）【常用】
+        //2.public char charAt(int index)：获取某个索引位置处的字符返回
+        //3.public char[] toCharArray()：将当前字符串转换成字符数组返回
+        //4.public boolean equals(Object anObject)：判断当前字符串与另一个字符串的内容一样，一样返回true【常用】
+        //5.public boolean equalsIgnoreCase(String anotherString)：判断当前字符串与另一个字符串的内容是否一样(忽略大小写)
+        //6.public String substring(int beginIndex, int endIndex)：根据开始和结束索引进行截取，得到新的字符串（包前不包后）【常用】
+        //7.public String substring(int beginIndex)：从传入的索引处截取，截取到末尾，得到新的字符串返回
+        //8.public String replace(CharSequence target, CharSequence replacement)：使用新值，将字符串中的旧值替换，得到新的字符串
+        //9.public boolean contains(CharSequence s)：判断字符串中是否包含了某个字符串
+        //10.public boolean startsWith(String prefix)：判断字符串是否以某个字符串内容开头，开头返回true，反之返回false
+        //11.public String[] split(String regex)：把字符串按照指定字符串内容进行分割，并返回字符串数组回来
+
+日期时间类
+    Date类：【了解】
+        日期时间对象，在jdk8之前使用，但是很多方法现在都过时了，做时间运算需要使用毫秒值，很不方便。
+        创建对象：构造器
+            public Date() 创建一个Date对象，代表的是系统当前日期时间。
+            public Date(long time) 创建一个Date对象，代表自1970年1月1日以来的日期时间。
+        常用方法：
+            public long getTime() 返回从1970年1月1日0时0分0秒走到此刻的总的毫秒数
+            public void setTime(long time) 设置Date对象自1970年1月1日0时0分0秒以来的毫秒值
+    LocalDate【常用】、LocalTime、LocalDateTime【常用】日期时间对象【重要】
+        创建对象：使用的是静态方法得到对象
+            now()：获取当前日期时间对象【常用】
+            of(年,月,日,...)：获取一个指定的日期时间对象
+        常用方法：
+            获取年月日时分秒...方法：getXxx()方法，例如：getYear()
+            设置/修改年月日时分秒...方法：withXxx()方法，例如：withYear()
+            加年月日时分秒...方法：plusXxx()方法，例如：plusYear()
+            减年月日时分秒...方法：minusXxx()方法，例如：minusYear()
+            比较日期时间方法：equals()、isBefore()、isAfter()
+    DateTimeFormatter格式化器：
+        作用：按照指定的模式格式化或者解析日期时间对象。
+        创建对象：使用的是静态方法得到对象
+            public static DateTimeFormatter ofPattern(时间模式/格式)
+            常用的时间模式：yyyy年MM月dd日 HH时mm分ss秒、yyyy-MM-dd HH:mm:ss
+        格式化：调用localDateTime的public String format(DateTimeFormatter formatter)非静态方法
+        解析：调用LocalDateTime的public static LocalDateTime parse(CharSequence text, DateTimeFormatter formatter) 静态方法
+
+BigDecimal类
+    作用：解决小数在参与运算时精度丢失问题，它提供了方法做运算不会出现精度丢失问题。
+    创建对象：使用静态方法
+        public static BigDecimal valueOf(double val):   包装浮点数成为BigDecimal对象。
+    常用方法：
+        public BigDecimal add(BigDecimal b)加法
+        public BigDecimal subtract(BigDecimal b)减法
+        public BigDecimal multiply(BigDecimal b)乘法
+        public BigDecimal divide(BigDecimal b)除法
+        public BigDecimal divide (BigDecimal b，精确几位，舍入模式)除法
+
+Math类
+    作用：做数学运算
+    创建对象：它是一个工具类，方法都是静态方法，使用的时候不用创建对象。
+    常用方法：ceil向上取整，floor向下取整，round四舍五入，max取两个数的较大值...

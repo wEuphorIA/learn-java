@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>作业1</title>
+</head>
+<body>
+  <script>
+    function compare(a, b) {
+      // 将输入的字符串转换为数字
+      a = parseFloat(a);
+      b = parseFloat(b);
+      if (a > b){
+        return a;
+      }else if (a < b){
+        return b;
+      }else {
+        return a;
+      }
+    }
+    let a =prompt("请输入第一个数字");
+    let b = prompt("请输入第二个数字");
+    alert(compare(a, b));
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+**/target/
+.idea
+*.iml
+*.class
+*Test.java
+**/test/
+# 在 .gitignore 中添加
+application-*.yml
+application-*.properties
+config/*.properties
+*.secret
+*.yml

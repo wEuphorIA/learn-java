@@ -1,0 +1,20 @@
+package oophomework.extendday;
+
+/**
+ * @author Euphoria
+ * @version 1.0
+ * @description: TODO
+ * @date 2025/7/25 下午12:02
+ */
+
+public class Dog extends  Animal{
+
+    public Dog(String name) {
+        this.setName(name);
+    }
+
+    @Override
+    public void yell() {
+        System.out.println(this.getName() + "：汪汪汪");
+    }
+}

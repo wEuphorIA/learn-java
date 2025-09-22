@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>精品课程</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "微软雅黑", sans-serif;
+        background-color: #f4f4f4;
+        /* 背景色，可按需修改 */
+        background-color: #f2f4f5;
+      }
+
+      .course-container {
+        width: 200px;
+        /* 可根据布局需求调整宽度，比如适配侧边栏等场景 */
+        margin: 20px auto;
+        /* 让容器居中，可根据实际布局更改 */
+      }
+
+      .course-title {
+        font-size: 16px;
+        color: #007bff;
+        /* 标题颜色，类似示例中的蓝色 */
+        margin-bottom: 10px;
+        /* border-left: 3px solid #007bff; */
+        padding-left: 0px;
+      }
+
+      .course-list {
+        list-style: none;
+      }
+
+      .course-list li {
+        padding: 8px 0;
+        color: #333;
+        /* 列表项文字颜色 */
+        cursor: pointer;
+      }
+
+      .course-list li:hover {
+        color: #007bff;
+        /* 鼠标悬停时文字变色 */
+      }
+
+      .course-divider {
+        height: 1px;
+        background-color: #e0e0e0;
+        margin-bottom: 5px; /* 减小分隔线与列表的间距，原值为10px */
+      }
+
+      .course-list li:first-child {
+        padding-top: 5px; /* 减小首个列表项的顶部内边距 */
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="course-container">
+      <h2 class="course-title">精品课程</h2>
+      <div class="course-divider"></div>
+      <ul class="course-list">
+        <li>JavaEE</li>
+        <li>鸿蒙应用开发</li>
+        <li>HTML&JS+前端</li>
+        <li>Python+大数据开发</li>
+        <li>人工智能开发</li>
+        <li>跨境电商</li>
+        <li>AI+设计</li>
+        <li>软件测试</li>
+        <li>新媒体+短视频直播运营</li>
+        <li>集成电路应用开发(含嵌入式)</li>
+        <li>Linux云计算运维</li>
+        <li>C/C++</li>
+        <li>狂野架构师</li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05、CSS-选择器-复合选择器</title>
+  <style>
+    
+    /* 后代选择器：选中某元素的后代元素。写法：父选择器 子选择器{...}，父子选择器之间用空格隔开。 */
+    /* div p {
+      color: red;
+    } */
+    /* 子代选择器：选中某元素的子代元素（最近的子级）。写法：父选择器>子选择器{..}，父子选择器之间用〉隔开。 */
+    /* div > p {
+      color: blue;
+    } */
+    /* 并集选择器：选中多组标签设置相同的样式。写法：选择器1，选择器2，..，选择器n{}，选择器之间用，隔开。 */
+    h2, p {
+      color: green;
+    }
+    /* 伪类选择器：伪类表示元素状态，选中元素的某个状态设置样式。鼠标悬停状态写法：选择器:hover{.)}。 */
+    div p:hover {
+      color: orange;
+    }
+  </style>
+</head>
+<body>
+  <!-- -->
+    <h2>我爱黑马</h2>
+  <div>
+    <p>我爱中国-子</p>
+    <p>我爱中国-子</p>
+    <span>
+      <p>我爱西安-孙</p>
+      <p>我爱西安-孙</p>
+    </span>
+  </div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+快捷键：
+	ctrl+/	：生成注释
+	ctrl+shift+/	：将选中的内容注释
+	ctrl+d	：向下复制一行
+	ctrl+y	：删除当前行
+	
+标题标签：h1~h6
+	特点：加粗、独占一行、字体逐渐减小(h1最大，h6最小)
+	例如：<h1>一级标题</h1>
+	
+段落标签：p标签
+	特点：独占一行，每个段落之间有一个空行。
+	例如：<p>段落</p>
+	
+换行标签：<br>
+
+水平线标签：<hr>
+
+文本格式化标签：<b>加粗</b>、<i>斜体</i>、<u>下划线</u>、<s>删除线</s>
+
+图片标签：img标签
+	示例：<img src="图片路径" alt="图片加载不出来显示的文字" width="">
+	src属性：表示图片的路径，路径有三种写法：
+		相对路径：相对当前页面所在的目录。
+			./表示当前文件所在目录，可以省略不写。
+			../表示上一级目录。
+		绝对路径：带盘符的路径。例如：<img src="C:/Users/zhoux\Desktop\code\a\photo.jpg" alt="">
+		网络路径：带http://或者https://路径：例如：<img src="https://www.itheima.com/images/logo.png">
+		
+超链接标签：a标签
+	示例：<a href="跳转路径" target="_blank">黑马程序员</a>
+	属性：
+		href属性：必须属性，指定要跳转的页面路径。
+        target属性：指定打开页面的方式
+          _self：默认值，可以不写，当前窗口打开新页面
+          _blank：在新窗口打开新页面
+		  
+音频和视频标签：
+	 <audio src="audio/暗里着迷.mp3" controls></audio>
+	 <video src="video/news.mp4" controls width="800"></video>
+	 
+	 属性：
+         src：音频/视频文件的路径，必须属性
+         controls：显示播放控件 ，必须属性
+	

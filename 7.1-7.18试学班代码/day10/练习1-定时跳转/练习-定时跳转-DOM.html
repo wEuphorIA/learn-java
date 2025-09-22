@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .center {
+            text-align: center;
+            margin-top: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="center">
+        您好, 支付完成, <span id="n">5</span>秒之后将自动跳转至 <a href="https://www.itheima.com">黑马官网</a> 首页 ~
+    </div>
+
+    <script>
+         //需求: 5秒后跳转到黑马官网首页（暂不需要考虑倒计时效果）
+         let time = 5; //设置跳转时间为5秒
+       setInterval(() => {
+        time--;
+        document.querySelector('#n').innerHTML = time; //更新页面上的时间显示
+        console.log(time);
+        if (time == 0) {
+            location.href = 'https://www.itheima.com'; //跳转到黑马官网首页
+        }
+    }, 1000); //每隔1秒执行一次
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>传智播客头部导航栏</title>
+    <style>
+      body {
+        border-top: 1px solid #a8dbf0;
+        border-left: 1px solid #a8dbf0;
+        border-right: 1px solid #a8dbf0;
+        margin: 0;
+        padding: 0;
+      }
+      .header-right {
+        color: #ababab;
+        font-size: 12px;
+        display: flex;
+        justify-content: space-between;
+        background-color: #f8fafd;
+      }
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        li {
+          margin-right: 20px;
+          a {
+            text-decoration: none;
+            color: #333;
+          }
+        }
+      }
+      ul li:hover,
+      ul li:hover a {
+        color: #a5e7ff;
+        text-decoration: underline;
+      }
+      .img {
+        width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .img img {
+        display: block; /* 去除 inline 元素底部空白间隙 */
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header-right">
+      <div style="width: 25%"></div>
+      <div style="width: 25%">教育行业A股IPO第一股（股票代码003032）</div>
+      <div style="width: 25%"></div>
+      <div style="width: 25%">
+        全国咨询/投诉热线：400-618-4000 邮箱：mc@itcast.cn
+      </div>
+    </div>
+    <!-- 新增一个容器 -->
+    <div
+      style="
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        justify-content: flex-end;
+      "
+    >
+      <!-- 左侧 logo -->
+      <div class="header-left">
+        <div style="width: 35%">
+          <img src="imgs/1751720283501.png" alt="传智教育logo" />
+        </div>
+      </div>
+
+      <!-- 导航栏 -->
+      <nav>
+        <ul>
+          <li>
+            <a href="#"><b>精品课程</b></a>
+          </li>
+          <li>
+            <a href="#"><b>关于传智</b></a>
+          </li>
+          <li>
+            <a href="#"><b>全部课程</b></a>
+          </li>
+          <li>
+            <a href="#"><b>免费课程</b></a>
+          </li>
+          <li>
+            <a href="#"><b>教研团队</b></a>
+          </li>
+          <li>
+            <a href="#"><b>开班时间</b></a>
+          </li>
+          <li>
+            <a href="#"><b>报考大学</b></a>
+          </li>
+          <li>
+            <a href="#"><b>原创教材</b></a>
+          </li>
+          <li>
+            <a href="#"><b>学员社区</b></a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    <div class="img">
+      <img src="imgs/1751717637297.png" alt="" />
+    </div>
+  </body>
+</html>

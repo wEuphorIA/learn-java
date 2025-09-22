@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>07、HTTP协议-URL查询参数</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <button type="button" onclick="load()">获取数据</button>
+  <!-- 第一步：引入axios的js文件 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="js/axios.min.js"></script> -->
+  <script>
+    /* 
+      url查询参数：
+        方式一：在url路径后面拼接，格式： url?参数名=参数值&参数名=参数值&参数名=参数值
+        方式二：在axios({})内定义params:{}，在请求参数定义到params的属性值中
+    */
+    function load() {
+      //第二步：使用axios发送请求获取数据
+      // axios({
+      //   // 方式一：在url路径后面拼接，格式：url?参数名=参数值&参数名=参数值&参数名=参数值
+      //   // url:'http://hmajax.itheima.net/api/city?pname=湖北省', 
+      //   url:'http://hmajax.itheima.net/api/city',  
+      //   method:'get',  //请求方式，常用的方式有get和post， method:'get'不写默认是get。
+      //   //方式二：在axios({})内定义params:{}，在请求参数定义到params的属性值中 ，适用于请求参数在对象中
+      //   params:{
+      //     pname:"山西省"
+      //   }
+      // }).then((result) => {  
+      //   document.querySelector('#demo').innerHTML=result.data.list; //.list表示获取数据中的list属性值
+      // });
+
+      //请求别名方式发送请求
+      //方式一：在url路径后面拼接，格式：url?参数名=参数值&参数名=参数值&参数名=参数值
+      // axios.get('http://hmajax.itheima.net/api/city?pname=湖北省').then((result) => {
+      //方式二：在axios({})内定义params:{}，在请求参数定义到params的属性值中 ，适用于请求参数在对象中
+      axios.get('http://hmajax.itheima.net/api/city',{params:{pname:'陕西省'}}).then((result) => {
+        console.log(result.data.list);
+        //获取数据展示到div中
+        document.querySelector('#demo').innerHTML=result.data.list; //.list表示获取数据中的list属性值
+      });
+    }
+  </script>
+</body>
+</html>

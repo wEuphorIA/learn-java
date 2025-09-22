@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>员工信息采集</title>
+</head>
+<body>
+  <form action="">
+
+    <table border="0" width="600" cellspacing="0" align="center"> 
+      <tr align="border-left" height="50"> 
+        <td colspan="2" style="font-size: 18px;
+        font-weight: bold;
+        color: #333;
+        border-left: 3px solid #007bff;
+        padding-left: 10px;
+        margin-bottom: 10px;
+        line-height: 24px; 
+        height: 24px; 
+        overflow: hidden; ">基础信息采集</td>
+      </tr>
+      <tr  height="50">
+        <td>
+          <label for="username"><span style="color: red">*</span>姓名：</label>
+          <input type="text" id="username" name="username" placeholder="请输入">
+        </td>
+        <td>
+          <label for="stageName">花名：</label>
+          <input type="text" name="stageName" id="stageName" placeholder="请输入">
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="englishName">英文名：</label>
+          <input type="text" id="englishName" name="englishName" placeholder="请输入">
+        </td>
+        <td>
+          <label for="certificate">证件类型：</label>
+          <select name="certificate" id="certificate" placeholder="请选择">
+            <option value="" disabled selected>请选择</option>
+            <option value="s1">身份证 </option>
+            <option value="h2">护照 </option>
+            <option value="g3">港澳通行证 </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="IDCard">证件号码：</label>
+          <input type="text" id="IDCard" name="IDCard" placeholder="请输入">
+        </td>
+        <td>
+          <label for="nation">民族：</label>
+          <select name="nation" id="nation">
+            <option value="" disabled selected>请选择</option>
+            <option value="h1">汉族 </option>
+            <option value="z2">壮族 </option>
+            <option value="h3">回族 </option>
+            <option value="q4">其他民族 </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="registered ">户口类型：</label>
+          <select name="registered " id="registered ">
+            <option value="" disabled selected>请选择</option>
+            <option value="c1">城镇 </option>
+            <option value="n2">农村 </option>
+          </select>
+        </td>
+        <td>
+          <label for="hukousuozaidi">证件号码：</label>
+          <input type="text" id="hukousuozaidi" name="hukousuozaidi" placeholder="请输入">
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="jiguan">籍贯：</label>
+          <input type="text" id="jiguan" name="jiguan" placeholder="请输入">
+        </td>
+        <td>
+          <label for="birthday">出生日期：</label>
+          <input type="date" id="birthday" name="birthday" placeholder="请选择"></input>
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="education ">学历：</label>
+          <select name="education " id="education ">
+            <option value="" disabled selected>请选择</option>
+            <option value="z1">本科 </option>
+            <option value="b2">专科 </option>
+            <option value="s3">硕士 </option>
+            <option value="b4">博士 </option>
+          </select>
+        </td>
+        <td>
+          <label for="politics ">政治面貌：</label>
+          <select name="politics " id="politics ">
+            <option value="" disabled selected>请选择</option>
+            <option value="q1">群众 </option>
+            <option value="t2">团员 </option>
+            <option value="d3">党员 </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="marital ">婚姻情况：</label>
+          <select name="marital " id="marital ">
+            <option value="" disabled selected>请选择</option>
+            <option value="w1">未婚 </option>
+            <option value="y2">已婚 </option>
+            <option value="y3">已婚已育 </option>
+          </select>
+        </td>
+        <td>
+          <label for="blood ">血型：</label>
+          <select name="blood " id="blood ">
+            <option value="" disabled selected>请选择</option>
+            <option value="A">A型 </option>
+            <option value="B">B型 </option>
+            <option value="AB">AB型 </option>
+            <option value="O">O型 </option>
+          </select>
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="emergency">紧急联系人：</label>
+          <input type="text" id="emergency" name="emergency" placeholder="请输入">
+        </td>
+        <td>
+          <label for="phone">花名：</label>
+          <input type="text" name="phone" id="phone" placeholder="请输入">
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="wexin">微信：</label>
+          <input type="text" id="wexin" name="wexin" placeholder="请输入">
+        </td>
+        <td>
+          <label for="qq">qq：</label>
+          <input type="text" name="qq" id="qq" placeholder="请输入">
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td>
+          <label for="email">邮箱：</label>
+          <input type="text" id="email" name="email" placeholder="请输入">
+        </td>
+        <td>
+          <label for="address">地址：</label>
+          <input type="text" name="address" id="address" placeholder="请输入">
+        </td>
+      </tr>
+
+      <tr  height="50">
+        <td colspan="2">
+          <input type="submit" value="保存" style="background-color: #007bff;
+          color: #fff;
+          border: none;
+          padding: 8px 16px;
+          font-size: 14px;
+          border-radius: 4px;
+          cursor: pointer;">
+          <input type="button" value="取消" style="background-color: #f1f1f1;
+          color: #333;
+          border: 1px solid #ccc;
+          padding: 8px 16px;
+          font-size: 14px;
+          border-radius: 4px;
+          cursor: pointer;">
+        </td>
+      </tr>
+
+    </table>
+  </form>
+</body>
+</html>

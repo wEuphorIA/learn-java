@@ -1,0 +1,60 @@
+1、CSS的引入方式
+  行内样式：在html标签的style属性中定义样式。【了解】
+    <h1 style="color: red;">标题</h1>
+  内部样式：在head标签中定义style标签，在style标签中定义样式。【重点】
+    <style>
+      p{
+        color: red;
+      }
+    </style>
+  外部样式：在.css文件中定义样式，然后在html文件中引入css文件。【重点】
+    第一步：在css文件夹中定义.css文件(style.css)，在文件中定义样式
+    第二步：在html页面使用link标签引入css文件：<link rel="stylesheet" href="css/style.css">
+
+2、CSS选择器
+  样式语法：【重点】
+    选择器{
+      属性名:属性值;
+      属性名:属性值;
+      ...
+    }
+  选择器:选择哪些标签被样式修饰。
+  分类：
+    基本选择器：【重点】
+        元素/标签选择器：将标签名作为选择器的名称 。语法：标签名{属性名:属性值;}
+        类选择器：将class属性作为选择器的名称，但是前面要加点。语法： .class类名{属性名:属性值;}
+        id选择器：将id属性作为选择器的名称，但是前面要加#。语法： #id值{属性名:属性值;}
+        通配符选择器：作用于所有标签。语法： *{属性名:属性值;}
+        优先级：id选择器 > 类选择器 > 元素/标签选择器 > 通配符选择器
+    复合选择器：【了解】
+        后代选择器：选中某元素的后代元素。写法：父选择器 子选择器{...}，父子选择器之间用空格隔开。
+        子代选择器：选中某元素的子代元素（最近的子级）。写法：父选择器>子选择器{..}，父子选择器之间用〉隔开。
+        并集选择器：选中多组标签设置相同的样式。写法：选择器1，选择器2，..，选择器n{}，选择器之间用，隔开。
+        伪类选择器：伪类表示元素状态，选中元素的某个状态设置样式。鼠标悬停状态写法：选择器:hover{属性名:属性值;}。
+3、CSS属性（不需要背，需要什么样式问AI）【了解】
+  文本样式：
+    字体大小：font-size: 16px;
+    字体粗细：font-weight: bold;
+    字体斜体：font-style: italic;   italic表示斜体。
+    行高：line-height: 1.5;   1.5表示当前字体的1.5倍   line-height: 50px;
+        行高应用场景：让内容垂直方向居中，做法：行高等于盒子(外层div)的高度。
+    字体族：设置字体类型，例如：楷体、微软雅黑、黑体、宋体、... 例如： font-family: '楷体';
+    文本缩进：text-indent: 2em;  em表示2个字体大小。
+    修饰线：text-decoration: underline;  underline表示下划线，none表示无修饰线，line-through表示删除线。
+    字体颜色：color: 值;值有如下写法：
+        1. 颜色名称：red、blue、yellow、green、black、white、gray、silver、...
+        2. RGB颜色：rgb(255,0,0)、rgb(0,255,0) R表示红色，G表示绿色，B表示蓝色
+        3. RGBA颜色：rgba(255,0,0,0.5)   R表示红色，G表示绿色，B表示蓝色，A表示透明度
+        4. 16进制颜色：#ff0000、#00ff00、#0000ff、#000000、#ffffff、#cccccc、#aaaaaa、...
+
+  背景样式：
+    背景颜色：background-color: 值;
+    背景图片：background-image: url(图片路径);
+    背景位置：background-position: 垂直方向(上中下),水平方向(左中右);
+    背景平铺方式(是否重复)：background-repeat: repeat-x/repeat-y/no-repeat/repeat;
+  显示模式样式：
+    显示模式：display: 值;取值如下：
+        block: 块级元素，独占一行，设置宽高有效
+        inline: 行内元素，共占一行，设置宽高无效
+        inline-block: 行内块级元素，共占一行，设置宽高有效
+        none: 隐藏元素

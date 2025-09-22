@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tlias智能学习辅助系统</title>
+  <style>
+    body {
+      margin: 0;
+    }
+
+    /* 顶栏样式 */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #c2c0c0;
+      padding: 20px 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* 加大加粗标题 */
+    .header h1 {
+      margin: 0;
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    /* 文本链接样式 */
+    .header a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+    }
+
+    /* 搜索表单区域 */
+    .search-form {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+
+    /* 表单控件样式 */
+    .search-form input[type="text"],
+    .search-form select {
+      margin-right: 10px;
+      padding: 10px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      width: 26%;
+    }
+
+    /* 按钮样式 */
+    .search-form button {
+      padding: 10px 15px;
+      margin-left: 10px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    /* 清空按钮样式 */
+    .search-form button.clear {
+      background-color: #6c757d;
+    }
+
+    .table {
+      min-width: 100%;
+      border-collapse: collapse;
+    }
+
+    /* 设置表格单元格边框 */
+    .table td,
+    .table th {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 30px;
+      height: 30px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    /* 页脚版权区域 */
+    .footer {
+      background-color: #c2c0c0;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: 30px;
+    }
+
+    .footer .company-name {
+      font-size: 1.1em;
+      font-weight: bold;
+    }
+
+    .footer .copyright {
+      font-size: 0.9em;
+    }
+
+    #container {
+      width: 80%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <!-- 顶栏 -->
+    <div class="header">
+      <h1>Tlias智能学习辅助系统</h1>
+      <a href="#">退出登录</a>
+    </div>
+    <!-- 搜索表单区域 -->
+    <form class="search-form">
+      <label for="name">姓名：</label>
+      <input type="text" name="name" placeholder="姓名" id="name" v-model="searchForm.name" />
+      <label for="gender">性别：</label>
+      <select id="gender" name="gender" v-model="searchForm.gender">
+        <option value="">性别</option>
+        <option value="1">男</option>
+        <option value="2">女</option>
+      </select>
+      <label for="job">职位：</label>
+      <select id="job" name="job" v-model="searchForm.job">
+        <option value="">职位</option>
+        <option value="1">班主任</option>
+        <option value="2">讲师</option>
+        <option value="3">学工主管</option>
+        <option value="4">教研主管</option>
+        <option value="5">咨询师</option>
+      </select>
+      <button type="button" v-on:click="search">查询</button>
+      <button type="button" class="clear" @click="clear">清空</button>
+    </form>
+
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>序号</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>头像</th>
+          <th>职位</th>
+          <th>入职日期</th>
+          <th>最后操作时间</th>
+          <th>操作</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(e, index) in empList" :key="e.id">
+          <td>{{index +1}}</td>
+          <td>{{e.name}}</td>
+          <td>{{e.gender == 1 ?'男':'女'}}</td>
+          <!-- 插值表达式不能出现在标签内部 -->
+          <!-- v-bind:src="e.image" 绑定src属性 动态的为标签属性绑定属性值 -->
+          <td><img v-bind:src="e.image" :alt="e.name" class="avatar"></td>
+          <!-- v-if 控制元素的显示与隐藏 -->
+
+          <td>
+            <span v-if="e.job == 1">班主任</span>
+            <span v-else-if="e.job == 2">讲师</span>
+            <span v-else-if="e.job == 3">学工主管</span>
+            <span v-else-if="e.job == 4"> 教研主管</span>
+            <span v-else-if="e.job == 5">咨询师</span>
+            <span v-else="e.job == 1">其他</span>
+          </td>
+          <td>{{e.entrydate}}</td>
+          <td>{{e.updatetime}}</td>
+          <td class="action-buttons">
+            <button type="button" v-on:click="search">编辑</button>
+            <button type="button" @click="clear">删除</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- 页脚版权区域 -->
+    <footer class="footer">
+      <p class="company-name">江苏传智播客教育科技股份有限公司</p>
+      <p class="copyright">版权所有 Copyright 2006-2024 All Rights Reserved</p>
+    </footer>
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="module">
+      import { createApp } from 'https://unpkg.com/vue@3/dist/vue.esm-browser.js'
+      createApp({
+        data() {
+          return {
+            searchForm: { //封装用户的查询条件
+              name: '',
+              gender: '',
+              job: '',
+
+            },
+            empList: [
+            ]
+          }
+        },
+        //方法
+        methods: {
+
+          async search() {
+            //输出到控制台
+            //发送axios请求
+            // axios.get(`https://web-server.itheima.net/emps/list?name=${this.searchForm.name}&gender=${this.searchForm.gender}&job=${this.searchForm.job}`).then((result) => {
+            //   this.empList = result.data.data;
+            // })
+            let result = await axios.get(`https://web-server.itheima.net/emps/list?name=${this.searchForm.name}&gender=${this.searchForm.gender}&job=${this.searchForm.job}`);
+
+            this.empList = result.data.data;
+          },
+
+          clear() {
+            this.searchForm = {
+              "name": "",
+              "gender": '',
+              "job": '',
+            }
+            this.search(); //清空后重新查询
+          },
+        },
+        //生命周期钩子函数
+        mounted() {
+          //组件加载完成后，发送请求
+          this.search();
+        }
+      }).mount('#container')
+    </script>
+
+  </div>
+
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>03、CSS-选择器-基本选择器</title>
+  <style>
+    /* 基本选择器 */
+    /* 元素/标签选择器：使用标签名作为选择器→选中同名标签设置相同的样式。 */
+    /* 
+      类选择器：将标签的class属性值作为选择器，差异化设置标签的显示效果
+      使用步骤：
+        第一步：标签添加class="值"
+        第二步：定义样式，语法：.class属性值{..}
+    */
+    /* 
+      id选择器：将标签的id属性值作为选择器，差异化设置标签的显示效果。
+      使用步骤：
+        第一步：标签添加 id="id名"
+        第二步：定义样式，语法：#id属性值{..}
+    */
+    /* 通配符选择器：用*表示，不需要在标签上额外定义属性，浏览器自动查找页面所有标签，设置相同样式。 */
+    /* 优先级：id选择器 > 类选择器 > 元素/标签选择器 > 通配符选择器 */
+    /* 1. 元素选择器 */
+    div {
+      color: green;
+    }
+
+    /* 2. 类选择器 */
+    .box {
+      color: red;
+    }
+
+    .class1 {
+      color: orange;
+    }
+
+    /* 3. ID选择器 */
+    #unique {
+      color: blue;
+    }
+
+    /* 4. 通配符选择器 */
+    * {
+      font-family: Arial, sans-serif;
+    }
+  </style>
+</head>
+<body>
+  <div>hello,world</div>
+  <div class="box">hello,world</div>
+  <div id="unique">hello,world</div>
+  <div class="class1">hello,world</div>
+  <div>hello,world</div>
+  <div>hello,world</div>
+</body>
+</html>

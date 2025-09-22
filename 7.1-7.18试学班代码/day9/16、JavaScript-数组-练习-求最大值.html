@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>16、JavaScript-数组-练习-求最大值</title>
+</head>
+<body>
+  <script>
+    /* 
+      需求：求数组[2,6，-1，25,7］中的最大值
+      分析：
+        1 定义变量max保存最大值，初始值为数组0索引l处的值。
+        2 循环遍历数组，将每个元素和max比
+        3 如果比max大，就把这个元素替换max的值。
+        4 循环结束后打印max的值即为最大值。
+    */
+    let arr = [2, 6, -1, 25, 7]; // 定义数组
+    let max = arr[0]; // 假设第一个元素为最大值
+    let min = arr[0]; // 假设第一个元素为最小值
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] > max) {
+        max = arr[i]; // 更新最大值
+      }
+      if (arr[i] < min) {
+        min = arr[i]; // 更新最小值
+      }
+    }
+    console.log("数组最大值:", max); // 输出数组最大值
+    console.log("数组最小值:", min); // 输出数组最小值
+  </script>
+</body>
+</html>

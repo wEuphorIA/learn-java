@@ -1,0 +1,116 @@
+列表
+	无序列表
+		<ul>
+			<li>我爱中国</li>
+			<li>我爱西安</li>
+			<li>我爱黑马</li>
+		</ul>
+	有序列表
+		<ol>
+			<li>我爱中国</li>
+			<li>我爱西安</li>
+			<li>我爱黑马</li>
+		</ol>
+	定义列表
+		<dl>
+			<dt>标题</dt>
+			<dd>我爱中国</dd>
+			<dd>我爱中国</dd>
+			<dd>我爱中国</dd>
+		</dl>
+表格
+	作用：展示数据
+	<table>
+		<tr>
+			<th>姓名</th>
+			<th>年龄</th>
+			<th>地址</th>
+		</tr>
+		<tr>
+			<td>张伟</td>
+			<td rowspan="2">20</td>
+			<td>西安</td>
+		</tr>
+		<tr>
+			<td>张益达</td>
+			<td>背景</td>
+		</tr>
+	</table>
+表单
+	作用：手机用户信息(数据)
+	
+	<form action="提交路径" method="GET">
+		<!-- text：普通文本输入框，输入的内容原模原样展示，默认值。 -->
+		  账号:<input type="text" name="username" placeholder="手机号/邮箱/用户名" value="zhangwei"><br>
+		  <!-- password：密码框，输入的内容以点的形式呈现。 -->
+		  密码:<input type="password" name="password" placeholder="密码"><br>
+		  <!-- radio：单选按钮，多选一。 -->
+		  性别: <input type="radio" name="gender" value="man" checked>男 
+			  <input type="radio" name="gender" value="woman">女<br>
+		  <!-- checkbox：复选框，可以多选。 -->
+		  爱好: <input type="checkbox" name="hobby" value="sing">唱
+			  <input type="checkbox" name="hobby" value="dance" checked>跳
+			  <input type="checkbox" name="hobby" value="rap" checked>rap
+			  <input type="checkbox" name="hobby" value="basketball">篮球<br>
+		  <!-- file：文件上传项，用来上传文件到服务器 multiple属性表示可以一次上传多个文件-->
+		  头像: <input type="file" name="icon" multiple><br>
+		  <!-- date/time/datetime-local：定义日期/时间/日期时间 -->
+		  生日: <input type="date" name="birthday">  <!-- <input type="time">  <input type="datetime-local">  --> <br>
+		  <!-- number：定义数字输入框 -->
+		  年龄: <input type="number" name="age"><br>
+		  <!-- email：定义邮件输入框 -->
+		  邮箱: <input type="email" name="email"><br>
+		  <!-- hidden：隐藏域，用来提交不期望用户在页面看到的数据 -->
+		  <input type="hidden" name="id" value="1001">
+		  <!-- 下拉菜单：select标签内部嵌套option标签，select 是下拉菜单整体，option是下拉菜单的每一项。 -->
+		  城市:
+			<select name="city">
+			  <option value="beijing">北京</option>
+			  <option value="shanghai">上海</option>
+			  <option value="guangzhou">广州</option>
+			  <option value="shenzhen">深圳</option>
+			  <!-- selected：默认选中项 -->
+			  <option value="xian" selected>西安</option>
+			</select><br>
+		  <!-- 文本域：textarea标签：可以输入多行内容 
+		   rows="5"：最多战术5行，超出会有滚动条。 cols="50" 一行最多显示50个字符，超过自动换行-->
+		  个人简介：<br>
+		  <textarea name="desc" placeholder="请介绍自己" rows="5" cols="50"></textarea><br>
+		  <!-- submit：提交按钮，点击之后提交表单数据 -->
+		  <input type="submit">
+		  <!-- reset：重置按钮，点击之后表单数据重置。 -->
+		  <input type="reset">
+		  <!-- button：普通按钮，点击之后没有任何反应，需要结合JavaScript才能做出点击效果。 -->
+		  <input type="button" value="普通按钮"> <br>
+
+		  <!-- 按钮还可以使用button标签，这个标签也有type属性，取值有：submit、reset 、button-->
+		  <button type="submit">登录</button>
+		  <button type="reset">重置</button>
+		  <button type="button">普通按钮</button>
+	</form>
+	
+ ①、列表分为哪几类？
+	无序列表、有序列表、定义列表
+	
+ ②、表格相关标签中th和td标签有什么区别?
+	th通常做表头单元格，td中的内容默认加粗居中
+	td做表数据单元格，td中的内容默认不加粗居中
+	
+ ③、form标签的action和method属性有什么作用？
+	action属性：定义提交路径，将来学了后端Java程序，此处写Java程序的路径。
+	method属性：定义提交方式，常用的有GET和POST方式。
+	
+ ④、表单的GET和POST方式提交数据有什么区别？
+	参数位置：GET提交的数据在地址值URL后面，POST方式提交的数据在请求体中，需要在浏览器中按f12或者fn+f12--->网络/network查看
+	安全性：GET方式提交数据相对不安全，POST方式相对安全。
+	数据大小：GET方式只能提交少量的文本数据。POST方式可以提交任意大小任意数据。
+	
+ ⑤、input表单项的type、name、value属性有什么作用？
+	type属性：定义input表单项的类型，例如：text表示文本输入框，password表示密码框，radio表示单选按钮，checkbox表示多选框,...
+	name属性：
+		 1、所有表单项必须要有name属性，否则表单项中的数据无法提交，name属性值就是提交的数据的名字
+		 2、对于单选按钮和复选框而言，name属性要相同表示一组，同组的单选按钮选中效果互斥。
+	value属性：
+		1、对于普通表单项(输入框)而言，value属性表示输入框的默认值,可有可无。
+		2、对于只能选不能输入的表单项，必须要有value属性，表示提交给服务器的值，否则提交的数据是on。
+	checked属性：单选按钮和复选框默认选中

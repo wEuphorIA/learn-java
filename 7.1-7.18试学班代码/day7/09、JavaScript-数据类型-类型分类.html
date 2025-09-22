@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>09、JavaScript-数据类型-类型分类</title>
+</head>
+
+<body>
+  <script>
+    /* 
+    基本数据类型（原始数据类型、简单数据类型）：
+      number：数字型（整数、小数、NaN(Not a Number）)
+      string：字符串型，使用单引号、双引号、反引号（``）将数据包裹起来，推荐使用单引号或者反引号。
+      boolean：布尔型。表示真或者假。true表示真，false表示假
+      undefined：未定义型，当声明的变量未初始化时，该变量的默认值是undefined，变量的类型是未定义型。
+      null：空类型。
+    引用数据类型（复杂数据类型）：Object对象、Function函数、Array数组..
+    获取数据类型：使用 typeof 运算符
+  */
+    // number：数字型（整数、小数、NaN(Not a Number）)
+    let num1 = 10; // 整数
+    let num2 = 3.14; // 小数
+    let num3 = NaN; // Not a Number
+    console.log(num1, typeof num1); // 输出：10 'number'
+    console.log(num2, typeof num2); // 输出：3.14 'number'
+    console.log(num3, typeof num3); // 输出：NaN 'number'
+    //string：字符串型，使用单引号、双引号、反引号（``）将数据包裹起来，推荐使用单引号或者反引号。
+    let str1 = 'Hello'; // 单引号
+    let str2 = "World"; // 双引号
+    let str3 = `Hello, ${str2}`; // 反引号，支持模板字符串
+    console.log(str1, typeof str1); // 输出：Hello 'string'
+    console.log(str2, typeof str2); // 输出：World 'string'
+    console.log(str3, typeof str3); // 输出：Hello, World 'string'
+    //boolean：布尔型。表示真或者假。true表示真，false表示假
+    let bool1 = true; // 真
+    let bool2 = false; // 假
+    console.log(bool1, typeof bool1); // 输出：true 'boolean'
+    console.log(bool2, typeof bool2); // 输出：false 'boolean'
+    //undefined：未定义型，当声明的变量未初始化时，该变量的默认值是undefined，变量的类型是未定义型。
+    let undef; // 未初始化的变量
+    console.log(undef, typeof undef); // 输出：undefined 'undefined'
+    //null：空类型。
+    let empty = null; // 空类型
+    console.log(empty, typeof empty); // 输出：null 'object'（注意：null 的类型被认为是 object，这是 JavaScript 的一个历史遗留问题）
+  </script>
+</body>
+
+</html>

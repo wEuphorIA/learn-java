@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>小兔鲜pc首页</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    a {
+      text-decoration: none;
+      /* 移除下划线 */
+      outline: none;
+      /* 去除点击时的焦点轮廓线 */
+      cursor: default;
+      /* 鼠标悬停时显示默认箭头（非手型） */
+
+    }
+
+    /* 顶部导航栏容器 */
+    .header-nav {
+      background-color: #333333;
+      width: 100%;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    /* 导航项容器 */
+    .header-container {
+      display: flex;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    /* 导航项样式 */
+    .header-item {
+      margin-right: 20px;
+      display: flex;
+      align-items: center;
+    }
+
+    /* 导航链接样式 */
+    .header-link {
+      font-family: PingFangSC-Regular;
+      font-size: 14px;
+      letter-spacing: 0;
+      text-align: left;
+      font-weight: 400;
+      text-decoration: none;
+    }
+
+    /* 登录链接特殊样式 */
+    .login-link {
+      color: #5EB69C;
+    }
+
+    /* 普通链接样式 */
+    .normal-link {
+      color: #FFFFFF;
+    }
+
+    /* 分隔符样式 */
+    .header-separator {
+      color: rgba(153, 153, 153, 1);
+      font-size: 14px;
+    }
+
+
+
+    .navbar-main {
+      background-color: white;
+      padding: 15px 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .nav-menu {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 18px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .nav-menu::-webkit-scrollbar {
+      display: none;
+    }
+
+    .nav-item {
+      position: relative;
+      left: 95px;
+      padding: 8px 0;
+      text-decoration: none;
+      line-height: auto;
+      flex-shrink: 0;
+      white-space: nowrap;
+      padding: 8px 12px;
+      /* 防止文字换行 */
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #333333;
+      letter-spacing: 0;
+      text-align: left;
+      font-weight: 400;
+    }
+
+    .nav-item:hover,
+    .nav-item.active {
+      color: #23AC0E;
+    }
+
+    .nav-item:hover::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background-color: #23AC0E;
+      transition: all 0.3s ease;
+    }
+
+    .search-area {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .search-box {
+      position: relative;
+      width: 180px;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 40px;
+      border-top: none;
+      border-left: none;
+      border-right: none;
+      border-bottom: 1px solid #F4F4F4;
+      outline: none;
+      padding: 0 15px 0 40px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+    }
+
+    .cart-btn {
+      position: relative;
+      margin-left: 5px;
+    }
+
+    .cart-icon {
+      width: 26px;
+      height: 26px;
+      margin-left: auto;
+    }
+
+    .cart-badge {
+      position: absolute;
+      top: -5px;
+      right: -10px;
+      background-color: #EF4E3C;
+      color: white;
+      border-radius: 50%;
+      width: 18px;
+      height: 18px;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 500px;
+      background-color: rgb(245, 245, 245);
+
+      .content {
+        width: 70%;
+        height: 500px;
+        margin: 0px auto;
+        display: flex;
+
+        .content-left {
+          width: 250px;
+          height: 100%;
+          background-color: rgb(0, 0, 0, 50%);
+          z-index: 100;
+          margin-right: -204px;
+          position: relative;
+          left: -92px;
+
+          div {
+            width: 250px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: white;
+            padding-left: 20px;
+            position: relative;
+
+
+            span {
+              display: inline-block;
+              margin-right: 10px;
+            }
+
+            span:first-child {
+              margin-right: 20px;
+            }
+
+            span:last-child {
+              position: absolute;
+              right: 0px;
+            }
+          }
+
+          div:hover {
+            background-color: rgb(0, 190, 154);
+          }
+        }
+
+        .content-right {
+          width: 82%;
+          height: 100%;
+          background-color: skyblue;
+          z-index: 1;
+
+          img {
+            position: relative;
+            left: -138px;
+            top: 0px;
+          }
+        }
+      }
+    }
+
+    .title-s {
+      font-family: PingFangSC-Medium;
+      font-size: 16px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-align: left;
+      line-height: 22px;
+      font-weight: 500;
+      width: 32px;
+      height: 22px;
+    }
+
+    .desc {
+      font-family: PingFangSC-Medium;
+      font-size: 14px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+      text-align: left;
+      font-weight: 500;
+      height: 20px;
+    }
+
+    .nav-link {
+      text-decoration: none !important;
+      ;
+      color: inherit !important;
+      /* 移除下划线 */
+      outline: none;
+      /* 去除点击时的焦点轮廓线 */
+      cursor: default;
+      /* /* 鼠标悬停时显示默认箭头（非手型） * */
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #333333;
+      letter-spacing: 0;
+      font-weight: 400;
+      position: relative;
+      left: -15px;
+    }
+
+    .product-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 20px;
+      box-sizing: border-box;
+      position: relative;
+      left: 10px;
+    }
+
+    /* Featured 左侧大图 */
+    .featured-product {
+      width: 248px;
+      flex-shrink: 0;
+    }
+
+    .featured-product img {
+      height: 610px;
+      width: 248px;
+      object-fit: cover;
+      /* 新增，确保图片填满不变形 */
+      /* border-radius: 15px; */
+    }
+
+    /* 主区域：Flex 分为 左图 + 网格 */
+    .products-display {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 30px;
+      /* 卡片间距控制这里 */
+    }
+
+    /* 卡片网格区域 */
+    .product-grid {
+      width: calc(100% - 248px - 30px);
+      /* 剩余空间填满 */
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    /* 单个卡片 */
+    .product-card {
+      background: #fff;
+      border-radius: 15px;
+      overflow: hidden;
+      padding: 16px;
+      /* 新增内边距，让文字不贴边 */
+      box-sizing: border-box;
+      height: 299px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* 图片标题部分 */
+    .product-card .title {
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .product-card .title img {
+      width: 100%;
+      height: auto;
+      /* border-radius: 10px; */
+      object-fit: cover;
+    }
+
+    /* 产品规格 */
+    .product-card .spec {
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #333333;
+      letter-spacing: 0;
+      line-height: 22px;
+      font-weight: 400;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    /* 产品价格 */
+    .product-card .price {
+      font-family: PingFangSC-Regular;
+      font-size: 22px;
+      color: #AF2F22;
+      letter-spacing: 0;
+      font-weight: 400;
+      margin-bottom: 0px;
+    }
+
+    .footer a {
+      color: inherit;
+      /* 使用继承的字体颜色 */
+      text-decoration: none;
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #969696;
+      letter-spacing: 0;
+      line-height: 22px;
+      font-weight: 400;
+      /* 去掉下划线 */
+    }
+
+    .footer a:hover {
+      color: #AA2113;
+      /* 鼠标悬停时可以加个高亮色，可选 */
+      text-decoration: underline;
+      text-decoration: none;
+      /* 或保留 hover 效果，可选 */
+    }
+
+    .footer-links {
+      list-style: none;
+      /* 去掉列表项前的点 */
+      padding-left: 0;
+      /* 去掉左边的缩进 */
+      margin: 50px;
+      /* 可选，清除默认外边距 */
+    }
+
+    .footer-links li {
+      padding-right: 20px;
+      /* 你可以调整这个数值 */
+    }
+
+    .footer-links li a {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      /* 图标和文字间距 */
+      white-space: nowrap;
+      /* 允许换行 */
+    }
+
+    .footer-col {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+
+    .qr-text {
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #969696;
+      letter-spacing: 0;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+
+    .nav-link:hover {
+      background-color: #00BE9A;
+      color: #FFFFFF !important;
+    }
+
+    .nav-link {
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- 顶部导航栏 -->
+  <div class="header-nav">
+    <div class="header-container" style="position: relative; right: 100px;">
+      <!-- 登录链接 -->
+      <div class="header-item">
+        <a href="#" class="header-link login-link">请先登录</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 免费注册 -->
+      <div class="header-item">
+        <a href="#" class="header-link normal-link">免费注册</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 我的订单 -->
+      <div class="header-item">
+        <a href="#" class="header-link normal-link">我的订单</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 会员中心 -->
+      <div class="header-item">
+        <a href="#" class="header-link normal-link">会员中心</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 帮助中心 -->
+      <div class="header-item">
+        <a href="#" class="header-link normal-link">帮助中心</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 在线客服 -->
+      <div class="header-item">
+        <a href="#" class="header-link normal-link">在线客服</a>
+      </div>
+
+      <!-- 分隔符 -->
+      <div class="header-item header-separator">|</div>
+
+      <!-- 手机版 -->
+      <div class="header-item">
+        <img src="assets/手机.png" alt="">
+        <span class="header-link normal-link">手机版</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 主导航栏 -->
+  <div class="container navbar-main">
+    <div class="row align-items-center">
+      <!-- 品牌区域 -->
+      <div class="col-md-2">
+        <div class="brand-area">
+          <img src="assets/小兔鲜儿logo.png" alt="小兔鲜" class="brand-logo" style="position: relative; left: 40px;">
+        </div>
+      </div>
+
+      <!-- 优化后的导航菜单 - 关键：col-md-5 -> col-md-5并调整布局 -->
+      <div class="col-md-7">
+        <div class="nav-menu">
+          <a href="#" class="nav-item active">首页</a>
+          <a href="#" class="nav-item">生鲜</a>
+          <a href="#" class="nav-item">美食</a>
+          <a href="#" class="nav-item">餐厨</a>
+          <a href="#" class="nav-item">电器</a>
+          <a href="#" class="nav-item">居家</a>
+          <a href="#" class="nav-item">洗护</a>
+          <a href="#" class="nav-item">孕婴</a>
+          <a href="#" class="nav-item">服装</a>
+        </div>
+      </div>
+      <!-- 搜索和购物车 -->
+      <div class="col-md-3">
+        <div class="search-area">
+          <div class="search-box">
+            <img src="assets/搜索.png" alt="搜索" class="search-icon">
+            <input type="text" class="search-input" placeholder="搜一搜">
+          </div>
+
+          <div class="cart-btn " style="margin-left: 38px;">
+            <img src="assets/购物车1.png" alt="购物车" class="cart-icon">
+            <div class="cart-badge">2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="swiper">
+    <div class="content">
+      <div class="content-left">
+        <div>
+          <span class="title-s">生鲜</span>
+          <span class="desc">水果</span>
+          <span class="desc">蔬菜</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">美食</span>
+          <span class="desc">面点</span>
+          <span class="desc">干果</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">餐厨</span>
+          <span class="desc">数码产品</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">电器</span>
+          <span class="desc">床品</span>
+          <span class="desc">四件套</span>
+          <span class="desc">被枕</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">居家</span>
+          <span class="desc">奶粉</span>
+          <span class="desc">玩具</span>
+          <span class="desc">辅食</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">洗护</span>
+          <span class="desc">洗发</span>
+          <span class="desc">洗护</span>
+          <span class="desc">美妆</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">孕婴</span>
+          <span class="desc">奶粉</span>
+          <span class="desc">奶粉</span>
+          <span class="desc"> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">服饰</span>
+          <span class="desc">女装</span>
+          <span class="desc">男装</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">杂货</span>
+          <span class="desc">户外</span>
+          <span class="desc">图书</span>
+          <span> &gt; </span>
+        </div>
+        <div>
+          <span class="title-s">品牌</span>
+          <span class="desc">品牌制造</span>
+          <span class="desc"> &gt; </span>
+        </div>
+      </div>
+      <div class="content-right">
+        <img src="assets/首页-自然造物 Made in Nature-淘宝网.png" alt="">
+      </div>
+      <div class="pitch" style="z-index: 99999; position: relative; top: 460px; left: 137px;">
+        <img src="assets/已选中.png" alt="" style="margin-right: 5px;">
+        <img src="assets/未选中.png" alt="" style="margin-right: 5px;">
+        <img src="assets/未选中.png" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-2 align-items-start" style="font-family: PingFangSC-Regular;
+      font-size: 30px;
+      color: #333333;
+      letter-spacing: 0;
+      font-weight: 400; 
+      align-content: center;
+      height: 100px;
+      align-items: center;
+      position: relative;
+      right: -22px;
+      ">新鲜好物</div>
+      <div class="col-2" style="font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #A1A1A1;
+      letter-spacing: 0;
+      font-weight: 400; 
+      align-content: center;">新鲜出炉 品质靠谱</div>
+      <div class="col-1 offset-md-7" style="
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #A1A1A1;
+      letter-spacing: 0;
+      height: 100px;
+      font-weight: 400;
+      position: relative;
+      right: 18px;
+      align-content: center;"><a href="" style="text-decoration: none;color: #A1A1A1;">查看全部></a< /div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-4 g-2" style="width: 1250px; position:  relative; left: 25px;">
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/新鲜好物1.png" class="card-img-top" alt="...">
+            <div class="card-body" style="background-color: #EEF9F4;">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">KN95级莫兰迪色防护口罩</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">¥ 79</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/新鲜好物2.png" class="card-img-top" alt="...">
+            <div class="card-body" style="background-color: #EEF9F4;">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">紫檀外独板三层普洱茶盒</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">¥ 566</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/新鲜好物3.png" class="card-img-top" alt="...">
+            <div class="card-body" style="background-color: #EEF9F4;">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">法拉蒙高颜值记事本可定制</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">¥ 58</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/新鲜好物4.png" class="card-img-top" alt="...">
+            <div class="card-body" style="background-color: #EEF9F4;">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">科技布布艺沙发</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">¥ 3579</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      <div class="row">
+        <div class="col-2 align-items-start" style="font-family: PingFangSC-Regular;
+      font-size: 30px;
+      color: #333333;
+      letter-spacing: 0;
+      font-weight: 400; 
+      align-content: center;
+      height: 100px;
+      align-items: center;
+      position: relative;
+      right: -22px;
+      ">人气推荐</div>
+        <div class="col-2" style="font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #A1A1A1;
+      letter-spacing: 0;
+      font-weight: 400; 
+      align-content: center;">人气爆款 不容错过</div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-md-4 g-2" style="width: 1250px; position:  relative; left: 15px;">
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/人气推荐1.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">特惠推荐</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #A1A1A1;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">我猜得到 你的需要</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/人气推荐2.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">爆款推荐</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #A1A1A1;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">人气好物推荐</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/人气推荐3.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">节日礼品一站买全</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #A1A1A1;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">编辑尽心整理推荐</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card">
+            <img src="assets/人气推荐4.png" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title" style="font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #333333;
+              letter-spacing: 1px;
+              text-align: center;
+              font-weight: 400;">鲜花园艺</h5>
+              <p class="card-text" style="font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #A1A1A1;
+              letter-spacing: 0;
+              text-align: center;
+              font-weight: 400;">¥ 3579</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="full-width-bg" style="
+  position: relative;
+  width: 100%;
+  background-color: #F5F5F5;
+  overflow-x: hidden;">
+    <!-- 标题区域 -->
+    <div class="row"
+      style="height: 100px; display: flex; align-items: center; padding: 0 15px; position:  relative; left: 125px;">
+      <div class="col-md-3"
+        style="font-family: PingFangSC-Regular; font-size: 30px; color: #333333; font-weight: 400; margin: 0;">
+        热门品牌
+      </div>
+      <div class="col-md-3"
+        style="font-family: PingFangSC-Regular; font-size: 16px; color: #A1A1A1; font-weight: 400; margin: 0px -185px;">
+        国际经典 品质认证
+      </div>
+      <div class="col-md-3" style="position: relative; left: 800px; top: 25px;">
+        <img src="assets/left.png" alt="" style="margin-right:px ;">
+        <img src="assets/right.png" alt="">
+      </div>
+    </div>
+
+    <!-- 卡片区域 -->
+    <div class="row row-cols-1 row-cols-md-5 g-3" style="width: 1260px; position:  relative; left: 135px;">
+      <!-- 卡片1 -->
+      <div class="col">
+        <div class="card"
+          style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+          <img src="assets/热门品牌1.png" class="card-img-top" alt="品牌1" style=" object-fit: cover;">
+        </div>
+      </div>
+
+      <!-- 卡片2 -->
+      <div class="col">
+        <div class="card"
+          style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+          <img src="assets/热门品牌2.png" class="card-img-top" alt="品牌2" style="object-fit: cover;">
+        </div>
+      </div>
+
+      <!-- 卡片3 -->
+      <div class="col">
+        <div class="card"
+          style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+          <img src="assets/热门品牌3.png" class="card-img-top" alt="品牌3" style=" object-fit: cover;">
+        </div>
+      </div>
+
+      <!-- 卡片4 -->
+      <div class="col">
+        <div class="card"
+          style="border-radius: 8px; overflow: hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+          <img src="assets/热门品牌4.png" class="card-img-top" alt="品牌4" style=" object-fit: cover;">
+        </div>
+      </div>
+
+      <!-- 卡片5 -->
+      <div class="col">
+        <div class="card"
+          style="border-radius: 8px; ; box-shadow: 0 4px 8px rgba(0,0,0,0.05); transition: all 0.3s ease;">
+          <img src="assets/热门品牌5.png" class="card-img-top" alt="品牌5" style=" object-fit: cover;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 生鲜 -->
+  <div class="container">
+    <div class="row" style="height: 80px;">
+      <div class="col-12 d-flex justify-content-between align-items-end" style="height: 100%;">
+        <!-- 左侧：生鲜 -->
+        <span style="font-family: PingFangSC-Regular;
+          font-size: 30px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+          position: relative;
+          left: 35px;
+          ">
+          生鲜
+        </span>
+        <!-- 右侧：导航栏 -->
+        <nav class="nav">
+          <a class="nav-link active" aria-current="page" href="#"> <span>热门</span></a>
+          <a class="nav-link" href="#">蔬菜</a>
+          <a class="nav-link" href="#">肉禽蛋</a>
+          <a class="nav-link" href="#">水果</a>
+          <a class="nav-link" href="#">海鲜</a>
+          <a class="nav-link" href="#">零食</a>
+          <a class="nav-link" href="#">饮料</a>
+          <a class="nav-link" href="#"><span style="color: #A1A1A1;">查看全部 &gt; </span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-container">
+    <div class="products-display">
+      <!-- 左侧竖图卡片 -->
+      <div class="featured-product">
+        <img src="assets/商品介绍卡片生鲜.png">
+      </div>
+      <!-- 右侧8张卡片网格 -->
+      <div class="product-grid">
+        <!-- 卡片 1 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/手抓饼.png" alt="">
+          </div>
+          <div class="spec">双味千层，手抓饼烤肉组合<br>
+            240g/袋 4片装<br>
+            加热即食</div>
+          <div class="price" style="position: relative; top: -20px ;">¥89.99</div>
+        </div>
+        <!-- 卡片 2 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/馒头.png" alt="">
+          </div>
+          <div class="spec">云南甘蔗慢熬红糖馒头<br>
+            220g/袋 5个装<br>
+            加热即食
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥9.00</div>
+        </div>
+        <!-- 卡片 3 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/小圆饼.png" alt="">
+          </div>
+          <div class="spec">日式风味小圆饼<br>
+            圆形【海盐味】<br>
+            糖果零食
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥588.00</div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/面包.png" alt="">
+          </div>
+          <div class="spec">
+            全麦奶油浓香小面包<br>
+            50g*12袋<br>
+            美味西点
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥69.00</div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/大福.png" alt="">
+          </div>
+          <div class="spec">
+            秘制外皮五福摩提大福点心<br>
+            150g/盒<br>
+            美味西点
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥39.99</div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="product-card" style="border: 2px solid rgba(0, 190, 154, 1); border-radius: 0px;
+        padding-bottom: 0px;
+        ">
+          <div class="title">
+            <img src="assets/蜂蜜.png" alt="">
+          </div>
+          <div class="spec" style="padding: 0px 0px; margin: 0px;">
+            水果面膜韩国蜂蜜柚子茶<br>
+          </div>
+          <div  style="text-align: center;  background-color:#00BE9A; width: 237.7px;height: 80px; padding: 0px 0px;margin: 0px ;
+          position: relative; top: 0px; right: 16px;
+          ">
+            <div style="font-family: PingFangSC-Regular;
+            font-size: 18px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            font-weight: 400;
+            position: relative;
+            top: 7.5px;"
+            >
+              找相似
+            </div>
+            <hr style="border: 2px solid rgba(255,255,255,0.11); width: 120px; height: 3px;margin: 10px 60px;">
+            <div style="font-family: PingFangSC-Regular;
+            font-size: 13px;
+            color: #FFFFFF;
+            letter-spacing: 0;
+            font-weight: 400;
+            margin-top: -10px;
+            padding: 0px 0px;
+            position: relative;
+            top: 3.5px;
+            ">发现更多宝贝 ></div>
+          </div>
+        </div>
+
+        <!-- 卡片 7 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/巧克力.png" alt="">
+          </div>
+          <div class="spec">
+            浓情比利时巧克力礼盒装<br>
+            205克/盒<br>
+            糖果零食
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥120.00</div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/抹茶蛋糕.png" alt="">
+          </div>
+          <div class="spec">
+            抹茶奶油小蛋糕礼盒装<br>
+            220克/盒<br>
+            美味西点
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥60.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 服饰 -->
+  <div class="container">
+    <div class="row" style="height: 80px;">
+      <div class="col-12 d-flex justify-content-between align-items-end" style="height: 100%;">
+        <!-- 左侧：服饰 -->
+        <span style="font-family: PingFangSC-Regular;
+          font-size: 30px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+          position: relative;
+          left: 35px;
+          ">
+          服饰
+        </span>
+        <!-- 右侧：导航栏 -->
+        <nav class="nav">
+          <a class="nav-link active" aria-current="page" href="#"> <span>热门</span></a>
+          <a class="nav-link" href="#">女装</a>
+          <a class="nav-link" href="#">奢侈品</a>
+          <a class="nav-link" href="#">裤装</a>
+          <a class="nav-link" href="#">衬衫</a>
+          <a class="nav-link" href="#">T恤</a>
+          <a class="nav-link" href="#">内衣</a>
+          <a class="nav-link" href="#"><span style="color: #A1A1A1;">查看全部 &gt; </span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-container">
+    <div class="products-display">
+      <!-- 左侧竖图卡片 -->
+      <div class="featured-product">
+        <img src="assets/商品介绍卡片-服饰.png">
+      </div>
+      <!-- 右侧8张卡片网格 -->
+      <div class="product-grid">
+        <!-- 卡片 1 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/鞋.png" alt="">
+          </div>
+          <div class="spec">男女情侣抗菌夜视休闲跑鞋<br>
+            36/37/38码<br>
+            新款服饰</div>
+          <div class="price" style="position: relative; top: -20px ;">¥719.00</div>
+        </div>
+        <!-- 卡片 2 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/jessyline.png" alt="">
+          </div>
+          <div class="spec">jessyline2022秋装专柜款 <br>
+            M码<br>
+            新款服饰
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥699.00</div>
+        </div>
+        <!-- 卡片 3 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/打底衫.png" alt="">
+          </div>
+          <div class="spec">高领纯羊毛针织打底衫毛衣<br>
+            S/M/L码<br>
+            新款服饰
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥229.00</div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/文艺袜子.png" alt="">
+          </div>
+          <div class="spec">
+            潮流文艺袜子女纯棉船袜<br>
+            36-38 <br>
+            居家日用
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥14.50</div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="product-card">
+          <div class="title" style="width: 100%; height: 100%; ">
+            <img src="assets/裙子.png" alt="" style="width: 100%;height: 100%; object-fit: cover; 
+            display: block;">
+          </div>
+          <div class="spec">
+            新款韩系设计感美背衬衫裙<br>
+            M码 黑色<br>
+            新款服饰
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥179.00</div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/皮带.png" alt="">
+          </div>
+          <div class="spec">
+            头层牛皮真皮百搭个性腰带<br>
+            120cm <br>
+            个性配饰
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥565.00</div>
+        </div>
+
+        <!-- 卡片 7 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/帆布鞋.png" alt="">
+          </div>
+          <div class="spec">
+            束念帆布ins潮百搭板鞋子<br>
+            36/36/38码<br>
+            新款服饰
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥99.99</div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/裤子.png" alt="">
+          </div>
+          <div class="spec">
+            Descente迪桑特训练运动裤<br>
+            标码 墨绿色/白色/蓝色<br>
+            新款服饰
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥269.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 餐厨 -->
+  <div class="container">
+    <div class="row" style="height: 80px;">
+      <div class="col-12 d-flex justify-content-between align-items-end" style="height: 100%;">
+        <!-- 左侧：餐厨 -->
+        <span style="font-family: PingFangSC-Regular;
+          font-size: 30px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+          position: relative;
+          left: 35px;
+          ">
+          餐厨
+        </span>
+        <!-- 右侧：导航栏 -->
+        <nav class="nav">
+          <a class="nav-link active" aria-current="page" href="#"> <span>热门</span></a>
+          <a class="nav-link" href="#">厨具</a>
+          <a class="nav-link" href="#">水具</a>
+          <a class="nav-link" href="#">灯具</a>
+          <a class="nav-link" href="#">五金</a>
+          <a class="nav-link" href="#">家装材料</a>
+          <a class="nav-link" href="#">居家好物</a>
+          <a class="nav-link" href="#"><span style="color: #A1A1A1;">查看全部 &gt; </span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-container">
+    <div class="products-display">
+      <!-- 左侧竖图卡片 -->
+      <div class="featured-product">
+        <img src="assets/商品介绍卡片-餐厨.png">
+      </div>
+      <!-- 右侧8张卡片网格 -->
+      <div class="product-grid">
+        <!-- 卡片 1 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/茶具.png" alt="">
+          </div>
+          <div class="spec">紫砂茶漏茶渣茶叶过滤器<br>
+            【禅意舍得】<br>
+            居家好物</div>
+          <div class="price" style="position: relative; top: -20px ;">¥210.00</div>
+        </div>
+        <!-- 卡片 2 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/收纳盘.png" alt="">
+          </div>
+          <div class="spec">简约贝壳果盘 零食收纳盘 <br>
+            【灰色】<br>
+            居家好物
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥32.99</div>
+        </div>
+        <!-- 卡片 3 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/奶泡.png" alt="">
+          </div>
+          <div class="spec">电动打奶泡器咖啡奶泡机<br>
+            KJBQ-4 <br>
+            居家好物
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥588.00</div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/保温瓶.png" alt="">
+          </div>
+          <div class="spec">
+            哈尔斯保温壶大容量家用<br>
+            304不锈钢<br>
+            居家好物
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥69.99</div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/餐具.png" alt="">
+          </div>
+          <div class="spec">
+            龙泉青瓷碗碟盘餐具套装<br>
+            【碗+盘+杯子】<br>
+            厨房好物
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥99.99</div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/蜂蜜.png" alt="">
+          </div>
+          <div class="spec">
+            戚风蛋糕模具家用套装<br>
+            6/8胚子4寸<br>
+            厨房好物
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥35.00</div>
+        </div>
+
+        <!-- 卡片 7 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/蛋糕模具.png" alt="">
+          </div>
+          <div class="spec">
+            托盘家用放茶杯水杯茶盘<br>
+            水果餐盘<br>
+            居家好物
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥12.99</div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/水杯.png" alt="">
+          </div>
+          <div class="spec">
+            哈尔斯双层隔热便携水杯<br>
+            橙色/绿色<br>
+            居家好物
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥56.99</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 居家 -->
+  <div class="container">
+    <div class="row" style="height: 80px;">
+      <div class="col-12 d-flex justify-content-between align-items-end" style="height: 100%;">
+        <!-- 左侧：居家 -->
+        <span style="font-family: PingFangSC-Regular;
+          font-size: 30px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+          position: relative;
+          left: 35px;
+          ">
+          居家
+        </span>
+        <!-- 右侧：导航栏 -->
+        <nav class="nav">
+          <a class="nav-link active" aria-current="page" href="#"> <span>热门</span></a>
+          <a class="nav-link" href="#">鲜花生活</a>
+          <a class="nav-link" href="#">家纺</a>
+          <a class="nav-link" href="#">创意礼品</a>
+          <a class="nav-link" href="#">个性佩饰</a>
+          <a class="nav-link" href="#">生活日用</a>
+          <a class="nav-link" href="#"><span style="color: #A1A1A1;">查看全部 &gt; </span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="product-container">
+    <div class="products-display">
+      <!-- 左侧竖图卡片 -->
+      <div class="featured-product">
+        <img src="assets/商品介绍卡片-居家.png">
+      </div>
+      <!-- 右侧8张卡片网格 -->
+      <div class="product-grid">
+        <!-- 卡片 1 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/房间的彩虹.png" alt="">
+          </div>
+          <div class="spec">
+            北极绒房间的彩虹全棉床单<br>
+            《房间的彩虹》<br>
+            床上用品
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥59.00</div>
+        </div>
+        <!-- 卡片 2 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/粉色玩偶.png" alt="">
+          </div>
+          <div class="spec">
+            沃特曼毛绒玩具玩偶抱枕<br>
+            23cm小号粉色70332 <br>
+            创意礼品
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥39.00</div>
+        </div>
+        <!-- 卡片 3 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/水培植物.png" alt="">
+          </div>
+          <div class="spec">水培植物玻璃花瓶大<br>
+            水养花瓶1903 <br>
+            鲜花生活
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥19.90</div>
+        </div>
+
+        <!-- 卡片 4 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/发卡.png" alt="">
+          </div>
+          <div class="spec">
+            韩版网红仙女发圈小皮筋<br>
+            森系头绳（三件套）<br>
+            个性配饰
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥29.90</div>
+        </div>
+
+        <!-- 卡片 5 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/花瓶.png" alt="">
+          </div>
+          <div class="spec">
+            竖纹透明仿真干花插花花瓶竖纹玻璃花瓶【透明】<br>
+            鲜花生活
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥29.90</div>
+        </div>
+
+        <!-- 卡片 6 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/简易书桌.png" alt="">
+          </div>
+          <div class="spec">
+            折叠简约家用简易书桌 <br>
+            1.22米折叠桌二档【白色】<br>
+            生活日用
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥79.00</div>
+        </div>
+
+        <!-- 卡片 7 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/懒人花盆.png" alt="">
+          </div>
+          <div class="spec">
+            自动吸水懒人花盆 <br>
+            直径15cm <br>
+            鲜花生活
+          </div>
+          <div class="price" style="position: relative; top: -20px ;">¥29.00</div>
+        </div>
+
+        <!-- 卡片 8 -->
+        <div class="product-card">
+          <div class="title">
+            <img src="assets/竹席枕套.png" alt="">
+          </div>
+          <div class="spec">
+            百富帝byford碳化竹席枕套<br>
+            单只装 48-74cm <br>
+            床上用品
+          </div>
+          <div class="price" style="position: relative; top:-20px ;">¥39.00</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row" style="height: 120px;">
+      <div class="col-12 d-flex justify-content-between align-items-end" style="height: 100%;">
+        <!-- 左侧：居家 -->
+        <span style="font-family: PingFangSC-Regular;
+        font-size: 30px;
+        color: #333333;
+        letter-spacing: 0;
+        font-weight: 400;
+          position: relative;
+          left: 35px;
+          ">
+          最新专题
+        </span>
+        <!-- 右侧：导航栏 -->
+        <nav class="nav">
+          <a class="nav-link" href="#"><span style="color: #A1A1A1;">查看全部 &gt; </span></a>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row ">
+
+      <div class="col-md-4" style="margin-top: 30px;">
+        <div class="card" style="border: none;">
+
+          <div style="position: relative; width: 400px; margin-left: 30px;">
+            <img src="assets/最新专题1.png" class="card-img-top img-fluid" style="width: 100%;">
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              吃这些美食才不算辜负自己
+            </div>
+
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              餐厨起居洗护好物
+            </div>
+            <div style="
+              width: 79px;
+              height: 25px;
+              background: #FFFFFF;
+              position: relative;
+              top: -105px;
+              right: -305px;
+              font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              line-height: 25px;
+              font-weight: 400;
+              ">￥29.9起
+            </div>
+          </div>
+
+
+          <div class="card-body" style="position: relative; left: 30px; margin-top: -70px;">
+
+            <span style="margin-right: 20px; margin-top: -5px; position: relative; top: 3px;">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="#AA2113" xmlns="http://www.w3.org/2000/svg"
+                style="position: relative; top: -1px;">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 
+                         2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41 
+                         0.81 4.5 2.09C13.09 3.81 14.76 3 
+                         16.5 3 19.58 3 22 5.42 22 8.5c0 
+                         3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg>
+              1220
+            </span>
+            <span style="margin-right: 180px; position: relative; top: 3px;"><img src="assets/浏览.png" alt="">1800</span>
+            <span><img src="assets/评论.png" alt="">246</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" style="margin-top: 30px;">
+        <div class="card" style="border: none;">
+
+          <div style="position: relative; width: 400px; margin-left: 10px;">
+            <img src="assets/最新专题2.png" class="card-img-top img-fluid" style="width: 100%;">
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              吃这些美食才不算辜负自己
+            </div>
+
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              餐厨起居洗护好物
+            </div>
+            <div style="
+              width: 79px;
+              height: 25px;
+              background: #FFFFFF;
+              position: relative;
+              top: -105px;
+              right: -305px;
+              font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              line-height: 25px;
+              font-weight: 400;
+              ">￥29.9起
+            </div>
+          </div>
+
+          <div class="card-body" style="position: relative; left: 7px; margin-top: -70px;">
+            <span style="margin-right: 20px;"><img src="assets/收藏.png" alt="">1220</span>
+            <span style="margin-right: 180px;"><img src="assets/浏览.png" alt="">1800</span>
+            <span><img src="assets/评论.png" alt="">246</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-4" style="margin-top: 30px;">
+        <div class="card" style="border: none;">
+
+          <div style="position: relative; width: 400px; margin-left: -10px;">
+            <img src="assets/最新专题3.png" class="card-img-top img-fluid" style="width: 100%;">
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 20px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              吃这些美食才不算辜负自己
+            </div>
+
+            <div style="
+              font-family: PingFangSC-Regular;
+              font-size: 16px;
+              color: #FFFFFF;
+              letter-spacing: 0;
+              font-weight: 400;
+              position: relative;
+              top: -70px;
+              right: -15px;">
+              餐厨起居洗护好物
+            </div>
+            <div style="
+              width: 79px;
+              height: 25px;
+              background: #FFFFFF;
+              position: relative;
+              top: -105px;
+              right: -305px;
+              font-family: PingFangSC-Regular;
+              font-size: 18px;
+              color: #AA2113;
+              letter-spacing: 0;
+              text-align: center;
+              line-height: 25px;
+              font-weight: 400;
+              ">￥29.9起
+            </div>
+          </div>
+
+          <div class="card-body" style="margin-top: -70px; position: relative; left: 5px;">
+            <span style="margin-right: 20px;"><img src="assets/收藏.png" alt="">1220</span>
+            <span style="margin-right: 180px;"><img src="assets/浏览.png" alt="">1800</span>
+            <span><img src="assets/评论.png" alt="">246</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="full-width-bg" style="
+    position: relative;
+    width: 100%;
+    height: 800px;
+    overflow-y: hidden;
+    background-color: #F5F5F5;
+    overflow-x: hidden;">
+    <div class="row text-center align-items-center h-100" style="margin-top: -10px;">
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <div style="display: flex; align-items: center; position: relative; right: -100px; ">
+          <img src="assets/价格亲民.png" alt="" style="margin-right: 8px;">
+          <span style="
+          font-family: PingFangSC-Regular;
+          font-size: 28px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+        ">价格亲民</span>
+        </div>
+      </div>
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <div style="display: flex; align-items: center ;position: relative; right: -30px;">
+          <img src="assets/物流快捷.png" alt="" style=" margin-right: 8px;">
+          <span style="
+          font-family: PingFangSC-Regular;
+          font-size: 28px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+        ">物流快捷</span>
+        </div>
+      </div>
+
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <div style="display: flex; align-items: center;position: relative; right: 45px;">
+          <img src="assets/品质新鲜.png" alt="" style=" margin-right: 8px;">
+          <span style="
+          font-family: PingFangSC-Regular;
+          font-size: 28px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+        ">品质新鲜</span>
+        </div>
+      </div>
+
+      <div class="col-md-3 d-flex justify-content-center align-items-center">
+        <div style="display: flex; align-items: center; position: relative; right: 130px;">
+          <img src="assets/售后无忧.png" alt="" style=" margin-right: 8px;">
+          <span style="
+          font-family: PingFangSC-Regular;
+          font-size: 28px;
+          color: #333333;
+          letter-spacing: 0;
+          font-weight: 400;
+        ">售后无忧</span>
+        </div>
+      </div>
+
+      <hr
+        style=" height: 1px; background-color: #F5F5F5 ; margin: 10px 0; width: 1240px; padding: 0px 0px; position: relative; top: -100px; right: -140px;">
+
+      <!-- 底部导航 -->
+      <footer class="footer" style="padding: 0px 0px; margin: 0px; position: relative; top: -200px;">
+        <div class="container">
+          <div class="row">
+            <!-- 购物指南列 -->
+            <div class="col footer-col" style="max-width: 10%;">
+              <h5 class="footer-title">购物指南</h5>
+              <ul class="footer-links">
+                <li><a href="#" style="position: relative; right: 22px;">购物流程</a></li>
+                <li><a href="#" style="position: relative; right: 22px;margin-bottom: 10px; margin-top: 10px;">支付方式</a></li>
+                <li><a href=" #" style="position: relative; right: 22px;">售后规则</a></li>
+              </ul>
+            </div>
+
+            <!-- 配送方式列 -->
+            <div class="col footer-col" style="max-width: 10%">
+              <h5 class="footer-title">配送方式</h5>
+              <ul class="footer-links">
+                <li><a href="#" style="position: relative; right: 22px;">配送运费</a></li>
+                <li><a href="#" style="position: relative; right: 22px;margin-bottom: 10px; margin-top: 10px;">配送范围</a></li>
+                <li><a href=" #" style="position: relative; right: 22px;">配送时间</a></li>
+              </ul>
+            </div>
+
+            <!-- 关于我们列 -->
+            <div class="col footer-col" style="max-width: 10%">
+              <h5 class="footer-title">关于我们</h5>
+              <ul class="footer-links">
+                <li><a href="#" style="position: relative; right: 22px;"></i>平台规则</a></li>
+                <li><a href="#" style="position: relative; right: 22px;margin-bottom: 10px; margin-top: 10px;""></i>联系我们</a></li>
+                <li><a href=" #" style="position: relative; right: 22px;"></i>问题反馈</a></li>
+              </ul>
+            </div>
+
+            <!-- 售后服务列 -->
+            <div class="col footer-col" style="max-width: 10%">
+              <h5 class="footer-title">售后服务</h5>
+              <ul class="footer-links">
+                <li><a href="#" style="position: relative; right: 22px;">售后政策</a></li>
+                <li><a href="#" style="position: relative; right: 22px;margin-bottom: 10px; margin-top: 10px;"">退款说明</a></li>
+                <li><a href=" #" style="position: relative; right: 22px;">取消订单</a></li>
+              </ul>
+            </div>
+
+            <!-- 服务热线列 -->
+            <div class="col footer-col" style="max-width: 20%">
+              <h5 class="footer-title">服务热线</h5>
+              <ul class="footer-links">
+                <li><a href="#" style="position: relative; right: -38px; ">在线客服 <img src="assets/客服.png" alt=""></a>
+                </li>
+                <li><a href="#" style="position: relative; right: -38px; margin-bottom: 10px; margin-top: 10px;">客服电话
+                    400-0000-000</a></li>
+                <ul><a href="#" style="position: relative; right: -5px; white-space: nowrap;">工作时间 周一至周日 8:00-18:00</a>
+                </ul>
+              </ul>
+            </div>
+
+            <div class="col footer-col" style="max-width: 20%">
+              <!-- 二维码区域 -->
+              <div class="qr-section" style="position: relative; right: -70px; top: 20px;">
+                <img src="assets/微信公众号.png" alt="小兔鲜二维码" class="qr-image">
+                <div class="qr-text">微信公众号</div>
+              </div>
+            </div>
+
+            <div class="col footer-col" style="max-width: 20%">
+              <div class="qr-item" style="position: relative; top: 20px;">
+                <img src="assets/APP二维码.png" alt="小兔鲜二维码" class="qr-image">
+                <div class="qr-text">APP下载二维码</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 版权信息 -->
+          <div style="font-family: PingFangSC-Regular;
+          font-size: 16px;
+          color: #A1A1A1;
+          letter-spacing: 0;
+          text-align: center;
+          line-height: 30px;
+          font-weight: 400;">
+            <p>关于我们 | 帮助中心 | 售后服务 | 配送与验收 | 商务合作 | 搜索推荐 | 友情链接</p>
+            <p>CopyRight © 小兔鲜</p>
+          </div>
+        </div>
+      </footer>
+
+    </div>
+
+  </div>
+</body>
+
+</html>

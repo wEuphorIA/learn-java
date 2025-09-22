@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS-对象-DOM</title>
+</head>
+
+<body>
+    <span id="sid">DOM元素1</span><br>
+    <span class="txt">DOM元素2</span><br>
+    <span class="txt">DOM元素3</span><br>
+
+    <script>
+
+        // 获取元素
+        var sid = document.querySelector("#sid");
+        let txts = document.querySelectorAll(".txt");
+
+        // 修改元素内容
+        sid.innerHTML = "修改后的DOM元素1";
+        for (let i = 0; i < txts.length; i++) {
+            txts[i].innerHTML = "修改后的DOM元素" + (i + 2);
+        }
+
+        // 添加新元素
+        var newElement = document.createElement("span");
+        newElement.innerHTML = "新添加的DOM元素";
+        document.body.appendChild(newElement);
+
+    </script>
+</body>
+
+</html>

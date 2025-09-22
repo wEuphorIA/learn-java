@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width='device-width', initial-scale=1.0" />
+    <title>11、CSS-Flex布局-弹性盒子练习.</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      .container {
+        width: 600px;
+        height: 400px;
+        display: flex; /* 设置为flex布局 */
+        border: 1px solid red; /* 设置边框 */
+        justify-content: space-evenly; /* 设置主轴对齐方式 */
+      }
+      .left {
+        width: 100px; /* 设置左侧盒子的宽度 */
+        height: 395px; /* 设置左侧盒子的高度 */
+        background-color: #87ceeb; /* 设置左侧盒子的背景色 */
+      }
+      .right {
+        display: flex; /* 设置右侧盒子为flex布局 */
+        flex-wrap: wrap; /* 允许换行 */
+        justify-content: space-evenly; 
+        width: 460px; /* 设置右侧盒子的宽度 */
+        height: 400px; /* 设置右侧盒子的高度 */
+        /* background-color: pink; */
+      }
+      .item {
+        width: 110px; /* 设置宽度 */
+        height: 195px; /* 设置高度 */
+        background-color: #ffa500; /* 设置背景色 */
+      }
+      
+    </style>
+  </head>
+  <div class="container">
+    <div class="left"></div>
+    <div class="right">
+      <div class="item">1</div>
+      <div class="item">2</div>
+      <div class="item">3</div>
+      <div class="item">4</div>
+      <div class="item">5</div>
+      <div class="item">6</div>
+      <div class="item">7</div>
+      <div class="item">8</div>
+    </div>
+  </div>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>12、JavaScript-数据类型-隐式类型转换</title>
+</head>
+<body>
+  <SCript>
+    let age = prompt('请输入您的年龄：'); // 使用prompt获取用户输入的年龄
+    age = age - 20; // 隐式类型转换，字符串和数字相加时，字符串会被转换成数字
+    console.log(`您的年龄是：${age}`, typeof age); // 模板字符串，使用反引号包裹，可以直接在字符串中嵌入变量
+    let a = !1; // 布尔值false转换成false
+    console.log(a, typeof a); // 输出：0 'false'
+  </SCript>
+</body>
+</html>

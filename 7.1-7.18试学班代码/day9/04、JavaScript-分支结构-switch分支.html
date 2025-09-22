@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>04、JavaScript-分支结构-switch分支</title>
+</head>
+
+<body>
+  <script>
+    /* 
+   需求：用户输入当天是周几，程序输出这一天的工作计划，如下图所示。
+     周一：埋头苦干，解决bug
+     周二：请求大牛程序员帮忙
+     周三：请求大牛程序员帮忙
+     周四：请求大牛程序员帮忙
+     周五：自己整理代码
+     周六：打游戏
+     周日：打游戏
+   注意：如果case中没有break关键字，会造成case穿透现象
+   case穿透：当case中的代码没有break时，会继续执行下一条case中的代码，不会判断表达式的结果是否等于case后面的值，直到遇到break终止。
+   case穿透的应用场景：当多个case中的代码一样时，可以省略break让多个case共用一段代码，简化代码书写。
+ */
+    // 获取用户输入的周几
+    let day = prompt('请输入今天是周几');
+    switch (day) {
+      case '周一':
+        console.log('埋头苦干，解决bug');
+        break;
+      case '周二':
+      case '周三':
+      case '周四':
+        console.log('请求大牛程序员帮忙');
+        break;
+      case '周五':
+        console.log('自己整理代码');
+        break;
+      case '周六':
+      case '周日':
+        console.log('打游戏');
+        break;
+      default:
+        console.log('输入的星期有误');
+    }
+
+   console.log('程序结束');
+    // 注意：switch语句中，case后面的值必须是常量，不能是变量。
+    // switch (day) {
+    //   case day: // 错误写法
+    //     console.log('埋头苦干，解决bug');
+    //     break;
+    // }
+
+  </script>
+</body>
+
+</html>

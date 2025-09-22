@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Axios请求方式的别名</title>
+</head>
+<body>
+
+  <button id="getData">GET</button>
+  <button id="postData">POST</button>
+
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    //GET请求
+    document.querySelector('#getData').addEventListener('click',() => {
+      axios.get('https://mock.apifox.cn/m1/3083103-0-default/emps/list')
+        .then(result => {
+          console.log(result.data);
+        })
+        .catch(error => {
+          console.log('Error fetching data:', error);
+        });
+    })
+    
+    //POST请求
+   document.querySelector('#postData').addEventListener('click',() => {
+      axios.post('https://mock.apifox.cn/m1/3083103-0-default/emps/update', 'id=1')
+        .then(result => {
+          console.log(result.data);
+        })
+        .catch(error => {
+          console.log('Error fetching data:', error);
+        });
+    })
+    
+  </script>
+</body>
+</html>

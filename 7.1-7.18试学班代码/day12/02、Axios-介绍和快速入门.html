@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>02、Axios-介绍和快速入门</title>
+</head>
+<body>
+  <div id="demo"></div>
+  <button type="button" onclick="load()">获取数据</button>
+  <!-- 第一步：引入axios的js文件 -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- <script src="js/axios.min.js"></script> -->
+  <script>
+    /* 
+      axios:对ajax技术做了封装的一个工具，使用这个工具发送请求获取数据代码相对简洁。
+      使用步骤：
+        第一步：引入axios的js文件
+        第二步：使用axios发送请求获取数据
+    */
+    function load() {
+      //第二步：使用axios发送请求获取数据
+      axios({
+        url:'http://hmajax.itheima.net/api/province',  //请求地址。
+        method:'get'  //请求方式，常用的方式有get和post， method:'get'不写默认是get。
+      }).then((result) => {  //then方法处理响应成功的请求,箭头函数中的result参数表示响应结果
+        // console.log(result); //result表示整个结果，里面包含了很多内容，而我们需要的数据在result的data属性身上
+        console.log(result.data); //获取后端响应回来的数据，固定写法。
+        //将所有身份信息展示到div中
+        document.querySelector('#demo').innerHTML=result.data.list; //.list表示获取数据中的list属性值
+      }).catch((err) => {  //catch方法处理响应失败的请求，箭头函数中的err参数表示错误对象
+        console.log(err);
+      });
+    }
+  </script>
+</body>
+</html>

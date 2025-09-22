@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>05、JavaScript-变量-练习</title>
+</head>
+
+<body>
+  <script>
+    // 定义变量
+    /* 
+     需求：交换变量的值
+     1、有2个变量：apple 里面放的是‘苹果汁'，orange里面放的是‘橙子汁’
+     2、经过处理，最后 apple里面放的是‘橙子汁'orange 里面放的是‘苹果汁'
+  */
+    let apple = "apple";
+    let origin = "origin";
+    console.log('交换前', apple, origin); // 输出交换后的 apple 和 origin 的值
+    let box;
+    box = origin; // 将 origin 的值赋给 box
+    origin = apple; // 将 apple 的值赋给 origin
+    apple = box; // 将 box 的值赋给 apple
+    // 输出结果
+    console.log('交换后', apple, origin); // 输出交换后的 apple 和 origin 的值
+  </script>
+</body>
+
+</html>

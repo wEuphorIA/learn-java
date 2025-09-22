@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>天气预报</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            /* vh 表示视口高度，100vh表示占视口高度100% */
+            background: linear-gradient(135deg, rgb(79, 175, 254), rgb(33, 90, 215));
+            overflow: hidden;
+        }
+
+        div {
+            /* border: 1px solid red; */
+        }
+
+        .container {
+            width: 80%;
+            height: 600px;
+            margin-top: 100px;
+
+
+            .search {
+                background-color: #5e9bed;
+            }
+
+            .temperature {
+                font-size: 55px;
+            }
+
+            .air {
+                display: inline-block;
+                background-color: #65d45a;
+                padding: 0px 7px;
+                border-radius: 5px;
+            }
+        }
+
+        .row {
+            /* margin-top: 20px; */
+            .weather-info {
+                background-color: white;
+                height: 350px;
+                border-radius: 10px;
+
+                .weather-info-title {
+                    margin: 10px;
+                    font-weight: bold;
+                }
+            }
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        /* 搜索列表 */
+        .search-list {
+            width: 100%;
+            height: 200px;
+            overflow-y: scroll;
+            background-color: #fff;
+            position: absolute;
+            left: 0;
+            top: 40px;
+            /* display: none; */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- 02月05日农历正月十五 和搜索框 -->
+        <div class="row align-items-center text-light">
+            <div class="col-3">02月05日 农历正月十五</div>
+            <div class="col-2 offset-4 text-end">
+                <img src="imgs/定位.png" width="20" alt="">
+                <span>北京市</span>
+            </div>
+            <div class="col-3 search-box">
+                <input type="email" class="search form-control border-0 rounded-pill" placeholder="搜索城市">
+                <!-- <ul class="search-list text-dark">
+                    <li class="city-item">北京市</li>
+                </ul> -->
+                <ul class="list-group search-list">
+                    <li class="list-group-item list-group-item-action">Cras justo odio</li>
+                    <li class="list-group-item list-group-item-action">Cras justo odio</li>
+                    <li class="list-group-item list-group-item-action">Cras justo odio</li>
+                    <li class="list-group-item list-group-item-action">Cras justo odio</li>
+                    <li class="list-group-item list-group-item-action">Cras justo odio</li>
+                    <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 气温、空气质量 -->
+        <div class="row align-items-center text-light">
+            <div class="col-1 temperature">1°</div>
+            <div class="col-11">
+                <div><span class="air">70 良</span></div>
+                <div>
+                    <img src="imgs/晴天-line.png" width="20px" alt=""></img>
+                    <span> 晴 西北风 2级</span>
+                </div>
+            </div>
+        </div>
+        <!-- 当日气温详情 -->
+        <div class="row text-light">
+            <div class="col-3">今天：多云-4-8°C</div>
+            <div class="col-2">紫外线：中等</div>
+            <div class="col-2">湿度：31%</div>
+            <div class="col-2">日出：07:20</div>
+            <div class="col-3">日落：17:38</div>
+        </div>
+        <!-- 7日内天气预报 -->
+        <div class="row">
+            <div class="col-12 weather-info">
+                <div class="weather-info-title">7日内天气预报</div>
+                <div class="d-flex justify-content-around text-center">
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                    <div>
+                        <p>今天</p>
+                        <p style="color: gray;">02月05日</p>
+                        <img src="imgs/晴天.png" alt="">
+                        <p>多云</p>
+                        <p>8-4℃</p>
+                        <p style="color: gray;">北风&lt;3级</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

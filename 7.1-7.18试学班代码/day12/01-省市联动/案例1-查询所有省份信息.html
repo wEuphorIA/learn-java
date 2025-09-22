@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>案例1-查询所有省份信息</title>
+    <link rel="stylesheet" href="./lib/css/bootstrap.min.css">
+    <style>
+        .input-group {
+            width: 400px;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="input-group mb-3">
+            <label class="input-group-text">籍贯</label>
+            <select class="form-select" id="province">
+                <option selected>请选择省份</option>
+            </select>
+            <select class="form-select" id="city">
+                <option selected>请选择城市</option>
+            </select>
+        </div>
+    </div>
+
+    <script src="./lib/js/bootstrap.bundle.min.js"></script>
+    <script src="./lib/js/axios.min.js"></script>
+    <script>
+        //------------发送请求获取所有省份信息------------------
+        //1. 使用axios发送get请求
+        axios.get('http://hmajax.itheima.net/api/province').then((result) => {
+            //2. 获取所有省份-->数组
+            let provinces = result.data.list;
+            let opptions = '<option selected>请选择省份</option>';
+            for (let i = 0; i < provinces.length; i++) {
+                opptions += `<option selected>${provinces[i]}</option>;`
+                document.querySelector('#province').innerHTML = opptions;
+                
+            }
+
+        }).catch((err) => {
+            
+        });
+            
+        //3. 将省份数据拼接成一个个的 <option>请选择省份</option> 标签
+            
+        //4. 再将拼接好的数据添加到省份select标签中
+           
+    </script>
+</body>
+
+</html>
