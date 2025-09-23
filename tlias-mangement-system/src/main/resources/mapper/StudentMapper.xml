@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.StudentMapper">
+
+    <!--批量保存学员信息-->
+    <insert id="insertBatch">
+        insert into student(name, no, gender, phone, id_card, is_college, address, degree, graduation_date, clazz_id, create_time, update_time)
+        values
+        <foreach collection="cachedDataList" item="item" separator=",">
+            (#{item.name}, #{item.no}, #{item.gender}, #{item.phone}, #{item.idCard}, #{item.isCollege}, #{item.address}, #{item.degree}, #{item.graduationDate}, #{item.clazzId}, #{item.createTime}, #{item.updateTime})
+        </foreach>
+    </insert>
+
+    <!-- 动态条件查询 -->
+    <select id="list" resultType="com.itheima.pojo.Student">
+        select s.*, c.name clazzName from student s left join clazz c on s.clazz_id = c.id
+        <where>
+            <if test="name != null and name != ''">
+                s.name like concat('%',#{name},'%')
+            </if>
+            <if test="degree != null">
+                and s.degree = #{degree}
+            </if>
+            <if test="clazzId != null">
+                and s.clazz_id = #{clazzId}
+            </if>
+        </where>
+        order by s.update_time desc
+    </select>
+
+    <select id="pageStudent" resultType="com.itheima.pojo.Student">
+        select s.id,
+        s.name,
+        s.no,
+        s.gender,
+        s.phone,
+        s.id_card,
+        s.is_college,
+        s.address,
+        s.degree,
+        s.graduation_date,
+        s.clazz_id,
+        s.violation_count,
+        s.violation_score,
+        s.create_time,
+        s.update_time,
+        c.name clazzName
+        from student s
+        left join clazz c
+        on s.clazz_id = c.id
+        <where>
+            <if test="param.name != null and param.name != ''">
+                s.name like concat('%',#{param.name},'%')
+            </if>
+            <if test="param.degree != null">
+                and s.degree = #{param.degree}
+            </if>
+            <if test="param.clazzId != null">
+                and s.clazz_id = #{param.clazzId}
+            </if>
+        </where>
+        order by s.update_time desc
+    </select>
+</mapper>
