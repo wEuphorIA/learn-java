@@ -1,0 +1,648 @@
+<template>
+  <div class="contentBox">
+    <div class="search">
+        <Form
+          ref="searchForm"
+          :model="searchForm"
+          inline
+          :label-width="70"
+          class="search-form"
+        >
+          <Form-item label="会员名称：" prop="username">
+            <Input
+              type="text"
+              v-model="searchForm.username"
+              placeholder="请输入会员名称"
+              clearable
+              style="width: 200px"
+            />
+          </Form-item>
+
+          <Form-item label="会员昵称：" prop="nickName">
+            <Input
+              type="text"
+              v-model="searchForm.nickName"
+              placeholder="请输入会员昵称"
+              clearable
+              style="width: 200px"
+            />
+          </Form-item>
+
+          <Form-item label="联系方式：" prop="mobile">
+            <Input
+              type="text"
+              v-model="searchForm.mobile"
+              placeholder="请输入会员联系方式"
+              clearable
+              style="width: 200px"
+            />
+          </Form-item>
+          <Button @click="handleSearch" class="search-btn" type="primary"
+            >搜索</Button
+          >
+        </Form>
+    </div>
+    <div class="boxBg boxPad">
+      <div class="export" v-if="!selectedMember">
+        <Button @click="addMember" type="primary">添加会员</Button>
+      </div>
+      <div class="tableBox">
+        <Table
+          :loading="loading"
+          border
+          :columns="columns"
+          :data="data"
+          ref="table"
+        ></Table>
+        <Row type="flex" justify="end" class="mt_20" v-if="total > 10">
+          <Page
+            :current="searchForm.pageNumber"
+            :total="total"
+            :page-size="searchForm.pageSize"
+            @on-change="changePage"
+            @on-page-size-change="changePageSize"
+            :page-size-opts="[10, 20, 50]"
+            show-sizer
+          ></Page>
+        </Row>
+      </div>
+    </div>
+
+    <!-- 添加用户模态框 -->
+    <Modal v-model="addFlag" title="添加会员">
+      <div class="dialogCenter">
+        <Form
+          ref="addMemberForm"
+          :model="addMemberForm"
+          :rules="addRule"
+          :label-width="88"
+        >
+          <FormItem label="手机号码：" prop="mobile">
+            <Input
+              v-model="addMemberForm.mobile"
+              maxlength="11"
+              placeholder="请输入手机号码"
+              class="wt-400"
+            />
+          </FormItem>
+          <FormItem label="会员名称：" prop="username">
+            <Input
+              v-model="addMemberForm.username"
+              maxlength="15"
+              placeholder="请输入会员名称"
+              class="wt-400"
+            />
+          </FormItem>
+
+          <FormItem label="会员密码：" prop="password">
+            <Input
+              type="password"
+              password
+              v-model="addMemberForm.password"
+              maxlength="20"
+              placeholder="请输入会员密码"
+              class="wt-400"
+            />
+          </FormItem>
+        </Form>
+      </div>
+      <div slot="footer">
+        <Button @click="addFlag = false">取消</Button>
+        <Button type="primary" @click="addMemberSubmit">确定</Button>
+      </div>
+    </Modal>
+    <!-- 修改模态框 -->
+    <Modal v-model="descFlag" :title="descTitle" @on-ok="handleSubmitModal">
+      <div class="dialogCenter">
+        <Form ref="form" :model="form" :rules="ruleValidate" :label-width="80">
+          <Input v-model="form.id" v-show="false" />
+
+          <FormItem label="头像：" class="lookImg">
+            <img :src="form.face || defaultPic" class="face" />
+            <Button
+              type="text"
+              class="upload"
+              @click="
+                () => {
+                  this.picModelFlag = true;
+                  this.$refs.ossManage.selectImage = true;
+                }
+              "
+              >修改</Button
+            >
+            <input type="file" style="display: none" id="file" />
+          </FormItem>
+          <FormItem label="用户名：" prop="name">
+            <Input v-model="form.username" class="wt-400" disabled />
+          </FormItem>
+          <FormItem label="用户昵称：" prop="name">
+            <Input v-model="form.nickName" class="wt-400" />
+          </FormItem>
+          <FormItem label="性别：" prop="sex">
+            <RadioGroup button-style="solid" v-model="form.sex">
+              <Radio :label="1">
+                <span>男</span>
+              </Radio>
+              <Radio :label="0">
+                <span>女</span>
+              </Radio>
+            </RadioGroup>
+          </FormItem>
+          <FormItem label="修改密码：" prop="password">
+            <Input
+              type="password"
+              class="wt-400"
+              password
+              v-model="form.newPassword"
+            />
+          </FormItem>
+          <FormItem label="生日：" prop="birthday">
+            <DatePicker
+              type="date"
+              format="yyyy-MM-dd"
+              v-model="form.birthday"
+              class="wt-400"
+            ></DatePicker>
+          </FormItem>
+          <FormItem label="所在地：" prop="mail">
+            {{ form.region || "暂无地址" }}
+
+            <Button style="margin-left: 10px" @click="$refs.map.open()"
+              >选择</Button
+            >
+          </FormItem>
+        </Form>
+      </div>
+    </Modal>
+    <Modal width="1200px" v-model="picModelFlag">
+      <ossManage
+        @callback="callbackSelected"
+        :isComponent="true"
+        ref="ossManage"
+      />
+    </Modal>
+    <multipleMap ref="map" @callback="selectedRegion" />
+    <!-- 禁用 -->
+    <Forbidden
+      :visible="forVisible"
+      :text="vipText"
+      @handleClose="handleClose"
+      @handleSubmit="handleForbiddenSub"
+    ></Forbidden>
+  </div>
+</template>
+
+<script>
+import multipleMap from "@/components/map/multiple-map";
+import * as API_Member from "@/api/member.js";
+import ossManage from "@/views/sys/oss-manage/ossManage";
+import * as RegExp from "@/libs/RegExp.js";
+// 禁用弹窗
+import Forbidden from "@/components/Forbidden/index.vue";
+export default {
+  name: "member",
+  components: {
+    multipleMap,
+    ossManage,
+    Forbidden,
+  },
+  data() {
+    return {
+      defaultPic: require("@/assets/default.png"),
+      descTitle: "", // modal标题
+      descFlag: false, //编辑查看框
+      loading: true, // 表单加载状态
+      addFlag: false, // modal显隐控制
+
+      addMemberForm: {
+        // 添加用户表单
+        mobile: "",
+        username: "",
+        password: "",
+      },
+      searchForm: {
+        // 请求参数
+        pageNumber: 1,
+        pageSize: 10,
+        order: "desc",
+        username: "",
+        mobile: "",
+        disabled: "OPEN",
+      },
+      picModelFlag: false, // 选择图片
+      form: {}, // 表单数据
+      addRule: {
+        // 验证规则
+        mobile: [
+          { required: true, message: "请输入手机号码" },
+          {
+            pattern: RegExp.mobile,
+            message: "请输入正确的手机号",
+          },
+        ],
+        username: [{ required: true, message: "请输入会员名称" }],
+        password: [{ required: true, message: "请输入密码" }],
+      },
+      ruleValidate: {}, //修改验证
+      columns: [
+        {
+          title: "会员名称",
+          key: "username",
+          tooltip: true,
+          minWidth: 160,
+        },
+        {
+          title: "会员昵称",
+          key: "nickName",
+          tooltip: true,
+          minWidth: 160,
+        },
+        {
+          title: "联系方式",
+          minWidth: 160,
+          key: "mobile",
+          render: (h, params) => {
+            if (params.row.mobile == null) {
+              return h("div", [h("span", {}, "")]);
+            } else {
+              return h("div", [h("span", {}, params.row.mobile)]);
+            }
+          },
+        },
+        {
+          title: "注册时间",
+          key: "createTime",
+          minWidth: 220,
+        },
+
+        {
+          title: "积分数量",
+          align: "left",
+          minWidth: 160,
+          render: (h, params) => {
+            return h(
+              "div",
+              {},
+              params.row.point == void 0 ? "0" : params.row.point
+            );
+          },
+        },
+        {
+          title: "操作",
+          key: "action",
+          align: "center",
+          width: 175,
+          fixed: "right",
+          render: (h, params) => {
+            return h(
+              "div",
+              {
+                style: {
+                  display: "flex",
+                  justifyContent: "center",
+                },
+              },
+              [
+                h(
+                  "span",
+                  {
+                    props: {
+                      size: "small",
+                      type: params.row.___selected ? "primary" : "default",
+                    },
+                    style: {
+                      display: this.selectedMember ? "block" : "none",
+                    },
+                    class: "fontCol",
+                    on: {
+                      click: () => {
+                        this.callback(params.row, params.index);
+                      },
+                    },
+                  },
+                  params.row.___selected ? "已选择" : "选择"
+                ),
+
+                h(
+                  "span",
+                  {
+                    props: {
+                      type: "info",
+                      size: "small",
+                    },
+                    style: {
+                      display: this.selectedMember ? "none" : "block",
+                    },
+                    class: "fontCol",
+                    on: {
+                      click: () => {
+                        this.detail(params.row);
+                      },
+                    },
+                  },
+                  "查看"
+                ),
+                h(
+                  "span",
+                  {
+                    props: {
+                      type: "info",
+                      size: "small",
+                      ghost: true,
+                    },
+                    style: {
+                      display: this.selectedMember ? "none" : "block",
+                    },
+                    class: "fontCol",
+                    on: {
+                      click: () => {
+                        this.editPerm(params.row);
+                      },
+                    },
+                  },
+                  "编辑"
+                ),
+                h(
+                  "span",
+                  {
+                    props: {
+                      size: "small",
+                      type: "error",
+                    },
+                    style: {
+                      display: this.selectedMember ? "none" : "block",
+                    },
+                    class: "fontCol",
+                    on: {
+                      click: () => {
+                        this.handleOpen(params.row);
+                      },
+                    },
+                  },
+                  "禁用"
+                ),
+              ]
+            );
+          },
+        },
+      ],
+      data: [], // 表单数据
+      total: 0, // 表单数据总数
+      selectMember: [], //保存选中的用户
+      forVisible: false,
+      vipId: "",
+      vipText:''
+    };
+  },
+  props: {
+    // 是否为选中模式
+    selectedMember: {
+      type: Boolean,
+      default: false,
+    },
+    // 已选择用户数据
+    selectedList: {
+      type: null,
+      default: () => {
+        return [];
+      },
+    },
+  },
+  watch: {
+    selectedList: {
+      handler(val) {
+        this.$set(this, "selectMember", JSON.parse(JSON.stringify(val)));
+        this.init(this.data);
+        // 将父级数据与当前组件数据进行匹配
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  methods: {
+    // 回调给父级
+    callback(val, index) {
+      this.selectMember.forEach((item) => {
+        item.___selected = false;
+      });
+      this.$set(val, "___selected", !val.___selected);
+      console.log(val.___selected);
+      console.log(this.selectMember);
+      let findUser = this.selectMember.find((item) => {
+        return item.id == val.id;
+      });
+      // 如果没有则添加
+      if (!findUser) {
+        this.selectMember.push(val);
+      } else {
+        // 有重复数据就删除
+        this.selectMember.map((item, index) => {
+          if (item.id == findUser.id) {
+            this.selectMember.splice(index, 1);
+          }
+        });
+      }
+
+      this.$emit("callback", val);
+    },
+    // 初始化信息
+    init(data) {
+      data.forEach((item) => {
+        if (this.selectMember.length != 0) {
+          this.selectMember.forEach((member) => {
+            if (member.id == item.id) {
+              this.$set(item, "___selected", true);
+            }
+          });
+        } else {
+          this.$set(item, "___selected", false);
+        }
+      });
+      this.data = data;
+    },
+    // 分页 改变页码
+    changePage(v) {
+      this.searchForm.pageNumber = v;
+      this.getData();
+    },
+    // 分页 改变页数
+    changePageSize(v) {
+      this.searchForm.pageSize = v;
+      this.searchForm.pageNumber = 1;
+      this.getData();
+    },
+    // 搜索
+    handleSearch() {
+      this.searchForm.pageNumber = 1;
+      this.searchForm.pageSize = 10;
+      this.getData();
+    },
+    //查看详情修改
+    editPerm(val) {
+      this.descTitle = `查看用户 ${val.username}`;
+      this.descFlag = true;
+
+      this.getMemberInfo(val.id);
+    },
+    addMember() {
+      this.addFlag = true;
+      this.$refs.addMemberForm.resetFields();
+    },
+    /**
+     * 查询查看会员详情
+     */
+    getMemberInfo(id) {
+      API_Member.getMemberInfoData(id).then((res) => {
+        if (res.result) {
+          this.$set(this, "form", res.result);
+        }
+      });
+    },
+
+    //查询会员列表
+    getData() {
+      API_Member.getMemberListData(this.searchForm).then((res) => {
+        if (res.result.records) {
+          this.loading = false;
+          this.init(res.result.records);
+          this.total = res.result.total;
+        }
+      });
+    },
+    // 选中的图片
+    callbackSelected(val) {
+      this.picModelFlag = false;
+      this.form.face = val.url;
+    },
+    //添加会员提交
+    addMemberSubmit() {
+      this.addMemberForm.password = this.md5(this.addMemberForm.password);
+      this.$refs.addMemberForm.validate((valid) => {
+        if (valid) {
+          API_Member.addMember(this.addMemberForm).then((res) => {
+            if (res.result) {
+              this.$refs.addMemberForm.resetFields();
+              this.getData();
+              this.$Message.success("添加成功！");
+              this.addFlag = false;
+            }
+          });
+        }
+      });
+    },
+
+    // 选中的地址
+    selectedRegion(val) {
+      if (val.type === "select") {
+        const paths = val.data.map((item) => item.name).join(",");
+        const ids = val.data.map((item) => item.id).join(",");
+
+        this.$set(this.form, "region", paths);
+        this.$set(this.form, "regionId", ids);
+      } else {
+        this.$set(this.form, "region", val.data.addr);
+        this.$set(this.form, "regionId", val.data.addrId);
+      }
+    },
+    //查看会员
+    detail(row) {
+      this.$options.filters.customRouterPush({
+        name: "member-detail",
+        query: { id: row.id },
+      });
+    },
+    handleOpen(item) {
+      this.vipId = item.id;
+      this.vipText ='会员'
+      this.forVisible = true;
+    },
+    handleClose() {
+      this.forVisible = false;
+    },
+    //禁用会员
+    handleForbiddenSub() {
+      let params = {
+        memberIds: this.vipId,
+        disabled: false,
+      };
+      API_Member.updateMemberStatus(params).then((res) => {
+        if (res.success) {
+          this.$Message.success("禁用成功");
+          this.handleClose()
+          this.getData();
+        } else {
+          // this.$Message.error(res.message);
+        }
+      });
+    },
+
+    // 提交修改数据
+    handleSubmitModal() {
+      const {
+        nickName,
+        sex,
+        username,
+        face,
+        newPassword,
+        id,
+        regionId,
+        region,
+      } = this.form;
+      let time = new Date(this.form.birthday);
+      let birthday =
+        this.form.birthday === undefined
+          ? ""
+          : time.getFullYear() +
+            "-" +
+            (time.getMonth() + 1) +
+            "-" +
+            time.getDate();
+      let submit = {
+        regionId,
+        region,
+        nickName,
+        username,
+        sex,
+        birthday,
+        face,
+        id,
+      };
+
+      if (newPassword) {
+        submit.password = this.md5(newPassword);
+      }
+      API_Member.updateMember(submit).then((res) => {
+        if (res.result) {
+          this.$Message.success("修改成功！");
+          this.getData();
+        }
+      });
+    },
+  },
+  mounted() {
+    this.getData();
+  },
+};
+</script>
+<style lang="scss" scoped>
+/deep/ .ivu-table-wrapper {
+  width: 100%;
+}
+/deep/ .ivu-card {
+  width: 100%;
+}
+.face {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.lookImg {
+  .face {
+    margin-right: 12px;
+  }
+}
+// .tableBox{
+//   height: 260px;
+//   overflow-y: scroll;
+// }
+</style>

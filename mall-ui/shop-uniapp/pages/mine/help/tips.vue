@@ -1,0 +1,74 @@
+<template>
+  <view>
+    <u-navbar :is-back="true" :title="navTitle"> </u-navbar>
+    <div class="wrapper" :style="{ paddingTop: capsuleBottom + 'px' }">
+      <u-parse
+        :show-with-animation="true"
+        :lazy-load="true"
+        :selectable="true"
+        :html="res.content"
+        v-if="res"
+      ></u-parse>
+    </div>
+  </view>
+</template>
+<script>
+import { getArticleDetailByType } from '@/api/article';
+export default {
+  data() {
+    return {
+      res: '',
+      way: {
+        USER_AGREEMENT: {
+          title: '服务协议',
+          type: 'USER_AGREEMENT',
+        },
+        PRIVACY_POLICY: {
+          title: '隐私政策',
+          type: 'PRIVACY_POLICY',
+        },
+        LICENSE_INFORMATION: {
+          title: '证照信息',
+          type: 'LICENSE_INFORMATION',
+        },
+        ABOUT: {
+          title: '关于我们',
+          type: 'ABOUT',
+        },
+        STORE_REGISTER: {
+          title: '店铺入驻协议',
+          type: 'STORE_REGISTER',
+        },
+      },
+      navTitle: '',
+      capsuleBottom: null,
+    };
+  },
+  mounted() {},
+  onLoad(option) {
+    this.navTitle = this.way[option.type].title;
+    this.init(option);
+    uni.getSystemInfo({
+      success: () => {
+        this.capsuleBottom = uni.getMenuButtonBoundingClientRect().bottom + 8;
+      },
+    });
+  },
+
+  methods: {
+    init(option) {
+      getArticleDetailByType(this.way[option.type].type).then((res) => {
+        if (res.data.success) {
+          this.res = res.data.result;
+          console.log(res);
+        }
+      });
+    },
+  },
+};
+</script>
+<style lang="scss" scoped>
+.wrapper {
+  padding: 16rpx;
+}
+</style>

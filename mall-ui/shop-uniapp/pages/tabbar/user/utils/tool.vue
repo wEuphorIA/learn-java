@@ -1,0 +1,242 @@
+<template>
+  <view class="myMenu">
+    <view class="item" @click="navigateTo('/pages/cart/coupon/myCoupon')">
+      <view><image src="/static/icon/icon-dzyh.png" mode=""></image>优惠券</view
+      ><icon class="selectIcon"></icon>
+    </view>
+    <view class="item" @click="navigateTo('/pages/cart/coupon/couponCenter')">
+      <view
+        ><image src="/static/icon/icon-dzzx.png" mode=""></image>领劵中心</view
+      ><icon class="selectIcon"></icon>
+    </view>
+    <view class="item" @click="navigateTo('/pages/mine/address/addressManage')">
+      <view
+        ><image src="/static/icon/icon-dzgl.png" mode=""></image>地址管理</view
+      ><icon class="selectIcon"></icon>
+    </view>
+    <view class="item" @click="navigateTo('/pages/order/evaluate/myEvaluate')">
+      <view><image src="/static/mine/feedback.png" mode=""></image>我的评价</view>
+      <icon class="selectIcon"></icon>
+    </view>
+    <view class="item" @click="navigateTo('/pages/mine/set/setUp')">
+      <view><image src="/static/icon/icon-dzsz.png" mode=""></image>设置</view
+      ><icon class="selectIcon"></icon>
+    </view>
+    <view class="item" @click="navigateTo('/pages/mine/set/editionIntro')">
+      <view><image src="/static/icon/icon-dzglgy.png" mode=""></image>关于</view
+      ><icon class="selectIcon"></icon>
+    </view>
+    <!-- 常用工具 -->
+    <!-- <view class="interact-tools" style="margin-bottom: 15px">
+
+      <div class="paddingBox">
+        <view class="interact-container">
+			<view class="interact-item" @click="navigateTo('/pages/mine/address/addressManage')">
+			  <image src="/static/mine/myaddress.png" mode=""></image>
+			  <view>地址管理</view>
+			</view>
+			
+			<view class="interact-item" @click="navigateTo('/pages/mine/myTracks')">
+			  <image src="/static/mine/logistics.png" mode=""></image>
+			  <view>我的足迹</view>
+			</view>
+		
+			<view class="interact-item" @click="navigateTo('/pages/order/evaluate/myEvaluate')">
+			  <image src="/static/mine/feedback.png" mode=""></image>
+			  <view>我的评价</view>
+			</view>
+		
+		
+			<view class="interact-item" @click="navigateTo('/pages/mine/myCollect')">
+			  <image src="/static/mine/myfavorite.png" mode=""></image>
+			  <view>我的关注</view>
+			</view>
+			
+			
+			
+			<view class="interact-item" @click="navigateTo('/pages/mine/point/myPoint')">
+			  <image src="/static/mine/mypoint.png" mode=""></image>
+			  <view>我的积分</view>
+			</view>
+			
+			<view class="interact-item" @click="distribution">
+			  <image src="/static/mine/distribution.png" mode=""></image>
+			  <view>我的分销</view>
+			</view>
+			
+			
+			
+			<view class="interact-item" @click="navigateTo('/pages/order/complain/complainList')">
+			  <image src="/static/mine/shensu.png" mode=""></image>
+			  <view>我的投诉</view>
+			</view>
+				   
+			<view class="interact-item" @click="navigateTo('/pages/cart/coupon/myCoupon')">
+			  <image src="/static/mine/mycoupon.png" mode=""></image>
+			  <view>优惠券</view>
+			</view>
+			
+		
+			        
+					
+          <view class="interact-item" @click="navigateTo('/pages/mine/signIn')">
+            <image src="/static/mine/sign.png" mode=""></image>
+            <view>每日签到</view>
+          </view>
+         
+         
+       
+          
+
+      
+          <view class="interact-item" @click="navigateTo('/pages/cart/coupon/couponCenter')">
+            <image src="/static/mine/couponcenter.png" mode=""></image>
+            <view>领券中心</view>
+          </view>
+          
+         
+          
+          <view class="interact-item" @click="navigateTo('/pages/promotion/bargain/log')">
+            <image src="/static/mine/kanjia.png" mode=""></image>
+            <view>砍价记录</view>
+          </view>
+		  
+		
+		  
+          <view class="interact-item" @click="navigateTo('/pages/mine/set/feedBack')">
+            <image src="/static/mine/feedback.png" mode=""></image>
+            <view>意见反馈</view>
+          </view>
+          
+          <view class="interact-item" @click="navigateTo('/pages/mine/set/editionIntro')">
+            <image src="/static/mine/pointgift.png" mode=""></image>
+            <view>关于</view>
+          </view>
+          
+          <view class="interact-item" @click="navigateTo('/pages/passport/entry/seller/index')">
+            <image src="/static/mine/feedback.png" mode=""></image>
+            <view>店铺入驻</view>
+          </view>
+          
+          
+          <view class="interact-item" @click="navigateTo('/pages/mine/set/setUp')">
+            <image src="/static/mine/setting.png" mode=""></image>
+            <view>设置</view>
+          </view>
+        
+		  
+        </view>
+      </div>
+    </view> -->
+  </view>
+</template>
+
+<script>
+import { distribution } from '@/api/goods';
+import configs from '@/config/config';
+import storage from '@/utils/storage';
+
+export default {
+  data() {
+    return {
+      configs,
+      storage,
+    };
+  },
+
+  methods: {
+    handleNavigate(url) {
+      uni.navigateTo({
+        url,
+      });
+    },
+    navigateTo(url) {
+      const ignores = [
+        '/pages/mine/set/setUp',
+        '/pages/mine/set/editionIntro',
+        '/pages/mine/set/feedBack',
+      ];
+      if (!ignores.includes(url)) {
+        if (this.$options.filters.tipsToLogin('normal')) {
+          this.handleNavigate(url);
+        }
+      } else {
+        this.handleNavigate(url);
+      }
+    },
+
+    linkMsgDetail() {
+      uni.navigateTo({
+        url: `/pages/mine/im/list`,
+      });
+    },
+
+    distribution() {
+      distribution().then((res) => {
+        if (res.data.result) {
+          let type = res.data.result.distributionStatus;
+          if (type == 'PASS') {
+            uni.navigateTo({
+              url: '/pages/mine/distribution/home',
+            });
+          } else if (type == 'REFUSE') {
+            uni.navigateTo({
+              url: '/pages/mine/distribution/auth',
+            });
+          } else if (type == 'RETREAT') {
+            uni.showToast({
+              title: '您的分销资格已被清退。请联系管理员！',
+              duration: 2000,
+              icon: 'none',
+            });
+          } else {
+            uni.showToast({
+              title: '您的信息正在审核',
+              duration: 2000,
+              icon: 'none',
+            });
+          }
+        } else if (!res.data.success && res.data.code == 22000) {
+          uni.showToast({
+            title: '分销功能暂未开启',
+            duration: 2000,
+            icon: 'none',
+          });
+        } else {
+          // 没有资格申请 先去实名认证
+          uni.navigateTo({
+            url: '/pages/mine/distribution/auth',
+          });
+        }
+      });
+    },
+  },
+};
+</script>
+
+<style lang="scss" scoped>
+.myMenu {
+  .item {
+    height: 120rpx;
+    line-height: 120rpx;
+    border-bottom: 2rpx solid #f4f4f4;
+    padding: 0 16rpx 0 30rpx;
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    image {
+      width: 48rpx;
+      height: 48rpx;
+      margin-right: 20rpx;
+    }
+    view {
+      flex: 1;
+      display: flex;
+      align-items: center;
+    }
+    &:last-child {
+      border: 0 none;
+    }
+  }
+}
+</style>

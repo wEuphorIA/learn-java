@@ -1,0 +1,76 @@
+
+
+.ant-layout,
+.ant-layout * {
+  box-sizing: border-box;
+}
+
+.base-info {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 12px;
+  height: 250px;
+}
+
+.ant-col-md-6 {
+  display: block;
+  box-sizing: border-box;
+  width: 25%;
+  float: left;
+}
+.info-2 {
+  float: left;
+}
+
+.ant-row {
+  position: relative;
+  height: auto;
+  margin-right: 0;
+  margin-left: 0;
+  zoom: 1;
+  display: block;
+  box-sizing: border-box;
+}
+
+
+.ant-layout * {
+  box-sizing: border-box;
+}
+.textR {
+  padding-left: 15px;
+  line-height: 20px;
+  color: #fff;
+  .name {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    padding-bottom: 2px;
+  }
+  .time {
+    font-size: 12px;
+    padding-top: 6px;
+    line-height: 18px;
+    opacity: 0.75;
+  }
+}
+
+
+
+.pointsTitle {
+  padding: 0 0 20px;
+  display: flex;
+  line-height: 20px;
+  color: var(--color-bk1);
+  text-align: center;
+  .item{
+    display: flex;
+    align-items: center;
+    padding-right: 60px;
+  }
+  .points-top-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: #FF7400;
+    line-height: 22px;
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "4568180",
+  "name": "电商",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "40566511",
+      "name": "icon-menu-order",
+      "font_class": "menu-order",
+      "unicode": "e65b",
+      "unicode_decimal": 58971
+    },
+    {
+      "icon_id": "40566510",
+      "name": "icon-menu-settings",
+      "font_class": "menu-settings",
+      "unicode": "e65c",
+      "unicode_decimal": 58972
+    },
+    {
+      "icon_id": "40566509",
+      "name": "icon-menu-promotion",
+      "font_class": "menu-promotion",
+      "unicode": "e65d",
+      "unicode_decimal": 58973
+    },
+    {
+      "icon_id": "40566508",
+      "name": "icon-menu-goods",
+      "font_class": "menu-goods",
+      "unicode": "e65e",
+      "unicode_decimal": 58974
+    },
+    {
+      "icon_id": "40566507",
+      "name": "icon-menu-home",
+      "font_class": "menu-home",
+      "unicode": "e65f",
+      "unicode_decimal": 58975
+    }
+  ]
+}

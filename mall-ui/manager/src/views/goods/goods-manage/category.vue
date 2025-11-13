@@ -1,0 +1,638 @@
+<template>
+  <div class="contentBox goodBox">
+    <div class="boxBg boxPad">
+      <div class="tableBox">
+        <div class="export">
+          <Button @click="addParent" icon="md-add" type="primary"
+            >添加一级分类</Button
+          >
+        </div>
+        <Table
+          update-show-children
+          border
+          :load-data="handleLoadData"
+          row-key="id"
+          :loading="loading"
+          :data="tableData"
+          :columns="columns"
+        >
+          <template slot="action" slot-scope="scope">
+            <Dropdown v-show="scope.row.level == 2" trigger="click">
+              <Button size="small" class="mr_20">
+                绑定
+                <Icon type="ios-arrow-down"></Icon>
+              </Button>
+              <DropdownMenu slot="list">
+                <DropdownItem @click.native="brandOperation(scope.row)"
+                  >编辑绑定品牌</DropdownItem
+                >
+                <DropdownItem @click.native="specOperation(scope.row)"
+                  >编辑绑定规格</DropdownItem
+                >
+                <DropdownItem @click.native="parameterOperation(scope.row)"
+                  >编辑绑定参数</DropdownItem
+                >
+              </DropdownMenu>
+            </Dropdown>
+            <Dropdown trigger="click">
+              <Button size="small">
+                操作
+                <Icon type="ios-arrow-down"></Icon>
+              </Button>
+              <DropdownMenu slot="list">
+                <DropdownItem @click.native="edit(scope.row)"
+                  >编辑</DropdownItem
+                >
+                <DropdownItem
+                  v-if="scope.row.deleteFlag == 1"
+                  @click.native="handleStart(scope.row)"
+                  >启用</DropdownItem
+                >
+                <DropdownItem
+                  v-if="scope.row.deleteFlag == 0"
+                  @click.native="handleEnableOpen(scope.row)"
+                  >禁用</DropdownItem
+                >
+                <DropdownItem @click.native="handleOpen(scope.row)"
+                  >删除</DropdownItem
+                >
+              </DropdownMenu>
+            </Dropdown>
+            <Button
+              v-show="scope.row.level != 2"
+              type="primary"
+              @click="addChildren(scope.row)"
+              size="small"
+              icon="md-add"
+              class="ml_20"
+              style="margin-right: 5px"
+              >添加子分类
+            </Button>
+          </template>
+
+          <template slot="commissionRate" slot-scope="scope">
+            <priceColorScheme
+              v-if="scope.row.commissionRate > 0"
+              unit=""
+              :color="$mainColor"
+              :value="scope.row.commissionRate"
+              >%</priceColorScheme
+            >
+            <priceColorScheme v-else :value="scope.row.commissionRate" unit=""
+              >%</priceColorScheme
+            >
+            <!-- {{ scope.row.commissionRate }}% -->
+          </template>
+
+          <template slot="deleteFlag" slot-scope="{ row }">
+            <span
+              :class="{ ml_10: row.deleteFlag }"
+              :color="row.deleteFlag == false ? 'success' : 'error'"
+            >
+              {{ row.deleteFlag == false ? "正常启用" : "禁用" }}</span
+            >
+          </template>
+        </Table>
+      </div>
+      <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false">
+        <div class="dialogCenter">
+          <Form
+            ref="form"
+            :model="formAdd"
+            :label-width="110"
+            :rules="formValidate"
+          >
+            <div v-if="showParent">
+              <FormItem label="上级分类：" prop="parentId">
+                {{ parentTitle }}
+                <Input
+                  v-model="formAdd.parentId"
+                  clearable
+                  style="width: 100%; display: none"
+                />
+              </FormItem>
+            </div>
+            <FormItem label="层级：" prop="level" style="display: none">
+              <Input v-model="formAdd.level" clearable style="width: 100%" />
+            </FormItem>
+            <FormItem label="分类名称：" prop="name">
+              <Input v-model="formAdd.name" clearable class="wt-400" />
+            </FormItem>
+            <FormItem
+              label="分类图标："
+              prop="image"
+              v-if="formAdd.level !== 1"
+            >
+              <upload-pic-input
+                v-model="formAdd.image"
+                style="width: 100%"
+              ></upload-pic-input>
+            </FormItem>
+            <FormItem label="排序值：" prop="sortOrder" style="width: 345px">
+              <InputNumber v-model="formAdd.sortOrder"></InputNumber>
+            </FormItem>
+            <FormItem
+              label="佣金比例(%)："
+              prop="commissionRate"
+              style="width: 345px"
+            >
+              <InputNumber
+                :max="100"
+                :min="0"
+                v-model="formAdd.commissionRate"
+              ></InputNumber>
+            </FormItem>
+            <FormItem label="是否启用：" prop="deleteFlag">
+              <RadioGroup v-model="formAdd.deleteFlag">
+                <Radio label="false">启用</Radio>
+                <Radio label="true">禁用</Radio>
+              </RadioGroup>
+            </FormItem>
+          </Form>
+        </div>
+        <div slot="footer">
+          <Button type="text" @click="modalVisible = false">取消</Button>
+          <Button type="primary" :loading="submitLoading" @click="Submit"
+            >提交</Button
+          >
+        </div>
+      </Modal>
+
+      <Modal
+        :title="modalBrandTitle"
+        v-model="modalBrandVisible"
+        :mask-closable="false"
+      >
+        <div class="dialogCenter">
+          <Form ref="brandForm" :model="brandForm" :label-width="100">
+            <FormItem label="绑定品牌：">
+              <Select v-model="brandForm.categoryBrands" filterable multiple  class="wt-400">
+                <Option
+                  v-for="item in brandWay"
+                  :value="item.id"
+                  :key="item.id"
+                  >{{ item.name }}</Option
+                >
+              </Select>
+            </FormItem>
+          </Form>
+        </div>
+        <div slot="footer">
+          <Button type="text" @click="modalBrandVisible = false">取消</Button>
+          <Button
+            type="primary"
+            :loading="submitLoading"
+            @click="saveCategoryBrand"
+            >提交</Button
+          >
+        </div>
+      </Modal>
+
+      <Modal
+        :title="modalSpecTitle"
+        v-model="modalSpecVisible"
+        :mask-closable="false"
+        :width="500"
+      >
+        <div class="dialogCenter">
+          <Form ref="specForm" :model="specForm" :label-width="100">
+            <FormItem label="绑定规格：">
+              <Select v-model="specForm.categorySpecs" multiple  class="wt-400">
+                <Option
+                  v-for="item in specifications"
+                  :value="item.id"
+                  :key="item.id"
+                  :label="item.specName"
+                >
+                </Option>
+              </Select>
+            </FormItem>
+          </Form>
+        </div>
+        <div slot="footer">
+          <Button type="text" @click="modalSpecVisible = false">取消</Button>
+          <Button
+            type="primary"
+            :loading="submitLoading"
+            @click="saveCategorySpec"
+            >提交</Button
+          >
+        </div>
+      </Modal>
+      <!-- 禁用 -->
+      <Forbidden
+        :visible="forVisible"
+        :text="goodsText"
+        @handleClose="handleEnableClose"
+        @handleSubmit="handleEnableSub"
+      ></Forbidden>
+      <!-- 删除弹层 -->
+      <OperateDialog
+        :visible="delectVisible"
+        :text="goodsText"
+        @handleSubmit="remove"
+        @handleClose="handleClose"
+      ></OperateDialog>
+      <!-- end -->
+    </div>
+  </div>
+</template>
+<script>
+import {
+  delCategory,
+  disableCategory,
+  getBrandListData,
+  getCategoryBrandListData,
+  getCategorySpecListData,
+  getCategoryTree,
+  getSpecificationList,
+  insertCategory,
+  saveCategoryBrand,
+  saveCategorySpec,
+  updateCategory,
+} from "@/api/goods";
+// 删除弹窗
+import OperateDialog from "@/components/OperateDialog/index.vue";
+// 禁用弹窗
+import Forbidden from "@/components/Forbidden/index.vue";
+import uploadPicInput from "@/components/lili/upload-pic-input";
+import { regular } from "@/utils";
+export default {
+  name: "goods-category",
+  components: {
+    uploadPicInput,
+    OperateDialog,
+    Forbidden,
+  },
+  data() {
+    return {
+      recordLevel: [], // 记录当前层级
+      submitLoading: false, //加载状态
+      categoryList: [], // 分类列表
+      loading: false, // 加载状态
+      brands: [], //品牌集合
+      specifications: [], //规格集合
+      categoryId: "", // 分类id
+      categorySpecs: [], //已经选择的规格
+      modalType: 0, // 添加或编辑标识
+      modalVisible: false, // 添加或编辑显示
+      modalBrandVisible: false, //品牌关联编辑显示
+      modalSpecVisible: false, //品牌关联编辑显示
+      modalTitle: "", // 添加或编辑标题
+      showParent: false, // 是否展示上级菜单
+      parentTitle: "", // 父级菜单名称
+      modalBrandTitle: "", // 品牌弹窗标题
+      modalSpecTitle: "", // 规格弹窗标题
+      formAdd: {
+        // 添加或编辑表单对象初始化数据
+        parentId: "",
+        name: "",
+        image: "",
+        sortOrder: 0,
+        deleteFlag: null,
+        commissionRate: 0,
+        level: 0,
+      },
+      brandForm: {
+        categoryBrands: [],
+      },
+      brandWay: "", //请求绑定品牌的信息
+      specForm: {}, // 规格数据
+      // 表单验证规则
+      formValidate: {
+        commissionRate: [regular.REQUIRED, regular.INTEGER],
+        name: [regular.REQUIRED, regular.VARCHAR20],
+        sortOrder: [regular.REQUIRED, regular.INTEGER],
+      },
+      columns: [
+        {
+          // type: 'expand',
+          title: "分类名称",
+          key: "name",
+          tree: true,
+        },
+        {
+          title: "状态",
+          slot: "deleteFlag",
+        },
+        {
+          title: "佣金",
+          key: "commissionRate",
+
+          slot: "commissionRate",
+        },
+        {
+          title: "操作",
+          key: "action",
+          width: 232,
+          slot: "action",
+        },
+      ],
+      tableData: [], // 表格数据
+      checkedCategoryChildren: "", //选中的分类子级
+      forVisible: false,
+      delectVisible: false,
+      goodsId: "",
+      goodsText: "",
+      enableOperations: null,
+    };
+  },
+  methods: {
+    // 初始化数据
+    init() {
+      this.getAllList(0);
+      this.getBrandList();
+      this.getSpecList();
+    },
+    //获取所有品牌
+    getBrandList() {
+      getBrandListData().then((res) => {
+        this.brandWay = res.result;
+      });
+    },
+    //获取所有规格
+    getSpecList() {
+      getSpecificationList().then((res) => {
+        if (res.result.length != 0) {
+          this.specifications = res.result;
+        }
+      });
+    },
+    //弹出品牌关联框
+    brandOperation(v) {
+      getCategoryBrandListData(v.id).then((res) => {
+        this.categoryId = v.id;
+        this.modalBrandTitle = "品牌关联";
+        this.brandForm.categoryBrands = res.result.map((item) => item.id);
+        this.modalBrandVisible = true;
+      });
+    },
+    //弹出规格关联框
+    specOperation(v) {
+      // this.modalSpecTitle = "规格关联";
+      // this.modalSpecVisible = true;
+      getCategorySpecListData(v.id).then((res) => {
+        this.categoryId = v.id;
+        this.modalSpecTitle = "规格关联";
+        if (res.result) {
+          this.specForm.categorySpecs = res.result.map((item) => item.id);
+        }
+
+        this.modalSpecVisible = true;
+      });
+    },
+    //保存分类规格绑定
+    saveCategorySpec() {
+      saveCategorySpec(this.categoryId, this.specForm).then((res) => {
+        this.submitLoading = false;
+        if (res.success) {
+          this.$Message.success("操作成功");
+          this.modalSpecVisible = false;
+        }
+      });
+    },
+    //保存分类品牌绑定
+    saveCategoryBrand() {
+      saveCategoryBrand(this.categoryId, this.brandForm).then((res) => {
+        this.submitLoading = false;
+        if (res.success) {
+          this.$Message.success("操作成功");
+          this.modalBrandVisible = false;
+        }
+      });
+    },
+    // 编辑绑定参数
+    parameterOperation(v) {
+      this.$router.push({ name: "parameter", query: { id: v.id } });
+    },
+    // 添加子分类
+    addChildren(v) {
+      this.modalType = 0;
+      this.modalTitle = "添加子分类";
+      this.parentTitle = v.name;
+      this.formAdd.level = eval(v.level + "+1");
+      this.formAdd.commissionRate = v.commissionRate;
+      this.showParent = true;
+      delete this.formAdd.id;
+      this.formAdd.parentId = v.id;
+      this.modalVisible = true;
+    },
+    // 编辑分类
+    edit(v) {
+      this.modalType = 1;
+      this.modalTitle = "编辑";
+      this.formAdd.id = v.id;
+      this.formAdd.name = v.name;
+      this.formAdd.level = v.level;
+      this.formAdd.parentId = v.parentId;
+      this.formAdd.sortOrder = v.sortOrder;
+      this.formAdd.commissionRate = v.commissionRate;
+      this.formAdd.deleteFlag = String(v.deleteFlag);
+      this.formAdd.image = v.image;
+      this.showParent = false;
+      this.modalVisible = true;
+    },
+    // 添加一级分类
+    addParent() {
+      this.modalType = 0;
+      this.modalTitle = "添加一级分类";
+      this.parentTitle = "顶级分类";
+      this.showParent = true;
+      this.$refs.form.resetFields();
+      delete this.formAdd.id;
+      this.formAdd.parentId = 0;
+      this.modalVisible = true;
+    },
+    // 提交
+    Submit() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.submitLoading = true;
+          if (this.modalType === 0) {
+            // 添加 避免编辑后传入id等数据 记得删除
+            delete this.formAdd.id;
+            insertCategory(this.formAdd).then((res) => {
+              this.submitLoading = false;
+              if (res.success) {
+                this.$Message.success("添加成功");
+                this.getAllList();
+                this.modalVisible = false;
+                this.$refs.form.resetFields();
+              }
+            });
+          } else {
+            // 编辑
+            updateCategory(this.formAdd).then((res) => {
+              this.submitLoading = false;
+              if (res.success) {
+                this.$Message.success("修改成功");
+                this.getAllList();
+                this.modalVisible = false;
+                this.$refs.form.resetFields();
+              }
+            });
+          }
+        }
+      });
+    },
+    handleOpen(item) {
+      this.goodsId = item.id;
+      this.goodsText = item.reason;
+      this.delectVisible = true;
+    },
+    handleClose() {
+      this.delectVisible = false;
+    },
+    // 删除分类
+    remove(v) {
+      this.$Modal.confirm({
+        title: "确认删除",
+        content: "您确认要删除 " + v.name + " ?",
+        loading: true,
+        onOk: () => {
+          // 删除
+          delCategory(v.id).then((res) => {
+            this.$Modal.remove();
+            if (res.success) {
+              this.$Message.success("操作成功");
+              this.getAllList();
+            }
+          });
+        },
+      });
+    },
+
+    // 异步手动加载分类名称
+    handleLoadData(item, callback) {
+      this.recordLevel[item.level] = item.id;
+      if (item.level == 0) {
+        let categoryList = JSON.parse(JSON.stringify(this.categoryList));
+        categoryList.forEach((val) => {
+          if (val.id == item.id) {
+            val.children.map((child) => {
+              child._loading = false;
+              child.children = [];
+            });
+            // 模拟加载
+            setTimeout(() => {
+              callback(val.children);
+            }, 100);
+          }
+        });
+      } else {
+        this.deepCategoryChildren(item.id, this.categoryList);
+        setTimeout(() => {
+          callback(this.checkedCategoryChildren);
+        }, 100);
+      }
+    },
+
+    // 通过递归children来实现手动加载数据
+    deepCategoryChildren(id, list) {
+      if (id != "0" && list.length != 0) {
+        for (let i = 0; i < list.length; i++) {
+          let item = list[i];
+          if (item.id == id) {
+            this.checkedCategoryChildren = item.children;
+            return;
+          } else {
+            this.deepCategoryChildren(id, item.children);
+          }
+        }
+      }
+    },
+    // 获取分类数据
+    getAllList() {
+      this.loading = true;
+      getCategoryTree().then((res) => {
+        this.loading = false;
+        if (res.success) {
+          localStorage.setItem("category", JSON.stringify(res.result));
+          this.categoryList = JSON.parse(JSON.stringify(res.result));
+          this.tableData = res.result.map((item) => {
+            if (this.recordLevel[0] && item.id === this.recordLevel[0]) {
+              item._showChildren = true;
+              // 继续判断第二层
+              if (this.recordLevel[1] && item.children) {
+                item.children.map((child) => {
+                  if (this.recordLevel[1] && child.id === this.recordLevel[1]) {
+                    child._showChildren = true;
+                  }
+                });
+              }
+            } else {
+              if (item.children.length !== 0) {
+                item.children = [];
+                item._loading = false;
+              }
+            }
+            return item;
+          });
+        }
+      });
+    },
+    handleEnableOpen(item) {
+      this.goodsId = item.id;
+      this.goodsText = "商品";
+      this.forVisible = true;
+      this.enableOperations = true;
+    },
+    handleEnableClose() {
+      this.forVisible = false;
+    },
+    // 启用
+    handleStart(item) {
+      this.goodsId = item.id;
+      this.enableOperations = 0;
+      this.handleEnableSub();
+    },
+    // 启用分类
+    handleEnableSub() {
+      disableCategory(this.goodsId, {
+        enableOperations: this.enableOperations,
+      }).then((res) => {
+        this.$Modal.remove();
+        if (res.success) {
+          this.$Message.success("操作成功");
+          this.handleEnableClose();
+          this.getAllList(0);
+        }
+      });
+    },
+    // // 禁用分类
+    // disable(v) {
+    //   this.$Modal.confirm({
+    //     title: "确认禁用",
+    //     content: "您是否要禁用当前分类 " + v.name + " 及其子分类?",
+    //     loading: true,
+    //     okText: "是",
+    //     cancelText: "否",
+    //     onOk: () => {
+    //       disableCategory(v.id, { enableOperations: true }).then((res) => {
+    //         this.$Modal.remove();
+    //         if (res.success) {
+    //           this.$Message.success("操作成功");
+    //           this.getAllList(0);
+    //         }
+    //       });
+    //     },
+    //     onCancel: () => {
+    //       this.getAllList(0);
+    //     },
+    //   });
+    // },
+  },
+  mounted() {
+    this.init();
+  },
+};
+</script>
+<style lang="scss" scoped>
+/deep/ .ivu-table-wrapper {
+  overflow: auto;
+}
+.table {
+  min-height: 100vh;
+  height: auto;
+}
+</style>

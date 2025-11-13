@@ -1,0 +1,49 @@
+/deep/ .ivu-input{
+  width: 200px !important;
+}
+
+.label-btns{
+  margin-left: 150px;
+}
+
+.desc{
+  color: #999;
+  font-size: 12px;
+}
+
+.ivu-input-wrapper {
+  width: 150px;
+}
+
+/deep/ .ivu-form-item-content {
+  margin-left: 0 !important;
+  display: flex;
+}
+.payOpenBox{
+  .ivu-card{
+    border: 1px solid #e8e8e8;
+    .ivu-divider-with-text-left{
+      margin-bottom: 0;
+      text-align: left;
+      &::after,&::before{
+        display: none;
+      }
+      :deep(.ivu-divider-inner-text){
+        padding: 0;
+      }
+    }
+    .pay-list{
+      .ivu-checkbox-group{
+        display: flex;
+        flex-wrap: wrap;
+        .ivu-checkbox-wrapper{
+          width:calc(50% - 8px);
+          padding: 5px 0;
+        }
+      }
+    }
+    .icon-item{
+      padding: 20px;
+    }
+  }
+}

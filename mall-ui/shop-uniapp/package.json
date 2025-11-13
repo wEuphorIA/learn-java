@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "vue-qr": "^2.3.0"
+  }
+}

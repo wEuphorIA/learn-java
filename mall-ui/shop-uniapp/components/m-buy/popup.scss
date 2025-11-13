@@ -1,0 +1,40 @@
+.view-class-title {
+    font-size: 26rpx;
+    color: $font-color-dark;
+
+    font-weight: 600;
+    height: 76rpx;
+    line-height: 36rpx;
+    padding-bottom: 22rpx;
+    padding: 18rpx 0 22rpx;
+}
+.confirmBtn {
+    width: 90%;
+}
+.confirmBtn,
+.box-btn {
+    line-height: 80rpx;
+    height: 80rpx;
+    
+    background: $main-color;
+    color: #fff;
+    border-radius: 200px;
+    text-align: center;
+    margin: 5rpx auto;
+}
+
+.btns {
+    display: flex;
+    width: 100%;
+    padding: 0 20rpx 30rpx;
+
+    margin: 0 auto;
+}
+.goods-price-bigshow {
+    font-size: 48rpx;
+    font-weight: bold;
+}
+.box-btn {
+    flex: 1;
+    margin: 0 10rpx;
+}

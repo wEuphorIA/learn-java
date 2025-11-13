@@ -1,0 +1,78 @@
+page {
+  background: $page-color-base;
+}
+.empty {
+  margin-top: 200rpx !important;
+}
+.alifont {
+  display: inline-block;
+}
+
+.region {
+  span {
+    margin: 0 4rpx !important;
+  }
+}
+.address {
+  .default {
+    border: 1px solid #ff6262;
+    color: #ff6262;
+    font-size: 22rpx;
+    border-radius: 6rpx;
+    align-self: center;
+    padding: 2rpx 20rpx;
+  }
+  .list {
+    .item {
+      margin-top: 40rpx;
+      margin: 40rpx 20rpx 0;
+      font-size: $font-base;
+      color: $font-color-baseSub;
+      padding: 36rpx 30rpx 28rpx;
+      border-radius: 20rpx;
+      line-height: 40rpx;
+      .basic {
+        border-bottom: 1px solid $bg-color-sub;
+        padding-bottom: 30rpx;
+        .nameText {
+          color: $font-color-dark;
+          font-size: 32rpx;
+          padding-right: 12rpx;
+        }
+
+        .adressText {
+          color: $font-color-light;
+          font-size: $font-sm;
+
+          margin-top: 20rpx;
+
+          text:nth-child(2) {
+            margin: 0;
+          }
+
+          view {
+            font-size: 28rpx;
+          }
+        }
+      }
+
+      .edit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        vertical-align: middle;
+        height: 64rpx;
+        line-height: 64rpx;
+        padding-top: 24rpx;
+        
+      }
+      .addressSet {
+        display: flex;
+        & > view {
+          padding-left: 14rpx;
+        }
+      }
+    }
+  }
+  
+}

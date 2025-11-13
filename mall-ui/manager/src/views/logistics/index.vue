@@ -1,0 +1,327 @@
+<template>
+  <div class="contentBox">
+    <div class="boxBg boxPad">
+      <Card>
+        <div class="export">
+          <Button @click="add" type="primary">添加</Button>
+        </div>
+        <div class="tableBox">
+          <Table
+            :loading="loading"
+            border
+            :columns="columns"
+            :data="data"
+            ref="table"
+          >
+            <!-- 页面展示 -->
+            <template slot="disableSlot" slot-scope="{ row }">
+              <i-switch
+                size="large"
+                :true-value="true"
+                :false-value="false"
+                :value="row.switch"
+                @on-change="changeSwitch(row)"
+              >
+                <span slot="open">开启</span>
+                <span slot="close">禁用</span>
+              </i-switch>
+            </template>
+          </Table>
+          <Row type="flex" justify="end" class="mt_20" v-if="total > 10">
+            <Page
+              :current="searchForm.pageNumber"
+              :total="total"
+              :page-size="searchForm.pageSize"
+              @on-change="changePage"
+              @on-page-size-change="changePageSize"
+              :page-size-opts="[10, 20, 50]"
+              show-sizer
+            ></Page>
+          </Row>
+        </div>
+      </Card>
+      <Modal :title="modalTitle" v-model="modalVisible" :mask-closable="false">
+        <Form ref="form" :model="form" :label-width="120" :rules="formValidate">
+          <FormItem label="物流公司名称：" prop="name">
+            <Input v-model="form.name" clearable style="width: 100%" />
+          </FormItem>
+          <FormItem label="物流公司代码：" prop="code">
+            <Input v-model="form.code" clearable style="width: 100%" />
+          </FormItem>
+          <FormItem label="支持电子面单：">
+            <i-switch v-model="form.standBy" size="large">
+              <span slot="open">开</span>
+              <span slot="close">关</span>
+            </i-switch>
+          </FormItem>
+
+          <FormItem label="禁用状态：" prop="disabled">
+            <i-switch
+              true-value="OPEN"
+              false-value="CLOSE"
+              v-model="form.disabled"
+              size="large"
+            >
+              <span slot="open">开启</span>
+              <span slot="close">禁用</span>
+            </i-switch>
+          </FormItem>
+        </Form>
+        <div slot="footer">
+          <Button type="text" @click="modalVisible = false">取消</Button>
+          <Button type="primary" :loading="submitLoading" @click="handleSubmit"
+            >提交
+          </Button>
+        </div>
+      </Modal>
+    </div>
+    <!-- 删除弹层 -->
+    <OperateDialog
+      :visible="delectVisible"
+      :text="logText"
+      @handleSubmit="remove"
+      @handleClose="handleClose"
+    ></OperateDialog>
+    <!-- end -->
+  </div>
+</template>
+
+<script>
+// 删除弹窗
+import OperateDialog from "@/components/OperateDialog/index.vue";
+import {
+  getLogisticsPage,
+  updateLogistics,
+  addLogistics,
+  delLogistics,
+} from "@/api/logistics";
+
+export default {
+  name: "logistics",
+  components: {
+    OperateDialog,
+  },
+  data() {
+    return {
+      loading: true, // 表单加载状态
+      modalVisible: false, // 添加或编辑显示
+      modalTitle: "", // 添加或编辑标题
+      searchForm: {
+        // 搜索框初始化对象
+        pageNumber: 1, // 当前页数
+        pageSize: 20, // 页面大小
+        sort: "createTime", // 默认排序字段
+        order: "desc", // 默认排序方式
+        name: "",
+      },
+      form: {
+        // 添加或编辑表单对象初始化数据
+        name: "",
+        disabled: "CLOSE",
+      },
+      // 表单验证规则
+      formValidate: {
+        name: [
+          {
+            required: true,
+            message: "请输入物流公司名称",
+            trigger: "blur",
+          },
+        ],
+      },
+      submitLoading: false, // 添加或编辑提交状态
+      columns: [
+        {
+          title: "物流公司名称",
+          key: "name",
+          minWidth: 120,
+          sortable: false,
+        },
+        {
+          title: "物流公司编码",
+          key: "code",
+          minWidth: 120,
+          sortable: false,
+        },
+        {
+          title: "状态",
+          key: "disabled",
+          width: 150,
+          slot: "disableSlot",
+        },
+        {
+          title: "创建时间",
+          key: "createTime",
+          width: 180,
+          sortable: false,
+        },
+        {
+          title: "操作",
+          key: "action",
+          align: "center",
+          width: 120,
+          render: (h, params) => {
+            return h("div", [
+              h(
+                "span",
+                {
+                  class: "fontCol",
+                  on: {
+                    click: () => {
+                      this.detail(params.row);
+                    },
+                  },
+                },
+                "修改"
+              ),
+              h(
+                "span",
+                {
+                  class: "fontCol",
+                  on: {
+                    click: () => {
+                      this.handleOpen(params.row);
+                    },
+                  },
+                },
+                "删除"
+              ),
+            ]);
+          },
+        },
+      ],
+      data: [], // 表单数据
+      total: 0, // 表单数据总数
+      delectVisible: false,
+      logId: "",
+      logText: "",
+    };
+  },
+  methods: {
+    // 初始化
+    init() {
+      this.getDataList();
+    },
+    // 分页 改变页码
+    changePage(v) {
+      this.searchForm.pageNumber = v;
+      this.getDataList();
+    },
+    // 分页 改变页数
+    changePageSize(v) {
+      this.searchForm.pageSize = v;
+      this.getDataList();
+    },
+    // 获取列表
+    getDataList() {
+      this.loading = true;
+
+      getLogisticsPage(this.searchForm).then((res) => {
+        this.loading = false;
+        if (res.success) {
+          const data = res.result.records;
+          data.forEach((e) => {
+            e.switch = e.disabled === "OPEN" ? true : false;
+            e.standBy = e.standBy == "null" || !e.standBy ? false : true;
+          });
+          this.data = data;
+          console.log(data);
+          this.total = res.result.total;
+        }
+      });
+      this.total = this.data.length;
+      this.loading = false;
+    },
+    // switch 切换状态
+    changeSwitch(v) {
+      this.form.name = v.name;
+      this.form.code = v.code;
+      this.form.standBy = v.standBy;
+
+      this.form.disabled = v.disabled === "CLOSE" ? "OPEN" : "CLOSE";
+      updateLogistics(v.id, this.form).then((res) => {
+        if (res.success) {
+          this.$Message.success("操作成功");
+          this.getDataList();
+        }
+      });
+    },
+    // 确认提交
+    handleSubmit() {
+      this.$refs.form.validate((valid) => {
+        if (valid) {
+          this.submitLoading = true;
+
+          if (this.modalTitle == "添加") {
+            // 添加 避免编辑后传入id等数据 记得删除
+            delete this.form.id;
+
+            addLogistics(this.form).then((res) => {
+              this.submitLoading = false;
+              if (res.success) {
+                this.$Message.success("操作成功");
+                this.getDataList();
+                this.modalVisible = false;
+              }
+            });
+          } else {
+            // 编辑
+            updateLogistics(this.id, this.form).then((res) => {
+              this.submitLoading = false;
+              if (res.success) {
+                this.$Message.success("操作成功");
+                this.getDataList();
+                this.modalVisible = false;
+              }
+            });
+          }
+        }
+      });
+    },
+    // 添加信息
+    add() {
+      this.modalTitle = "添加";
+      this.form = {};
+      this.$refs.form.resetFields();
+
+      this.modalVisible = true;
+    },
+    // 编辑
+    detail(v) {
+      this.id = v.id;
+      this.modalTitle = "修改";
+      this.modalVisible = true;
+
+      this.form.name = v.name;
+      this.form.code = v.code;
+      console.log(v);
+      this.form.standBy = v.standBy;
+
+      this.form.disabled = v.disabled;
+    },
+    handleOpen(item) {
+      this.logId = item.id;
+      this.logText = item.name;
+      this.delectVisible = true;
+    },
+    handleClose() {
+      this.delectVisible = false;
+    },
+    // 删除物流公司
+    remove(v) {
+      // 删除
+      delLogistics(this.logId).then((res) => {
+        this.$Modal.remove();
+        if (res.success) {
+          this.$Message.success("操作成功");
+          this.handleClose()
+          this.getDataList();
+        }
+      });
+    },
+  },
+  mounted() {
+    this.init();
+  },
+};
+</script>

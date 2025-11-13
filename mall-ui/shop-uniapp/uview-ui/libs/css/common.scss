@@ -1,0 +1,483 @@
+.u-relative,
+.u-rela {
+  position: relative;
+}
+
+.u-absolute,
+.u-abso {
+  position: absolute;
+}
+
+// nvue不能用标签命名样式，不能放在微信组件中，否则微信开发工具会报警告，无法使用标签名当做选择器
+/* #ifndef APP-NVUE */
+image {
+  display: inline-block;
+}
+page {
+  background-color: #fff !important;
+}
+.imgs {
+  .u-image__image {
+    border-radius: 12px !important;
+  }
+}
+.top-img {
+  .u-image {
+    width: auto !important;
+    height: 100% !important;
+  }
+}
+.t-item {
+  .u-image__image {
+    border-radius: 12rpx !important;
+  }
+}
+.u-checkbox__label {
+  color: $font-color-dark !important;
+}
+.u-icon__icon {
+  // color: $font-color-baseSub !important;
+}
+// 在weex，也即nvue中，所有元素默认为border-box
+view,
+text {
+  box-sizing: border-box;
+}
+/* #endif */
+
+.u-font-xs {
+  font-size: 22rpx;
+}
+
+.u-font-sm {
+  font-size: 26rpx;
+}
+
+.u-font-md {
+  font-size: 28rpx;
+}
+
+.u-font-lg {
+  font-size: 30rpx;
+}
+
+.u-font-xl {
+  font-size: 34rpx;
+}
+
+.u-flex {
+  /* #ifndef APP-NVUE */
+  display: flex;
+  /* #endif */
+  flex-direction: row;
+  align-items: center;
+}
+
+.u-flex-wrap {
+  flex-wrap: wrap;
+}
+
+.u-flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.u-col-center {
+  align-items: center;
+}
+
+.u-col-top {
+  align-items: flex-start;
+}
+
+.u-col-bottom {
+  align-items: flex-end;
+}
+
+.u-row-center {
+  justify-content: center;
+}
+
+.u-row-left {
+  justify-content: flex-start;
+}
+
+.u-row-right {
+  justify-content: flex-end;
+}
+
+.u-row-between {
+  justify-content: space-between;
+}
+
+.u-row-around {
+  justify-content: space-around;
+}
+
+.u-text-left {
+  text-align: left;
+}
+
+.u-text-center {
+  text-align: center;
+}
+
+.u-text-right {
+  text-align: right;
+}
+
+.u-flex-col {
+  /* #ifndef APP-NVUE */
+  display: flex;
+  /* #endif */
+  flex-direction: column;
+}
+.searchMain {
+  width: 100%;
+  padding: 0 25rpx 16rpx;
+  position: fixed;
+  top: 0;
+  padding-top: 100rpx;
+  background: $bg-color-sub;
+  .title {
+    font-size: 36rpx;
+    line-height: 60rpx;
+    color: #333;
+    padding-bottom: 14rpx;
+    text-align: center;
+  }
+  .u-content,
+  .u-input {
+    background: $font-color-white !important;
+  }
+}
+.navbar {
+  display: flex;
+  padding: 10px 5px 0 16rpx;
+  background: #fff;
+  box-shadow: none;
+  position: relative;
+  z-index: 10;
+
+  .nav-item {
+    // flex: 1;
+    padding: 0 20rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 28rpx;
+    color: $font-color-dark;
+    position: relative;
+    height: 40px;
+    // line-height: 40px;
+    .current,
+    &.current {
+      color: $main-color;
+      &::after {
+        display: none;
+      }
+    }
+  }
+}
+.myFootBtn {
+  margin: 40rpx 30rpx 0;
+  .bt {
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    font-size: 30rpx;
+    background: $font-color-white;
+    border-radius: 46rpx;
+    border: 0 none;
+    box-shadow: none;
+  }
+}
+.nodata {
+  flex-direction: column;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100rpx;
+
+  > div {
+    font-size: 26rpx;
+    color: $font-color-dark;
+  }
+}
+.empty {
+  color: $font-color-dark;
+  line-height: 36rpx;
+  font-size: 26rpx;
+}
+.emptyImg {
+  background: url('/static/nodata.png') no-repeat;
+  background-size: contain;
+  width: 320rpx;
+  height: 288rpx;
+  margin: 0 auto 40rpx;
+}
+.boxBg {
+  background-color: $font-color-white;
+  padding: 0 30rpx;
+}
+.boxRadius {
+  border-radius: 24rpx;
+}
+.mt-20 {
+  margin-top: 20rpx;
+}
+.mt-40 {
+  margin-top: 40rpx;
+}
+.alifont {
+  width: 42rpx;
+  height: 42rpx;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8rpx;
+  position: relative;
+  top: -2rpx;
+  left: 0;
+}
+.icon-xuanzhong {
+  background: url('/static/icon/btn-gouxuan-sei.png') no-repeat;
+  background-size: contain;
+}
+.unchecked {
+  background: url('/static/icon/btn-gouxuan-nor.png') no-repeat;
+  background-size: contain;
+}
+.icon-bianji-copy {
+  background: url('/static/icon/btn-bianji.png') no-repeat;
+  background-size: contain;
+}
+.icon-lajitong {
+  background: url('/static/icon/btn-delect.png') no-repeat;
+  background-size: contain;
+  width: 28rpx;
+  height: 28rpx;
+}
+// 向右箭头
+.selectIcon {
+  background: url('/static/icon/button-more.png') no-repeat;
+  background-size: contain;
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 4rpx;
+}
+.footBtn {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 164rpx;
+  bottom: 0;
+  background: $font-color-white;
+  padding: 16rpx 40rpx 60rpx;
+  box-shadow: 1px 1px 8px #f8f8f8;
+  .btn {
+    background: $light-color;
+    height: 72rpx;
+    font-size: 30rpx;
+    line-height: 72rpx;
+  }
+}
+.placeholderClass {
+  color: $font-color-baseSub;
+  line-height: 108rpx;
+  height: 108rpx;
+}
+.cancel-popup {
+  .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: 32rpx;
+    line-height: 44rpx;
+    padding: 30rpx 0 10rpx;
+    font-weight: 600;
+  }
+
+  .body {
+    padding: 30rpx;
+    .title {
+      border-bottom: 1px solid $bg-color-sub;
+      padding-bottom: 30rpx;
+    }
+    .value {
+      display: flex;
+      flex-direction: column;
+      .radio-view {
+        display: flex;
+        align-items: center;
+        height: 120rpx;
+        line-height: 120rpx;
+        border-bottom: 1px solid $bg-color-sub;
+        /deep/ .u-radio {
+          .u-radio__label {
+            margin: 0;
+            font-size: 28rpx !important;
+            color: $font-color-dark;
+          }
+          .u-radio__icon-wrap {
+            background: #dcdcdf;
+            border: 0 none !important;
+            position: absolute;
+            right: 30px;
+            .u-icon__icon {
+              color: $font-color-white !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    text-align: center;
+    padding: 0 30rpx;
+    position: absolute;
+    bottom: 60rpx;
+    left: 30rpx;
+    right: 30rpx;
+  }
+}
+/deep/ .u-radio {
+  /deep/ .u-radio__label {
+    margin: 0;
+    font-size: 28rpx !important;
+    color: $font-color-dark;
+  }
+  /deep/ .u-radio__icon-wrap {
+    background: #dcdcdf;
+    border: 0 none !important;
+    .u-icon__icon {
+      color: $font-color-white !important;
+    }
+  }
+}
+/deep/ .u-checkbox {
+  .u-checkbox__icon-wrap {
+    background: #dcdcdf;
+    border: 0 none !important;
+    .u-icon__icon {
+      color: $font-color-white !important;
+    }
+  }
+}
+.sub-btn,
+.cancel-btn,
+.pay-btn,
+.rebuy-btn,
+.directBtn,
+.subBtn {
+  text-align: center;
+  margin-left: 14rpx;
+  font-size: 24rpx;
+  padding: 14rpx 20rpx;
+  border-radius: 100px;
+}
+.cancel-btn {
+  color: $font-color-dark !important;
+  border: 1px solid $font-color-baseSub;
+  border-radius: 18px;
+}
+.sub-btn {
+  color: $main-color !important;
+  border: 1px solid $main-color;
+  border-radius: 18px;
+}
+.pay-btn {
+  background-color: $light-color !important;
+
+  color: #ffffff !important;
+}
+
+.rebuy-btn {
+  color: $light-color !important;
+  border-color: $light-color !important;
+  background-color: #ffffff !important;
+}
+.directBtn {
+  height: 30px !important;
+  line-height: 30rpx;
+  border: 1px solid $main-color !important;
+  border-radius: 18px;
+  color: $main-color !important;
+  background: $font-color-white;
+}
+.subBtn {
+  height: 30px !important;
+  line-height: 30rpx;
+  border: 1px solid $font-color-baseSub !important;
+  border-radius: 18px;
+  background: $font-color-white;
+}
+/deep/ u-button .u-btn--default {
+  background-color: $main-color !important;
+  border: 0 none !important;
+  color: $font-color-white !important;
+  height: 88rpx !important;
+  width: 100% !important;
+  border-radius: 44rpx;
+}
+// 定义flex等分
+// @for $i from 0 through 12 {
+// 	.u-flex-#{$i} {
+// 		flex: $i;
+// 	}
+// }
+
+// // 定义字体(px)单位，小于20都为px单位字体
+// @for $i from 9 to 20 {
+// 	.u-font-#{$i} {
+// 		font-size: $i + px;
+// 	}
+// }
+
+// // 定义字体(rpx)单位，大于或等于20的都为rpx单位字体
+// @for $i from 20 through 40 {
+// 	.u-font-#{$i} {
+// 		font-size: $i + rpx;
+// 	}
+// }
+
+// // 定义内外边距，历遍1-80
+// @for $i from 0 through 80 {
+// 	// 只要双数和能被5除尽的数
+// 	@if $i % 2 == 0 or $i % 5 == 0 {
+// 		// 得出：u-margin-30或者u-m-30
+// 		.u-margin-#{$i}, .u-m-#{$i} {
+// 			margin: $i + rpx!important;
+// 		}
+
+// 		// 得出：u-padding-30或者u-p-30
+// 		.u-padding-#{$i}, .u-p-#{$i} {
+// 			padding: $i + rpx!important;
+// 		}
+
+// 		@each $short, $long in l left, t top, r right, b bottom {
+// 			// 缩写版，结果如： u-m-l-30
+// 			// 定义外边距
+// 			.u-m-#{$short}-#{$i} {
+// 				margin-#{$long}: $i + rpx!important;
+// 			}
+
+// 			// 定义内边距
+// 			.u-p-#{$short}-#{$i} {
+// 				padding-#{$long}: $i + rpx!important;
+// 			}
+
+// 			// 完整版，结果如：u-margin-left-30
+// 			// 定义外边距
+// 			.u-margin-#{$long}-#{$i} {
+// 				margin-#{$long}: $i + rpx!important;
+// 			}
+
+// 			// 定义内边距
+// 			.u-padding-#{$long}-#{$i} {
+// 				padding-#{$long}: $i + rpx!important;
+// 			}
+// 		}
+// 	}
+// }
